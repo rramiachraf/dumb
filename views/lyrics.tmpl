@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{.Artist}} - {{.Title}} lyrics</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="/static/style.css" />
+		<script type="text/javascript" src="/static/script.js" async></script>
+	</head>
+	<body>
+		<h1 id="nav">DUMB</h1>
+		<div id="metadata">
+			<img src="{{.Image}}"/>
+			<h2>{{.Artist}}</h2>
+			<h1>{{.Title}}</h1>
+		</div>
+		<div id="lyrics">{{.Lyrics}}</div>
+	</body>
+</html>

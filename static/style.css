@@ -1,0 +1,99 @@
+/* inter-regular - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+       url('/static/fonts/inter-v11-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('/static/fonts/inter-v11-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* inter-500 - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: local(''),
+       url('/static/fonts/inter-v11-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('/static/fonts/inter-v11-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* inter-700 - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''),
+       url('/static/fonts/inter-v11-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('/static/fonts/inter-v11-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.5rem;
+	font-family: inter;
+	background-color: #f9f9f9;
+}
+
+#lyrics {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 1rem 0;
+	color: #171717;
+	line-height: 2.5rem;
+}
+
+#lyrics a {
+	background-color: #ddd;
+	color: inherit;
+}
+
+#nav {
+	font-size: 2.5rem;
+	text-align: center;
+	font-weight: 700;
+	background-color: #FFCD38;
+	color: #1B1A17;
+	padding: 0.5rem;
+	letter-spacing: 1rem;
+	font-family: monospace;
+}
+
+a {
+	text-decoration: none;
+}
+
+#metadata {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1rem;
+}
+
+#metadata h1 {
+	font-size: 2.2rem;
+	color: #171717;
+}
+
+#metadata h2 {
+	font-size: 1.5rem;
+	color: #1E1E1E;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+#metadata > img {
+	width: 20rem;
+	border-radius: 3px;
+}
