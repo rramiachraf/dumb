@@ -45,10 +45,6 @@ body {
 }
 
 #lyrics {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	padding: 1rem 0;
 	color: #171717;
 	line-height: 2.5rem;
 }
@@ -56,6 +52,10 @@ body {
 #lyrics a {
 	background-color: #ddd;
 	color: inherit;
+}
+
+#lyrics a:hover {
+	background-color: #ccc;
 }
 
 #nav {
@@ -76,24 +76,30 @@ a {
 #metadata {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	gap: 0.5rem;
-	padding: 1rem;
+	text-align: center;
 }
 
 #metadata h1 {
-	font-size: 2.2rem;
+	font-size: 2rem;
 	color: #171717;
 }
 
 #metadata h2 {
-	font-size: 1.5rem;
+	font-size: 1.4rem;
 	color: #1E1E1E;
-	text-transform: uppercase;
 	font-weight: 500;
 }
 
 #metadata > img {
 	width: 20rem;
 	border-radius: 3px;
+	box-shadow: 0 1px 1px #ddd;
+}
+
+#container {
+	display: flex;
+	padding: 2rem;
+	gap: 5rem;
+	justify-content: center;
 }

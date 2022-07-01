@@ -2,31 +2,26 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net"
 	"net/http"
 	"os"
 	"strconv"
 	"time"
 
+	"github.com/allegro/bigcache/v3"
 	"github.com/gorilla/mux"
 )
 
-func fatal(err any) {
-	log.Fatalf("[ERR] %s\n", err)
-}
-
-func info(s string) {
-	log.Printf("[INFO] %s\n", s)
-}
-
-func write(w http.ResponseWriter, status int, data []byte) {
-	w.WriteHeader(status)
-	w.Write(data)
-}
-
 func main() {
+	c, err := bigcache.NewBigCache(bigcache.DefaultConfig(time.Hour * 2))
+	if err != nil {
+		fatal("can't initialize caching")
+	}
+	cache = c
+
 	r := mux.NewRouter()
+
+	r.Use(securityHeaders)
 
 	r.HandleFunc("/{id}-lyrics", lyricsHandler)
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))

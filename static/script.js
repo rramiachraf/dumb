@@ -1,4 +1,4 @@
-document.querySelectorAll("#lyrics > a").forEach(item => {
+document.querySelectorAll("#lyrics a").forEach(item => {
 	item.addEventListener("click", getAnnotation)
 })
 

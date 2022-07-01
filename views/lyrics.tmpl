@@ -8,11 +8,13 @@
 	</head>
 	<body>
 		<h1 id="nav">DUMB</h1>
-		<div id="metadata">
-			<img src="{{.Image}}"/>
-			<h2>{{.Artist}}</h2>
-			<h1>{{.Title}}</h1>
+		<div id="container">
+			<div id="metadata">
+				<img src="{{.Image}}"/>
+				<h2>{{.Artist}}</h2>
+				<h1>{{.Title}}</h1>
+			</div>
+			<div id="lyrics">{{.Lyrics}}</div>
 		</div>
-		<div id="lyrics">{{.Lyrics}}</div>
 	</body>
 </html>

@@ -49,6 +49,11 @@ func (s *song) parse(doc *goquery.Document) {
 func lyricsHandler(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
 
+	if data, err := getCache(id); err == nil {
+		render(w, data)
+		return
+	}
+
 	url := fmt.Sprintf("https://genius.com/%s-lyrics", id)
 	resp, err := http.Get(url)
 	if err != nil {
@@ -78,4 +83,5 @@ func lyricsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	t.Execute(w, s)
+	setCache(id, s)
 }
