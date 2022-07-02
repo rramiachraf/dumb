@@ -15,6 +15,21 @@
 				<h1>{{.Title}}</h1>
 			</div>
 			<div id="lyrics">{{.Lyrics}}</div>
+			<div id="info">
+				<div id="about">
+					<h1 id="title">About</h1>
+					<p>{{.About}}</p>
+				</div>
+				<div id="credits">
+					<h1 id="title">Credits</h1>
+					{{range $key, $val := .Credits}}
+						<details>
+							<summary>{{$key}}</summary>
+							<p>{{$val}}</p>
+						</details>
+					{{end}} 
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

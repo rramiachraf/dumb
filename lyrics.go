@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"path"
 	"text/template"
@@ -12,20 +11,19 @@ import (
 )
 
 type song struct {
-	Artist string
-	Title  string
-	Image  string
-	Lyrics string
+	Artist  string
+	Title   string
+	Image   string
+	Lyrics  string
+	Credits map[string]string
+	About   string
 }
 
 func (s *song) parseLyrics(doc *goquery.Document) {
 	doc.Find("[data-lyrics-container='true']").Each(func(i int, ss *goquery.Selection) {
-		h, err := ss.Html()
-		if err != nil {
-			log.Println(err)
+		if h, err := ss.Html(); err == nil {
+			s.Lyrics += h
 		}
-
-		s.Lyrics += h
 	})
 }
 
@@ -41,9 +39,27 @@ func (s *song) parseMetadata(doc *goquery.Document) {
 	s.Artist = artist
 }
 
+func (s *song) parseCredits(doc *goquery.Document) {
+	credits := make(map[string]string)
+
+	doc.Find("[class*='SongInfo__Credit']").Each(func(i int, ss *goquery.Selection) {
+		key := ss.Children().First().Text()
+		value := ss.Children().Last().Text()
+		credits[key] = value
+	})
+
+	s.Credits = credits
+}
+
+func (s *song) parseAbout(doc *goquery.Document) {
+	s.About = doc.Find("[class*='SongDescription__Content']").Text()
+}
+
 func (s *song) parse(doc *goquery.Document) {
 	s.parseLyrics(doc)
 	s.parseMetadata(doc)
+	s.parseCredits(doc)
+	s.parseAbout(doc)
 }
 
 func lyricsHandler(w http.ResponseWriter, r *http.Request) {

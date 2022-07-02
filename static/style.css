@@ -77,7 +77,6 @@ a {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
-	text-align: center;
 }
 
 #metadata h1 {
@@ -98,8 +97,48 @@ a {
 }
 
 #container {
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr;
 	padding: 2rem;
-	gap: 5rem;
-	justify-content: center;
+}
+
+#credits {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+#title {
+	font-size: 2rem;
+	color: #1B1A17;
+}
+
+#credits summary {
+	font-size: 1.4rem;
+	cursor: pointer;
+	color: #1E1E1E;
+}
+
+#credits p {
+	font-size: 1.3rem;
+	padding: 0.5rem;
+	color: #171717;
+}
+
+#info {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+#about {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+#about p {
+	font-size: 1.4rem;
+	color: #171717;
+	line-height: 1.8rem;
 }
