@@ -3,6 +3,9 @@ I find myself reading a lot of lyrics while listening to my favorite songs, my g
 My only issue with the platform is their over 4MB of trackers, analytics and junk which has nothing to do with the actual lyrics.
 Thus I created this alternative front-end so I can read song lyrics with ease and as lightweight as possible.
 
+## Screenshot
+![Screenshot]("https://raw.githubusercontent.com/rramiachraf/dumb/main/screenshot.png")
+
 ## Install
 Go 1.18+ is required.
 ```bash
