@@ -4,7 +4,7 @@ My only issue with the platform is their over 4MB of trackers, analytics and jun
 Thus I created this alternative front-end so I can read song lyrics with ease and as lightweight as possible.
 
 ## Screenshot
-![Screenshot]("https://raw.githubusercontent.com/rramiachraf/dumb/main/screenshot.png")
+![Screenshot](https://raw.githubusercontent.com/rramiachraf/dumb/main/screenshot.png)
 
 ## Install
 Go 1.18+ is required.
