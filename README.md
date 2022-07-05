@@ -9,7 +9,7 @@ Thus I created this alternative front-end so I can read song lyrics with ease an
 ## Install
 Go 1.18+ is required.
 ```bash
-go install github.com/rramiachraf/dumb
+go install github.com/rramiachraf/dumb@latest
 ```
 
 ## Usage
