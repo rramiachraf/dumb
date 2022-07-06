@@ -6,14 +6,13 @@ Thus I created this alternative front-end so I can read song lyrics with ease an
 ## Screenshot
 ![Screenshot](https://raw.githubusercontent.com/rramiachraf/dumb/main/screenshot.png)
 
-## Install
+## Usage
 Go 1.18+ is required.
 ```bash
-go install github.com/rramiachraf/dumb@latest
+git clone https://github.com/rramiachraf/dumb
+cd dumb
+go build
+./dumb
 ```
 
-## Usage
-```bash
-dumb
-```
 The default port is 5555, you can use other ports by setting the `PORT` environment variable.
