@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"path"
+	"strings"
 	"text/template"
 
 	"github.com/PuerkitoBio/goquery"
@@ -16,7 +17,7 @@ type song struct {
 	Image   string
 	Lyrics  string
 	Credits map[string]string
-	About   string
+	About   [2]string
 }
 
 func (s *song) parseLyrics(doc *goquery.Document) {
@@ -52,7 +53,12 @@ func (s *song) parseCredits(doc *goquery.Document) {
 }
 
 func (s *song) parseAbout(doc *goquery.Document) {
-	s.About = doc.Find("[class*='SongDescription__Content']").Text()
+	s.About[0] = doc.Find("[class*='SongDescription__Content']").Text()
+	summary := strings.Split(s.About[0], "")
+
+	if len(summary) > 250 {
+		s.About[1] = strings.Join(summary[0:250], "") + "..."
+	}
 }
 
 func (s *song) parse(doc *goquery.Document) {

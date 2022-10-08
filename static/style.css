@@ -99,7 +99,8 @@ a {
 #container {
 	display: grid;
 	grid-template-columns: 1fr 3fr 1fr;
-	padding: 2rem;
+	padding: 5rem 10rem;
+	gap: 5rem;
 }
 
 #credits {
@@ -141,4 +142,10 @@ a {
 	font-size: 1.4rem;
 	color: #171717;
 	line-height: 1.8rem;
+	cursor: pointer;
 }
+
+.hidden {
+	display: none;
+}
+
