@@ -14,7 +14,7 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 
 	res, err := http.Get(url)
 	if err != nil {
-		write(w, http.StatusInternalServerError, []byte("can't reach genius genius servers"))
+		write(w, http.StatusInternalServerError, []byte("can't reach genius servers"))
 		return
 	}
 
