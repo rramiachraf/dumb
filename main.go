@@ -24,7 +24,7 @@ func main() {
 	r.Use(securityHeaders)
 
 	r.HandleFunc("/{id}-lyrics", lyricsHandler)
-	r.HandleFunc("/images/{filename}.jpg", proxyHandler)
+	r.HandleFunc("/images/{filename}.{ext}", proxyHandler)
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	server := &http.Server{
