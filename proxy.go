@@ -30,7 +30,8 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	url := fmt.Sprintf("https://images.genius.com/%s.%s", f, ext)
+	// first segment of URL resize the image to reduce bandwith usage.
+	url := fmt.Sprintf("https://t2.genius.com/unsafe/300x300/https://images.genius.com/%s.%s", f, ext)
 
 	res, err := http.Get(url)
 	if err != nil {
