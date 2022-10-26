@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"path"
@@ -59,8 +60,9 @@ func securityHeaders(next http.Handler) http.Handler {
 	})
 }
 
-func render(w http.ResponseWriter, data any) {
-	t, err := template.ParseFiles(path.Join("views/lyrics.tmpl"))
+func render(n string, w http.ResponseWriter, data any) {
+	tmpl := fmt.Sprintf("%s.tmpl",n )
+	t, err := template.ParseFiles(path.Join("views", tmpl))
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

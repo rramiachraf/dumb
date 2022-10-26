@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"path"
 	"strings"
-	"text/template"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gorilla/mux"
@@ -75,7 +73,7 @@ func lyricsHandler(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
 
 	if data, err := getCache(id); err == nil {
-		render(w, data)
+		render("lyrics", w, data)
 		return
 	}
 
@@ -101,12 +99,7 @@ func lyricsHandler(w http.ResponseWriter, r *http.Request) {
 	s.parse(doc)
 
 	w.Header().Set("content-type", "text/html")
-	t, err := template.ParseFiles(path.Join("views", "lyrics.tmpl"))
-	if err != nil {
-		write(w, http.StatusInternalServerError, []byte("something went wrong"))
-		return
-	}
 
-	t.Execute(w, s)
+	render("lyrics", w, s)
 	setCache(id, s)
 }

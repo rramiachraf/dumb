@@ -14,5 +14,6 @@ document.querySelectorAll("#lyrics a").forEach(item => {
 
 function getAnnotation(e) {
 	e.preventDefault()
-	console.log(e.target.parentElement.getAttribute("href"))
+	//const uri = e.target.parentElement.getAttribute("href")
+	console.log("Annotations are not yet implemented!")
 }

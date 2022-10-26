@@ -23,6 +23,7 @@ func main() {
 
 	r.Use(securityHeaders)
 
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { render("home", w, nil) })
 	r.HandleFunc("/{id}-lyrics", lyricsHandler)
 	r.HandleFunc("/images/{filename}.{ext}", proxyHandler)
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))

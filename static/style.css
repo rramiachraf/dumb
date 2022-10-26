@@ -149,3 +149,32 @@ a {
 	display: none;
 }
 
+#home {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+}
+
+#home div {
+	text-align: center;
+}
+
+#home h1 {
+	font-weight: 600;
+	font-size: 2.2rem;
+	color: #222;
+}
+
+#home p {
+	color: #333;
+}
+
+#home code {
+	background-color: #eee;
+	padding: 0.3rem 1rem;
+	border-radius: .5rem;
+	color: #333;
+}
