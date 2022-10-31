@@ -16,10 +16,10 @@ go build
 The default port is 5555, you can use other ports by setting the `PORT` environment variable.
 
 ## Public Instances
-As of now, I still haven't got the time to make a public instance and maintain it for people to use at large. For anyone interested in this task feel free to do so and don't forget to create a pull request so I can include your instance here for people to use 😊.
+As of now, I still haven't got the time to make a public instance and maintain it for people to use at large. For anyone interested in this task feel free to do so and don't forget to create a pull request so I can include your instance here.
 
 ## Contributing
-Contributions are always welcome.
+Contributions are welcome.
 
 ## License
 [MIT](https://github.com/rramiachraf/dumb/blob/main/LICENCE)
