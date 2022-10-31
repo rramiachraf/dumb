@@ -1,13 +1,11 @@
 # dumb
-I find myself reading a lot of lyrics while listening to my favorite songs, my go-to place for this is Genius since you can find pretty much everything there, if not you can just create it :D.  
-My only issue with the platform is their over 4MB of trackers, analytics and junk which has nothing to do with the actual lyrics.
-Thus I created this alternative front-end so I can read song lyrics with ease and as lightweight as possible.
+With the massive daily increase of useless scripts on Genius's web frontend and having to download megabytes of clutter, [dumb](https://github.com/rramiachraf/dumb) tries to make reading lyrics from Genius a pleasant experience and as lightweight as possible.
 
 ## Screenshot
 ![Screenshot](https://raw.githubusercontent.com/rramiachraf/dumb/main/screenshot.png)
 
-## Usage
-Go 1.18+ is required.
+## Installation & Usage
+[Go 1.18+](https://go.dev/dl) is required.
 ```bash
 git clone https://github.com/rramiachraf/dumb
 cd dumb
@@ -16,3 +14,13 @@ go build
 ```
 
 The default port is 5555, you can use other ports by setting the `PORT` environment variable.
+
+## Public Instances
+As of now, I still haven't got the time to make a public instance and maintain it for people to use at large. For anyone interested in this task feel free to do so and don't forget to create a pull request so I can include your instance here for people to use 😊.
+
+## Contributing
+Contributions are always welcome.
+
+## License
+[MIT](https://github.com/rramiachraf/dumb/blob/main/LICENCE)
+
