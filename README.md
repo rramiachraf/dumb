@@ -1,7 +1,5 @@
 # dumb
 With the massive daily increase of useless scripts on Genius's web frontend and having to download megabytes of clutter, [dumb](https://github.com/rramiachraf/dumb) tries to make reading lyrics from Genius a pleasant experience and as lightweight as possible.
-
-## Screenshot
 ![Screenshot](https://raw.githubusercontent.com/rramiachraf/dumb/main/screenshot.png)
 
 ## Installation & Usage
