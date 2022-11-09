@@ -1,0 +1,21 @@
+[Unit]
+Description=ListMonk
+Documentation=https://github.com/rramiachraf/dumb
+After=system.slice multi-user.target postgresql.service network.target
+
+[Service]
+User=git
+Type=simple
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=listmonk
+
+WorkingDirectory=/etc/dumb
+ExecStart=/etc/dumb/dumb
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
