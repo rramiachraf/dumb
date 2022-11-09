@@ -16,9 +16,11 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 
 ## Public Instances
 
-- [dumb.nunosempere.com](https://dumb.nunosempere.com/) (experimental)
+| URL                                                                  | Region | CDN? | Operator     |
+| ---                                                                  | ------ | ---- | --------     |
+| [dumb.nunosempere.com](https://dumb.nunosempere.com/) (experimental) | DE     | No   | @NunoSempere |
 
-As of now, I (@arramiachraf) still haven't got the time to make a public instance and maintain it for people to use at large. For anyone interested in this task feel free to do so and don't forget to create a pull request so I can include your instance here.
+For people who might be capable and interested in hosting a public instance feel free to do so and don't forget to open a pull request so your instance can be included here.
 
 ## Contributing
 Contributions are welcome.
