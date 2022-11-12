@@ -1,33 +1,39 @@
 /* inter-regular - latin */
 @font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  src: local(''),
-       url('/static/fonts/inter-v11-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/static/fonts/inter-v11-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	src: local(""),
+		url("/static/fonts/inter-v11-latin-regular.woff2")
+			format("woff2"),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+			url("/static/fonts/inter-v11-latin-regular.woff")
+			format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 /* inter-500 - latin */
 @font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  src: local(''),
-       url('/static/fonts/inter-v11-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/static/fonts/inter-v11-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	src: local(""),
+		url("/static/fonts/inter-v11-latin-500.woff2") format("woff2"),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+			url("/static/fonts/inter-v11-latin-500.woff")
+			format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 /* inter-700 - latin */
 @font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  src: local(''),
-       url('/static/fonts/inter-v11-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/static/fonts/inter-v11-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 700;
+	src: local(""),
+		url("/static/fonts/inter-v11-latin-700.woff2") format("woff2"),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+			url("/static/fonts/inter-v11-latin-700.woff")
+			format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-
 
 * {
 	margin: 0;
@@ -47,6 +53,8 @@ body {
 #lyrics {
 	color: #171717;
 	line-height: 2.5rem;
+	flex-shrink: 0;
+	flex-grow: 1;
 }
 
 #lyrics a {
@@ -58,15 +66,16 @@ body {
 	background-color: #ccc;
 }
 
-#nav {
-	font-size: 2.5rem;
-	text-align: center;
-	font-weight: 700;
-	background-color: #FFCD38;
-	color: #1B1A17;
+nav {
+	background-color: #ffcd38;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	padding: 0.5rem;
-	letter-spacing: 1rem;
-	font-family: monospace;
+}
+
+nav img {
+	width: 50px;
 }
 
 a {
@@ -86,7 +95,7 @@ a {
 
 #metadata h2 {
 	font-size: 1.4rem;
-	color: #1E1E1E;
+	color: #1e1e1e;
 	font-weight: 500;
 }
 
@@ -97,8 +106,7 @@ a {
 }
 
 #container {
-	display: grid;
-	grid-template-columns: 1fr 3fr 1fr;
+	display: flex;
 	padding: 5rem 10rem;
 	gap: 5rem;
 }
@@ -111,13 +119,13 @@ a {
 
 #title {
 	font-size: 2rem;
-	color: #1B1A17;
+	color: #1b1a17;
 }
 
 #credits summary {
 	font-size: 1.4rem;
 	cursor: pointer;
-	color: #1E1E1E;
+	color: #1e1e1e;
 }
 
 #credits p {
@@ -175,6 +183,18 @@ a {
 #home code {
 	background-color: #eee;
 	padding: 0.3rem 1rem;
-	border-radius: .5rem;
+	border-radius: 0.5rem;
 	color: #333;
+}
+
+@media screen and (max-width: 900px) {
+	#container {
+		padding: 3rem 2rem;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	#metadata {
+		align-items: center;
+	}
 }
