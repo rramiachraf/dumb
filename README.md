@@ -18,7 +18,7 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 
 | URL                                                                        | Region | CDN? | Operator        |
 | ---                                                                        | ------ | ---- | --------        |
-| <https://dm.vern.cc>                                                       | CA     | No   | https://vern.cc |
+| <https://dm.vern.cc>                                                       | US     | No   | https://vern.cc |
 | <https://dumb.nunosempere.com> (experimental)                              | DE     | No   | @NunoSempere    |
 |                                                                            |        |      |                 |
 | <http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion> | N/A    | No   | https://vern.cc |
