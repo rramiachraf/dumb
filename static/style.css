@@ -58,6 +58,12 @@ body {
 }
 
 #lyrics a {
+	color: inherit;
+	cursor: initial;
+}
+
+/*** NOT YET IMPLEMENTED
+#lyrics a {
 	background-color: #ddd;
 	color: inherit;
 }
@@ -65,6 +71,7 @@ body {
 #lyrics a:hover {
 	background-color: #ccc;
 }
+***/
 
 nav {
 	background-color: #ffcd38;
@@ -208,7 +215,7 @@ footer {
 footer a {
 	font-weight: 500;
 	color: #1b1a17;
-	transition: .3s ease text-decoration;
+	transition: 0.3s ease text-decoration;
 	font-size: 1.4rem;
 	text-transform: uppercase;
 }
@@ -221,4 +228,43 @@ footer a:hover {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+}
+
+/* dark mode */
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #181d31;
+	}
+
+	nav, footer {
+		background-color: #fec260;
+	}
+
+	#lyrics {
+		color: #ccc;
+	}
+
+	#metadata h1 {
+		color: #ddd;
+	}
+
+	#metadata h2, #credits p {
+		color: #eee;
+	}
+
+	#title {
+		color: #ddd;
+	}
+
+	#about p, #credits summary {
+		color: #ccc
+	}
+
+	#home h1 {
+		color: #eee;
+	}
+
+	#home p {
+		color: #ddd;
+	}
 }
