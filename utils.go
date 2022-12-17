@@ -60,9 +60,17 @@ func securityHeaders(next http.Handler) http.Handler {
 	})
 }
 
+func getTemplates(templates ...string) []string {
+	var pths []string
+	for _, t := range templates {
+		tmpl := path.Join("views",fmt.Sprintf("%s.tmpl", t))
+		pths = append(pths, tmpl)
+	}
+	return pths
+}
+
 func render(n string, w http.ResponseWriter, data any) {
-	tmpl := fmt.Sprintf("%s.tmpl",n )
-	t, err := template.ParseFiles(path.Join("views", tmpl))
+	t, err := template.ParseFiles(getTemplates(n, "navbar", "footer")...)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

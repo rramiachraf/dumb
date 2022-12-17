@@ -161,9 +161,9 @@ a {
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
-	justify-content: center;
 	align-items: center;
 	padding: 2rem;
+	flex-grow: 1;
 }
 
 #home div {
@@ -197,4 +197,28 @@ a {
 	#metadata {
 		align-items: center;
 	}
+}
+
+footer {
+	text-align: center;
+	background-color: #ffcd38;
+	padding: 1rem;
+}
+
+footer a {
+	font-weight: 500;
+	color: #1b1a17;
+	transition: .3s ease text-decoration;
+	font-size: 1.4rem;
+	text-transform: uppercase;
+}
+
+footer a:hover {
+	text-decoration: underline;
+}
+
+#app {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }

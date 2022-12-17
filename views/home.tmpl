@@ -7,16 +7,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>
 	<body>
-		<nav>
-			<a href="/"><img src="/static/logo.svg" /></a>
-		</nav>
-
-		<div id="home">
-			<div>
-				<h1>Welcome to dumb</h1>
-				<p>An alternative frontend for genius.com</p>
+		<main id="app">
+			{{template "navbar"}}
+			<div id="home">
+				<div>
+					<h1>Welcome to dumb</h1>
+					<p>An alternative frontend for genius.com</p>
+				</div>
+				<code>Just redirect Genius URLs to this instance and It's all good.</code>
 			</div>
-			<code>Just redirect Genius URLs to this instance and It's all good.</code>
+			{{template "footer"}}
 		</div>
 	</body>
 </html>
