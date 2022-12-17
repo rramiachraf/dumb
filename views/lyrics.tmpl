@@ -7,10 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="/static/style.css" />
 		<script type="text/javascript" src="/static/script.js" defer></script>
 	</head>
-	<body>
-		<nav>
-			<a href="/"><img src="/static/logo.svg" /></a>
-		</nav>
+	<body>	
+		{{template "navbar"}}
 		<div id="container">
 			<div id="metadata">
 				<img src="{{.Image}}"/>
@@ -35,5 +33,6 @@
 				</div>
 			</div>
 		</div>
+		{{template "footer"}}
 	</body>
 </html>
