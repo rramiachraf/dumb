@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"path"
 	"text/template"
@@ -13,7 +12,7 @@ import (
 
 var cache *bigcache.BigCache
 
-func setCache(key string, entry any) error {
+func setCache(key string, entry interface{}) error {
 	data, err := json.Marshal(&entry)
 	if err != nil {
 		return err
@@ -22,27 +21,19 @@ func setCache(key string, entry any) error {
 	return cache.Set(key, data)
 }
 
-func getCache(key string) (any, error) {
+func getCache(key string) (interface{}, error) {
 	data, err := cache.Get(key)
 	if err != nil {
 		return nil, err
 	}
 
-	var decoded any
+	var decoded interface{}
 
 	if err = json.Unmarshal(data, &decoded); err != nil {
 		return nil, err
 	}
 
 	return decoded, nil
-}
-
-func fatal(err any) {
-	log.Fatalf("[ERR] %s\n", err)
-}
-
-func info(s string) {
-	log.Printf("[INFO] %s\n", s)
 }
 
 func write(w http.ResponseWriter, status int, data []byte) {
@@ -63,13 +54,13 @@ func securityHeaders(next http.Handler) http.Handler {
 func getTemplates(templates ...string) []string {
 	var pths []string
 	for _, t := range templates {
-		tmpl := path.Join("views",fmt.Sprintf("%s.tmpl", t))
+		tmpl := path.Join("views", fmt.Sprintf("%s.tmpl", t))
 		pths = append(pths, tmpl)
 	}
 	return pths
 }
 
-func render(n string, w http.ResponseWriter, data any) {
+func render(n string, w http.ResponseWriter, data interface{}) {
 	t, err := template.ParseFiles(getTemplates(n, "navbar", "footer")...)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

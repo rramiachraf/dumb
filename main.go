@@ -10,12 +10,15 @@ import (
 
 	"github.com/allegro/bigcache/v3"
 	"github.com/gorilla/mux"
+	"github.com/sirupsen/logrus"
 )
 
+var logger = logrus.New()
+
 func main() {
-	c, err := bigcache.NewBigCache(bigcache.DefaultConfig(time.Hour * 2))
+	c, err := bigcache.NewBigCache(bigcache.DefaultConfig(time.Hour * 24))
 	if err != nil {
-		fatal("can't initialize caching")
+		logger.Fatalln("can't initialize caching")
 	}
 	cache = c
 
@@ -42,10 +45,10 @@ func main() {
 
 	l, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
-		fatal(err)
+		logger.Fatalln(err)
 	}
 
-	info(fmt.Sprintf("server is listening on port %d", port))
+	logger.Infof("server is listening on port %d\n", port)
 
-	fatal(server.Serve(l))
+	logger.Fatalln(server.Serve(l))
 }
