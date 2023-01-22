@@ -26,7 +26,11 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 	ext := v["ext"]
 
 	if !isValidExt(ext) {
-		write(w, http.StatusBadRequest, []byte("not an image :/"))
+		w.WriteHeader(http.StatusBadRequest)
+		render("error", w, map[string]string{
+			"Status": "400",
+			"Error":  "Something went wrong",
+		})
 		return
 	}
 
@@ -35,12 +39,22 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 
 	res, err := http.Get(url)
 	if err != nil {
-		write(w, http.StatusInternalServerError, []byte("can't reach genius servers"))
+		logger.Errorln(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		render("error", w, map[string]string{
+			"Status": "500",
+			"Error":  "cannot reach genius servers",
+		})
 		return
 	}
 
 	if res.StatusCode != http.StatusOK {
-		write(w, res.StatusCode, []byte{})
+		w.WriteHeader(http.StatusInternalServerError)
+		render("error", w, map[string]string{
+			"Status": "500",
+			"Error":  "something went wrong",
+		})
+
 		return
 	}
 

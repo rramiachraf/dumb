@@ -230,13 +230,35 @@ footer a:hover {
 	min-height: 100vh;
 }
 
+#error {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+	flex-grow: 1;
+}
+
+#error h1 {
+	font-size: 5rem;
+	color: #111;
+}
+
+#error p {
+	text-transform: uppercase;
+	font-size: 1.6rem;
+	color: #222;
+}
+
 /* dark mode */
 @media (prefers-color-scheme: dark) {
 	body {
 		background-color: #181d31;
 	}
 
-	nav, footer {
+	nav,
+	footer {
 		background-color: #fec260;
 	}
 
@@ -248,7 +270,8 @@ footer a:hover {
 		color: #ddd;
 	}
 
-	#metadata h2, #credits p {
+	#metadata h2,
+	#credits p {
 		color: #eee;
 	}
 
@@ -256,15 +279,16 @@ footer a:hover {
 		color: #ddd;
 	}
 
-	#about p, #credits summary {
-		color: #ccc
+	#about p,
+	#credits summary {
+		color: #ccc;
 	}
 
-	#home h1 {
+	#home h1, #error h1 {
 		color: #eee;
 	}
 
-	#home p {
+	#home p, #error p{
 		color: #ddd;
 	}
 }

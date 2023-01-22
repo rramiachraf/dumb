@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>dumb</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="/static/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<main id="app">
+			{{template "navbar"}}
+			<div id="error">
+				<h1>{{.Status}}</h1>
+				<p>{{.Error}}</p>
+			</div>
+			{{template "footer"}}
+		</div>
+	</body>
+</html>

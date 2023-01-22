@@ -61,13 +61,16 @@ func getTemplates(templates ...string) []string {
 }
 
 func render(n string, w http.ResponseWriter, data interface{}) {
+	w.Header().Set("content-type", "text/html")
 	t, err := template.ParseFiles(getTemplates(n, "navbar", "footer")...)
 	if err != nil {
+		logger.Errorln(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
 	if err = t.Execute(w, data); err != nil {
+		logger.Errorln(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}

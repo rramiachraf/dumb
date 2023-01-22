@@ -21,9 +21,11 @@ type song struct {
 
 func (s *song) parseLyrics(doc *goquery.Document) {
 	doc.Find("[data-lyrics-container='true']").Each(func(i int, ss *goquery.Selection) {
-		if h, err := ss.Html(); err == nil {
-			s.Lyrics += h
+		h, err := ss.Html()
+		if err != nil {
+			logger.Errorln("unable to parse lyrics", err)
 		}
+		s.Lyrics += h
 	})
 }
 
@@ -80,25 +82,37 @@ func lyricsHandler(w http.ResponseWriter, r *http.Request) {
 	url := fmt.Sprintf("https://genius.com/%s-lyrics", id)
 	resp, err := http.Get(url)
 	if err != nil {
-		write(w, http.StatusInternalServerError, []byte("can't reach genius servers"))
+		logger.Errorln(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		render("error", w, map[string]string{
+			"Status": "500",
+			"Error":  "cannot reach genius servers",
+		})
 		return
 	}
 
 	if resp.StatusCode == http.StatusNotFound {
-		write(w, http.StatusNotFound, []byte("Not found"))
+		w.WriteHeader(http.StatusNotFound)
+		render("error", w, map[string]string{
+			"Status": "404",
+			"Error":  "page not found",
+		})
 		return
 	}
 
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	if err != nil {
-		write(w, http.StatusInternalServerError, []byte("something went wrong"))
+		logger.Errorln(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		render("error", w, map[string]string{
+			"Status": "500",
+			"Error":  "something went wrong",
+		})
 		return
 	}
 
 	var s song
 	s.parse(doc)
-
-	w.Header().Set("content-type", "text/html")
 
 	render("lyrics", w, s)
 	setCache(id, s)
