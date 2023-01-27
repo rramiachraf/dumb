@@ -43,7 +43,7 @@ func write(w http.ResponseWriter, status int, data []byte) {
 
 func securityHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		csp := "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' images.genius.com; object-src 'none'"
+		csp := "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'"
 		w.Header().Add("content-security-policy", csp)
 		w.Header().Add("referrer-policy", "no-referrer")
 		w.Header().Add("x-content-type-options", "nosniff")
