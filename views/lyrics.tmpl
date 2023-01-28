@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{.Artist}} - {{.Title}} lyrics</title>
+		<title>{{ printf "%s - %s" .Artist .Title }} Lyrics</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" type="text/css" href="/static/style.css" />
 		<script type="text/javascript" src="/static/script.js" defer></script>
 	</head>
 	<body>	
-		{{template "navbar"}}
+		{{ template "navbar" }}
 		<div id="container">
 			<div id="metadata">
 				<img src="{{.Image}}"/>
-				<h2>{{.Artist}}</h2>
-				<h1>{{.Title}}</h1>
+				<h2>{{ .Artist }}</h2>
+				<h1>{{ .Title }}</h1>
 			</div>
-			<div id="lyrics">{{.Lyrics}}</div>
+			<div id="lyrics">{{ .Lyrics }}</div>
 			<div id="info">
-				<div id="about">
+				<!--div id="about">
 					<h1 id="title">About</h1>
-					<p class="hidden" id="full_about">{{index .About 0}}</p>
-					<p id="summary">{{index .About 1}}</p>
-				</div>
+					<div class="hidden" id="full_about">{{ index .About 0 }}</div>
+					<p id="summary">{{ index .About 1 }}</p>
+				</div-->
 				<div id="credits">
 					<h1 id="title">Credits</h1>
-					{{range $key, $val := .Credits}}
+					{{ range $key, $val := .Credits }}
 						<details>
-							<summary>{{$key}}</summary>
-							<p>{{$val}}</p>
+							<summary>{{ $key }}</summary>
+							<p>{{ $val }}</p>
 						</details>
-					{{end}} 
+					{{ end }} 
 				</div>
 			</div>
 		</div>
-		{{template "footer"}}
+		{{ template "footer" }}
 	</body>
 </html>

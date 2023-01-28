@@ -6,7 +6,7 @@ function showAbout() {
 	fullAbout.classList.toggle("hidden")
 }
 
-[fullAbout, summary].forEach(item => item.onclick = showAbout)
+//[fullAbout, summary].forEach(item => item.onclick = showAbout)
 
 document.querySelectorAll("#lyrics a").forEach(item => {
 	item.addEventListener("click", getAnnotation)
