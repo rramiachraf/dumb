@@ -94,6 +94,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
+	flex-basis: 0;
 }
 
 #metadata h1 {
@@ -146,6 +147,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
+	flex-basis: 0;
 }
 
 #about {
