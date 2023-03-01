@@ -91,6 +91,8 @@ func lyricsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	defer resp.Body.Close()
+
 	if resp.StatusCode == http.StatusNotFound {
 		w.WriteHeader(http.StatusNotFound)
 		render("error", w, map[string]string{
