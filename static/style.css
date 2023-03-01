@@ -1,38 +1,31 @@
-/* inter-regular - latin */
+/* inter-regular - cyrillic_greek_latin_vietnamese */
 @font-face {
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 400;
-	src: local(""),
-		url("/static/fonts/inter-v11-latin-regular.woff2")
-			format("woff2"),
-		/* Chrome 26+, Opera 23+, Firefox 39+ */
-			url("/static/fonts/inter-v11-latin-regular.woff")
-			format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/static/fonts/inter-v12-cyrillic_greek_latin_vietnamese-regular.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+       url('/static/fonts/inter-v12-cyrillic_greek_latin_vietnamese-regular.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
-/* inter-500 - latin */
+/* inter-500 - cyrillic_greek_latin_vietnamese */
 @font-face {
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 500;
-	src: local(""),
-		url("/static/fonts/inter-v11-latin-500.woff2") format("woff2"),
-		/* Chrome 26+, Opera 23+, Firefox 39+ */
-			url("/static/fonts/inter-v11-latin-500.woff")
-			format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/static/fonts/inter-v12-cyrillic_greek_latin_vietnamese-500.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+       url('/static/fonts/inter-v12-cyrillic_greek_latin_vietnamese-500.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
-/* inter-700 - latin */
+/* inter-700 - cyrillic_greek_latin_vietnamese */
 @font-face {
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 700;
-	src: local(""),
-		url("/static/fonts/inter-v11-latin-700.woff2") format("woff2"),
-		/* Chrome 26+, Opera 23+, Firefox 39+ */
-			url("/static/fonts/inter-v11-latin-700.woff")
-			format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/static/fonts/inter-v12-cyrillic_greek_latin_vietnamese-700.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+       url('/static/fonts/inter-v12-cyrillic_greek_latin_vietnamese-700.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 * {
