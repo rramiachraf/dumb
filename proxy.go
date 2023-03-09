@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"strings"
 
 	"github.com/gorilla/mux"
@@ -18,6 +19,15 @@ func isValidExt(ext string) bool {
 	}
 
 	return false
+}
+
+func extractURL(image string) string {
+	u, err := url.Parse(image)
+	if err != nil {
+		return ""
+	}
+
+	return fmt.Sprintf("/images%s", u.Path)
 }
 
 func proxyHandler(w http.ResponseWriter, r *http.Request) {

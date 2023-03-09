@@ -14,7 +14,10 @@
 					<h1>Welcome to dumb</h1>
 					<p>An alternative frontend for genius.com</p>
 				</div>
-				<code>Just redirect Genius URLs to this instance and It's all good.</code>
+				<form method="GET" action="/search">
+					<input type="text" name="q" id="search-input" placeholder="Search..." />
+				</form>
+
 			</div>
 			{{template "footer"}}
 		</div>

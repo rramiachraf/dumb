@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"net/url"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -34,9 +33,7 @@ func (s *song) parseMetadata(doc *goquery.Document) {
 	title := doc.Find("h1[class*='Title']").First().Text()
 	image, exists := doc.Find("meta[property='og:image']").Attr("content")
 	if exists {
-		if u, err := url.Parse(image); err == nil {
-			s.Image = fmt.Sprintf("/images%s", u.Path)
-		}
+		s.Image = extractURL(image)
 	}
 
 	s.Title = title

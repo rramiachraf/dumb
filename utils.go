@@ -62,7 +62,8 @@ func getTemplates(templates ...string) []string {
 
 func render(n string, w http.ResponseWriter, data interface{}) {
 	w.Header().Set("content-type", "text/html")
-	t, err := template.ParseFiles(getTemplates(n, "navbar", "footer")...)
+	t := template.New(n + ".tmpl").Funcs(template.FuncMap{"extractURL": extractURL})
+	t, err := t.ParseFiles(getTemplates(n, "navbar", "footer")...)
 	if err != nil {
 		logger.Errorln(err)
 		w.WriteHeader(http.StatusInternalServerError)

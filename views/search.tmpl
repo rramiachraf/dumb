@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Search - dumb</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="/static/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<main id="app">
+			{{template "navbar"}}
+			<div id="search-page" class="main">
+				<form method="GET">
+					<input type="text" name="q" id="search-input" placeholder="Search..." value="{{.Query}}" />
+				</form>
+				<div id="search-results">
+				{{range .Sections}}
+					{{if eq .Type "song"}}
+						<h1>Songs</h1>
+						{{range .Hits}}
+							<a id="search-item" href="{{.Result.Path}}">
+								<img src="{{extractURL .Result.Thumbnail}}"/>
+								<div>
+									<span>{{.Result.ArtistNames}}</span>
+									<h2>{{.Result.Title}}</h2>
+								</div>
+							</a>
+						{{end}}
+					{{end}}
+				{{end}}
+				</div>
+			</div>
+			{{template "footer"}}
+		</div>
+	</body>
+</html>
