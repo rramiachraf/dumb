@@ -37,7 +37,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query().Get("q")
 	url := fmt.Sprintf(`https://genius.com/api/search/multi?q=%s`, query)
 
-	res, err := http.Get(url)
+	res, err := sendRequest(url)
 	if err != nil {
 		logger.Errorln(err)
 		w.WriteHeader(http.StatusInternalServerError)

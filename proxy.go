@@ -47,7 +47,7 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 	// first segment of URL resize the image to reduce bandwith usage.
 	url := fmt.Sprintf("https://t2.genius.com/unsafe/300x300/https://images.genius.com/%s.%s", f, ext)
 
-	res, err := http.Get(url)
+	res, err := sendRequest(url)
 	if err != nil {
 		logger.Errorln(err)
 		w.WriteHeader(http.StatusInternalServerError)

@@ -56,7 +56,7 @@ func (s *song) parseSongData(doc *goquery.Document) {
 		songID := strings.Replace(attr, "genius://songs/", "", 1)
 		u := fmt.Sprintf("https://genius.com/api/songs/%s?text_format=plain", songID)
 
-		res, err := http.Get(u)
+		res, err := sendRequest(u)
 		if err != nil {
 			logger.Errorln(err)
 		}
@@ -112,7 +112,7 @@ func lyricsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	url := fmt.Sprintf("https://genius.com/%s-lyrics", id)
-	resp, err := http.Get(url)
+	resp, err := sendRequest(url)
 	if err != nil {
 		logger.Errorln(err)
 		w.WriteHeader(http.StatusInternalServerError)
