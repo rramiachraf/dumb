@@ -11,7 +11,7 @@
 		{{template "navbar"}}
 		<div id="container">
 			<div id="metadata">
-				<img src="{{.Image}}"/>
+				<img src="{{extractURL .Image}}"/>
 				<h2>{{.Artist}}</h2>
 				<h1>{{.Title}}</h1>
 			</div>

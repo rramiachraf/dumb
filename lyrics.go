@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strings"
@@ -18,6 +19,27 @@ type song struct {
 	About   [2]string
 }
 
+type songResponse struct {
+	Response struct {
+		Song struct {
+			ArtistNames string `json:"artist_names"`
+			Image       string `json:"song_art_image_thumbnail_url"`
+			Title       string
+			Description struct {
+				Plain string
+			}
+			CustomPerformances []customPerformance `json:"custom_performances"`
+		}
+	}
+}
+
+type customPerformance struct {
+	Label   string
+	Artists []struct {
+		Name string
+	}
+}
+
 func (s *song) parseLyrics(doc *goquery.Document) {
 	doc.Find("[data-lyrics-container='true']").Each(func(i int, ss *goquery.Selection) {
 		h, err := ss.Html()
@@ -28,44 +50,57 @@ func (s *song) parseLyrics(doc *goquery.Document) {
 	})
 }
 
-func (s *song) parseMetadata(doc *goquery.Document) {
-	artist := doc.Find("a[class*='Artist']").First().Text()
-	title := doc.Find("h1[class*='Title']").First().Text()
-	image, exists := doc.Find("meta[property='og:image']").Attr("content")
+func (s *song) parseSongData(doc *goquery.Document) {
+	attr, exists := doc.Find("meta[property='twitter:app:url:iphone']").Attr("content")
 	if exists {
-		s.Image = extractURL(image)
-	}
+		songID := strings.Replace(attr, "genius://songs/", "", 1)
+		u := fmt.Sprintf("https://genius.com/api/songs/%s?text_format=plain", songID)
 
-	s.Title = title
-	s.Artist = artist
+		res, err := http.Get(u)
+		if err != nil {
+			logger.Errorln(err)
+		}
+
+		defer res.Body.Close()
+
+		var data songResponse
+		decoder := json.NewDecoder(res.Body)
+		err = decoder.Decode(&data)
+		if err != nil {
+			logger.Errorln(err)
+		}
+
+		songData := data.Response.Song
+		s.Artist = songData.ArtistNames
+		s.Image = songData.Image
+		s.Title = songData.Title
+		s.About[0] = songData.Description.Plain
+		s.About[1] = truncateText(songData.Description.Plain)
+		s.Credits = make(map[string]string)
+
+		for _, perf := range songData.CustomPerformances {
+			var artists []string
+			for _, artist := range perf.Artists {
+				artists = append(artists, artist.Name)
+			}
+			s.Credits[perf.Label] = strings.Join(artists, ", ")
+		}
+	}
 }
 
-func (s *song) parseCredits(doc *goquery.Document) {
-	credits := make(map[string]string)
+func truncateText(text string) string {
+	textArr := strings.Split(text, "")
 
-	doc.Find("[class*='SongInfo__Credit']").Each(func(i int, ss *goquery.Selection) {
-		key := ss.Children().First().Text()
-		value := ss.Children().Last().Text()
-		credits[key] = value
-	})
-
-	s.Credits = credits
-}
-
-func (s *song) parseAbout(doc *goquery.Document) {
-	s.About[0] = doc.Find("[class*='SongDescription__Content']").Text()
-	summary := strings.Split(s.About[0], "")
-
-	if len(summary) > 250 {
-		s.About[1] = strings.Join(summary[0:250], "") + "..."
+	if len(textArr) > 250 {
+		return strings.Join(textArr[0:250], "") + "..."
 	}
+
+	return text
 }
 
 func (s *song) parse(doc *goquery.Document) {
 	s.parseLyrics(doc)
-	s.parseMetadata(doc)
-	s.parseCredits(doc)
-	s.parseAbout(doc)
+	s.parseSongData(doc)
 }
 
 func lyricsHandler(w http.ResponseWriter, r *http.Request) {
