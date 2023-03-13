@@ -145,6 +145,16 @@ func lyricsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	cf := doc.Find(".cloudflare_content").Length()
+	if cf > 0 {
+		logger.Errorln("cloudflare got in the way")
+		render("error", w, map[string]string{
+			"Status": "500",
+			"Error":  "damn cloudflare, issue #21 on GitHub",
+		})
+		return
+	}
+
 	var s song
 	s.parse(doc)
 
