@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 )
 
 type response struct {
@@ -35,7 +36,7 @@ type renderVars struct {
 
 func searchHandler(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query().Get("q")
-	url := fmt.Sprintf(`https://genius.com/api/search/multi?q=%s`, query)
+	url := fmt.Sprintf(`https://genius.com/api/search/multi?q=%s`, url.QueryEscape(query))
 
 	res, err := sendRequest(url)
 	if err != nil {
