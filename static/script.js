@@ -12,8 +12,32 @@ document.querySelectorAll("#lyrics a").forEach(item => {
 	item.addEventListener("click", getAnnotation)
 })
 
-function getAnnotation(e) {
+//const annotationContainer = document.getElementById("annotation-container")
+/**
+annotationContainer.onclick = (e) => {
+	const isVisible = e.target.style.display !== "none"
+	if (isVisible) {
+		e.target.style.display = "none"
+	}
+}
+**/
+
+const card = document.getElementById("annotation")
+
+async function getAnnotation(e) {
 	e.preventDefault()
-	//const uri = e.target.parentElement.getAttribute("href")
-	console.log("Annotations are not yet implemented!")
+	const path = e.target.parentElement.getAttribute("href")
+	const annotationId = path.match(/\/(\d+)\/.*$/)[1]
+	console.log(e.offsetLeft)
+
+	try {
+		const res = await fetch(`/annotation/${annotationId}`)
+		const data = await res.json()
+		card.style.top = `${e.offsetY}px`
+		card.style.left = `${e.offsetX}px`
+		card.style.display = "block"
+		card.innerHTML = data.Annotations[0].Body.HTML
+	} catch (e) {
+		console.error(e)
+	}
 }

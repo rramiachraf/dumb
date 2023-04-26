@@ -33,6 +33,7 @@ func main() {
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { render("home", w, nil) })
 	r.HandleFunc("/search", searchHandler).Methods("GET")
+	r.HandleFunc("/annotation/{id}", annotationHandler).Methods("GET")
 	r.HandleFunc("/{id}-lyrics", lyricsHandler)
 	r.HandleFunc("/images/{filename}.{ext}", proxyHandler)
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))

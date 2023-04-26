@@ -53,10 +53,8 @@ body {
 
 #lyrics a {
 	color: inherit;
-	cursor: initial;
 }
 
-/*** NOT YET IMPLEMENTED
 #lyrics a {
 	background-color: #ddd;
 	color: inherit;
@@ -65,7 +63,6 @@ body {
 #lyrics a:hover {
 	background-color: #ccc;
 }
-***/
 
 nav {
 	background-color: #ffcd38;
@@ -310,6 +307,28 @@ footer a:hover {
 #search-item img {
 	width: 8rem;
 	border-radius: 5px;
+}
+/**
+#annotation-container {
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+}
+**/
+#annotation {
+	background: white;
+	box-shadow: 0 2px 3px #4d4d4d63;
+	border-radius: 5px;
+	padding: 2rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin-top: 2rem;
+	display: none;
 }
 
 /* dark mode */
