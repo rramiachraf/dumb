@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  dumb:
+    container_name: dumb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3047:5555
+    user: 65534:65534
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    networks:
+      - dumb
+
+networks:
+  dumb:
