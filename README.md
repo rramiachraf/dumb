@@ -26,6 +26,7 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 | <https://dumb.lunar.icu>                      | DE     | Yes  | @MaximilianGT500 |
 | <https://dumb.esmailelbob.xyz>                | CA     | No   | https://esmailelbob.xyz |
 | <https://dumb.privacydev.net>                 | DE     | No   | https://privacydev.net  |
+| <https://sing.whateveritworks.org>                 | DE     | Yes  | https://whateveritworks.org  |
 
 ### Tor
 | URL                                                                        | Operator        |
