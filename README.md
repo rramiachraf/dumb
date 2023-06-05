@@ -24,14 +24,12 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 | <https://dumb.nunosempere.com> (experimental) | DE     | No   | @NunoSempere     |
 | <https://sing.whatever.social>                | US/DE  | Yes  | Whatever Social  |
 | <https://dumb.lunar.icu>                      | DE     | Yes  | @MaximilianGT500 |
-| <https://dumb.esmailelbob.xyz>                | CA     | No   | https://esmailelbob.xyz |
 | <https://dumb.privacydev.net>                 | DE     | No   | https://privacydev.net  |
 
 ### Tor
 | URL                                                                        | Operator        |
 | ---                                                                        | ---             |
 | <http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion> | https://vern.cc |
-| <http://dumb.esmail5pdn24shtvieloeedh7ehz3nrwcdivnfhfcedl7gf4kwddhkqd.onion> | https://esmailelbob.xyz |
 | <http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion> | https://privacydev.net  |
 
 ### I2P
