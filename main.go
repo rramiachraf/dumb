@@ -14,13 +14,8 @@ import (
 )
 
 var logger = logrus.New()
-var client = &http.Client{}
 
 func main() {
-	client = &http.Client{
-		Timeout: 20 * time.Second,
-	}
-
 	c, err := bigcache.NewBigCache(bigcache.DefaultConfig(time.Hour * 24))
 	if err != nil {
 		logger.Fatalln("can't initialize caching")
