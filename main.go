@@ -31,6 +31,7 @@ func main() {
 	r.HandleFunc("/{id}-lyrics", lyricsHandler)
 	r.HandleFunc("/images/{filename}.{ext}", proxyHandler)
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	r.HandleFunc("/albums/{artist}/{albumName}", albumHandler)
 	r.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		render("error", w, map[string]string{

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{.Artist}} - {{.Name}}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" href="/static/style.css" />
+		<script type="text/javascript" src="/static/script.js" defer></script>
+	</head>
+	<body>	
+		{{template "navbar"}}
+		<div id="container">
+			<div id="metadata">
+				<img src="{{extractURL .Image}}"/>
+				<h2>{{.Artist}}</h2>
+				<h1>{{.Name}}</h1>
+			</div>
+			<div id="album-tracklist">
+				{{range .Tracks}}
+					<a href="{{.Url}}">
+						<p>{{.Title}}</p>
+					</a>
+				{{end}}
+			</div>
+			<div id="info">
+				<div id="about">
+					<h1 id="title">About</h1>
+					<p class="hidden" id="full_about">{{index .About 0}}</p>
+					<p id="summary">{{index .About 1}}</p>
+				</div>
+			</div>
+		</div>
+		{{template "footer"}}
+	</body>
+</html>
