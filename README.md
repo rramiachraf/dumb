@@ -24,7 +24,7 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 | <https://dumb.nunosempere.com> (experimental) | DE     | No   | @NunoSempere     |
 | <https://sing.whatever.social>                | US/DE  | Yes  | Whatever Social  |
 | <https://dumb.lunar.icu>                      | DE     | Yes  | @MaximilianGT500 |
-| <https://dumb.privacydev.net>                 | DE     | No   | https://privacydev.net  |
+| <https://dumb.privacydev.net>                 | FR     | No   | https://privacydev.net  |
 
 ### Tor
 | URL                                                                        | Operator        |
