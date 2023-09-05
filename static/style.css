@@ -101,7 +101,7 @@ a {
 	font-weight: 500;
 }
 
-#metadata > img {
+#album-artwork {
 	width: 20rem;
 	border-radius: 3px;
 	box-shadow: 0 1px 1px #ddd;
