@@ -14,6 +14,17 @@ document.querySelectorAll("#lyrics a").forEach(item => {
 
 function getAnnotation(e) {
 	e.preventDefault()
-	//const uri = e.target.parentElement.getAttribute("href")
-	console.log("Annotations are not yet implemented!")
+	const uri = e.target.parentElement.getAttribute("href")
+	console.log("Annotations are not yet implemented!", uri)
+
+	xhr = new XMLHttpRequest()
+	xhr.open("GET", uri + "/annotations")
+	xhr.send()
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			json = JSON.parse(this.responseText)
+			alert(json.html)
+			// TODO: display annotations properly
+		}
+	}
 }
