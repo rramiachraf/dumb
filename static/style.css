@@ -56,7 +56,6 @@ body {
 	cursor: initial;
 }
 
-/*** NOT YET IMPLEMENTED
 #lyrics a {
 	background-color: #ddd;
 	color: inherit;
@@ -65,7 +64,6 @@ body {
 #lyrics a:hover {
 	background-color: #ccc;
 }
-***/
 
 nav {
 	background-color: #ffcd38;
@@ -325,6 +323,15 @@ footer a:hover {
 
 	#lyrics {
 		color: #ccc;
+	}
+
+	#lyrics a {
+		background-color: #272d44;
+		color: inherit;
+	}
+
+	#lyrics a:hover {
+		background-color: #32384f;
 	}
 
 	#metadata h1 {
