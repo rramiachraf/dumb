@@ -147,11 +147,15 @@ a {
 	gap: 0.5rem;
 }
 
-#about p {
+#about p, #annotations p, #annotations h2 {
 	font-size: 1.4rem;
 	color: #171717;
 	line-height: 1.8rem;
 	cursor: pointer;
+}
+
+#annotations blockquote {
+  background-color: #272d44;
 }
 
 .hidden {
@@ -348,8 +352,14 @@ footer a:hover {
 	}
 
 	#about p,
+  #annotations p,
+  #annotations h2,
 	#credits summary {
 		color: #ccc;
+	}
+
+	#annotations blockquote {
+		background-color: #272d44;
 	}
 
 	#home h1, #error h1 {
