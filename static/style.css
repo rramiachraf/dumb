@@ -56,7 +56,7 @@ body {
 	cursor: initial;
 }
 
-#lyrics a {
+#lyrics a, .annotation {
 	background-color: #ddd;
 	color: inherit;
 }
@@ -147,15 +147,23 @@ a {
 	gap: 0.5rem;
 }
 
-#about p, #annotations p, #annotations h2 {
+#about p {
 	font-size: 1.4rem;
 	color: #171717;
 	line-height: 1.8rem;
 	cursor: pointer;
 }
 
-#annotations blockquote {
-  background-color: #272d44;
+.annotation {
+  padding: 1rem;
+}
+
+.annotation img {
+  max-width: 100%;
+}
+
+.annotation ul {
+  padding-left: 1em;
 }
 
 .hidden {
@@ -329,10 +337,11 @@ footer a:hover {
 		color: #ccc;
 	}
 
-	#lyrics a {
+	#lyrics a, .annotation {
 		background-color: #272d44;
 		color: inherit;
 	}
+
 
 	#lyrics a:hover {
 		background-color: #32384f;
@@ -352,14 +361,8 @@ footer a:hover {
 	}
 
 	#about p,
-  #annotations p,
-  #annotations h2,
 	#credits summary {
 		color: #ccc;
-	}
-
-	#annotations blockquote {
-		background-color: #272d44;
 	}
 
 	#home h1, #error h1 {

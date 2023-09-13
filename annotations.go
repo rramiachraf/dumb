@@ -25,6 +25,28 @@ type annotationsResponse struct {
 
 func annotationsHandler(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
+
+	if data, err := getCache(id); err == nil {
+
+		response, err := json.Marshal(data)
+
+		if err != nil {
+			logger.Errorf("could not marshal json: %s\n", err)
+			w.WriteHeader(http.StatusInternalServerError)
+			render("error", w, map[string]string{
+				"Status": "500",
+				"Error":  "Could not parse genius api response",
+			})
+			return
+		}
+		w.Header().Set("content-type", "application/json")
+		_, err = w.Write(response)
+		if err != nil {
+			logger.Errorln("Error sending response: ", err)
+		}
+		return
+	}
+
 	url := fmt.Sprintf("https://genius.com/api/referents/%s?text_format=html", id)
 	resp, err := sendRequest(url)
 
@@ -88,6 +110,7 @@ func annotationsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	setCache(id, body)
 	_, err = w.Write(response)
 	if err != nil {
 		logger.Errorln("Error sending response: ", err)
