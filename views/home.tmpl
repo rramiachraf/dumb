@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>dumb</title>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="/static/style.css" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-	</head>
+	{{template "head"}}
 	<body>
 		<main id="app">
 			{{template "navbar"}}
@@ -15,8 +10,11 @@
 					<p>An alternative frontend for genius.com</p>
 				</div>
 				<form method="GET" action="/search">
-					<input type="text" name="q" id="search-input" placeholder="Search..." />
+					<input hx-post="/form_search" hx-target="#results" hx-trigger="keyup changed delay:0.1s" type="text" name="q" id="search-input" placeholder="Search..." />
 				</form>
+				<div id="results">
+					
+				</div>
 
 			</div>
 			{{template "footer"}}
