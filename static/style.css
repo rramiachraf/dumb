@@ -160,6 +160,7 @@ a {
 
 .annotation img {
   max-width: 100%;
+  height: auto;
 }
 
 .annotation ul {
