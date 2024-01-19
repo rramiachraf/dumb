@@ -56,8 +56,7 @@ body {
 	cursor: initial;
 }
 
-/*** NOT YET IMPLEMENTED
-#lyrics a {
+#lyrics a, .annotation {
 	background-color: #ddd;
 	color: inherit;
 }
@@ -65,7 +64,6 @@ body {
 #lyrics a:hover {
 	background-color: #ccc;
 }
-***/
 
 nav {
 	background-color: #ffcd38;
@@ -164,6 +162,19 @@ a {
 	color: #171717;
 	line-height: 1.8rem;
 	cursor: pointer;
+}
+
+.annotation {
+  padding: 1rem;
+}
+
+.annotation img {
+  max-width: 100%;
+  height: auto;
+}
+
+.annotation ul {
+  padding-left: 1em;
 }
 
 .hidden {
@@ -335,6 +346,16 @@ footer a:hover {
 
 	#lyrics {
 		color: #ccc;
+	}
+
+	#lyrics a, .annotation {
+		background-color: #272d44;
+		color: inherit;
+	}
+
+
+	#lyrics a:hover {
+		background-color: #32384f;
 	}
 
 	#metadata h1 {
