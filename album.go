@@ -65,7 +65,7 @@ func (a *album) parseAlbumData(doc *goquery.Document) {
 	a.About[1] = truncateText(albumData.Description)
 
 	for _, track := range albumMetadataFromPage.AlbumAppearances {
-		url := strings.Replace(track.Song.Url, "https://genius.com", "", -1)
+		url := strings.ReplaceAll(track.Song.Url, "https://genius.com", "")
 		a.Tracks = append(a.Tracks, Track{Title: track.Song.Title, Url: url})
 	}
 }

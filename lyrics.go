@@ -85,7 +85,7 @@ func (s *song) parseSongData(doc *goquery.Document) {
 		s.About[1] = truncateText(songData.Description.Plain)
 		s.Credits = make(map[string]string)
 		s.Album = songData.Album.Name
-		s.LinkToAlbum = strings.Replace(songData.Album.Url, "https://genius.com", "", -1)
+		s.LinkToAlbum = strings.ReplaceAll(songData.Album.Url, "https://genius.com", "")
 
 		for _, perf := range songData.CustomPerformances {
 			var artists []string

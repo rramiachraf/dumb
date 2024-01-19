@@ -118,7 +118,7 @@ func annotationsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func cleanBody(body string) string {
-	var withCleanedImageLinks = strings.Replace(body, "https://images.rapgenius.com/", "/images/", -1)
+	var withCleanedImageLinks = strings.ReplaceAll(body, "https://images.rapgenius.com/", "/images/")
 
 	var re = regexp.MustCompile(`https?:\/\/[a-z]*.?genius.com`)
 	var withCleanedLinks = re.ReplaceAllString(withCleanedImageLinks, "")
