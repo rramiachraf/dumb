@@ -101,10 +101,11 @@ a {
 	font-weight: 500;
 }
 
-#metadata > img {
+#album-artwork {
 	width: 20rem;
 	border-radius: 3px;
 	box-shadow: 0 1px 1px #ddd;
+	max-width: 200px;
 }
 
 #container {
@@ -128,6 +129,15 @@ a {
 	font-size: 1.4rem;
 	cursor: pointer;
 	color: #1e1e1e;
+}
+
+#album-tracklist{
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	flex-basis: 0;
+	flex-shrink: 0;
+	flex-grow: 1;
 }
 
 #credits p {
