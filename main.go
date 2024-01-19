@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net"
 	"net/http"
@@ -16,7 +17,8 @@ import (
 var logger = logrus.New()
 
 func main() {
-	c, err := bigcache.NewBigCache(bigcache.DefaultConfig(time.Hour * 24))
+	ctx := context.Background()
+	c, err := bigcache.New(ctx, bigcache.DefaultConfig(time.Hour*24))
 	if err != nil {
 		logger.Fatalln("can't initialize caching")
 	}
