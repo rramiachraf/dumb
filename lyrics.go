@@ -168,5 +168,9 @@ func lyricsHandler(w http.ResponseWriter, r *http.Request) {
 	s.parse(doc)
 
 	render("lyrics", w, s)
-	setCache(id, s)
+	err = setCache(id, s)
+	if err != nil {
+		logger.Errorln(err)
+	}
+
 }

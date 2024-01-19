@@ -42,7 +42,11 @@ func getCache(key string) (interface{}, error) {
 
 func write(w http.ResponseWriter, status int, data []byte) {
 	w.WriteHeader(status)
-	w.Write(data)
+	_, err := w.Write(data)
+	if err != nil {
+		logger.Errorln(err)
+	}
+
 }
 
 func securityHeaders(next http.Handler) http.Handler {
@@ -104,7 +108,6 @@ func sendRequest(u string) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-
 
 	req := &http.Request{
 		Method: http.MethodGet,

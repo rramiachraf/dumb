@@ -6,7 +6,7 @@ With the massive daily increase of useless scripts on Genius's web frontend and 
 ![Screenshot](https://raw.githubusercontent.com/rramiachraf/dumb/main/screenshot.png)
 
 ## Installation & Usage
-[Go 1.18+](https://go.dev/dl) is required.
+[Go 1.21+](https://go.dev/dl) is required.
 ```bash
 git clone https://github.com/rramiachraf/dumb
 cd dumb
