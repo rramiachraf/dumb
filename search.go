@@ -53,7 +53,10 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	var data response
 
 	d := json.NewDecoder(res.Body)
-	d.Decode(&data)
+	err = d.Decode(&data)
+	if err != nil {
+		logger.Errorln(err)
+	}
 
 	vars := renderVars{query, data.Response.Sections}
 

@@ -110,7 +110,11 @@ func annotationsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	setCache(id, body)
+	err = setCache(id, body)
+	if err != nil {
+		logger.Errorln(err)
+	}
+
 	_, err = w.Write(response)
 	if err != nil {
 		logger.Errorln("Error sending response: ", err)

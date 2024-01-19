@@ -69,5 +69,9 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Add("Content-type", fmt.Sprintf("image/%s", ext))
-	io.Copy(w, res.Body)
+	_, err = io.Copy(w, res.Body)
+	if err != nil {
+		logger.Errorln(err)
+	}
+
 }

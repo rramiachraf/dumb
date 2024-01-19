@@ -55,7 +55,10 @@ func (a *album) parseAlbumData(doc *goquery.Document) {
 	}
 
 	var albumMetadataFromPage albumMetadata
-	json.Unmarshal([]byte(pageMetadata), &albumMetadataFromPage)
+	err := json.Unmarshal([]byte(pageMetadata), &albumMetadataFromPage)
+	if err != nil {
+		logger.Errorln(err)
+	}
 
 	albumData := albumMetadataFromPage.Album
 	a.Artist = albumData.Artist.Name
@@ -135,5 +138,9 @@ func albumHandler(w http.ResponseWriter, r *http.Request) {
 
 	render("album", w, a)
 
-	setCache(id, a)
+	err = setCache(id, a)
+	if err != nil {
+		logger.Errorln(err)
+	}
+
 }
