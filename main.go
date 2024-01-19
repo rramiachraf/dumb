@@ -27,7 +27,8 @@ func main() {
 	r.Use(securityHeaders)
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { render("home", w, nil) })
-	r.HandleFunc("/search", searchHandler).Methods("GET")
+	r.HandleFunc("/search", fullSearchHandler).Methods("GET")
+	r.HandleFunc("/form_search", formSearchHandler).Methods("POST")
 	r.HandleFunc("/{id}-lyrics", lyricsHandler)
 	r.HandleFunc("/{id}/{artist-song}/{verse}/annotations", annotationsHandler)
 	r.HandleFunc("/images/{filename}.{ext}", proxyHandler)

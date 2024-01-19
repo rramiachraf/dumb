@@ -34,8 +34,7 @@ type renderVars struct {
 	Sections sections
 }
 
-func searchHandler(w http.ResponseWriter, r *http.Request) {
-	query := r.URL.Query().Get("q")
+func searchHandler(query string, w http.ResponseWriter, r *http.Request) renderVars {
 	url := fmt.Sprintf(`https://genius.com/api/search/multi?q=%s`, url.QueryEscape(query))
 
 	res, err := sendRequest(url)
@@ -55,7 +54,19 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	d := json.NewDecoder(res.Body)
 	d.Decode(&data)
 
-	vars := renderVars{query, data.Response.Sections}
+	return renderVars{query, data.Response.Sections}
 
+	// render("search", w, vars)
+}
+
+func fullSearchHandler(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query().Get("q")
+	vars := searchHandler(query, w, r)
 	render("search", w, vars)
+}
+
+func formSearchHandler(w http.ResponseWriter, r *http.Request) {
+	query := r.FormValue("q")
+	vars := searchHandler(query, w, r)
+	render("search_partial", w, vars)
 }

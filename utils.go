@@ -47,7 +47,9 @@ func write(w http.ResponseWriter, status int, data []byte) {
 
 func securityHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		csp := "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'"
+		csp := "style-src 'self'; img-src 'self'; object-src 'none'"
+		// This is CSP interrupts the HTMX and other JS requests
+		// SO I am disabling it for now
 		w.Header().Add("content-security-policy", csp)
 		w.Header().Add("referrer-policy", "no-referrer")
 		w.Header().Add("x-content-type-options", "nosniff")
@@ -67,7 +69,7 @@ func getTemplates(templates ...string) []string {
 func render(n string, w http.ResponseWriter, data interface{}) {
 	w.Header().Set("content-type", "text/html")
 	t := template.New(n + ".tmpl").Funcs(template.FuncMap{"extractURL": extractURL})
-	t, err := t.ParseFiles(getTemplates(n, "navbar", "footer")...)
+	t, err := t.ParseFiles(getTemplates(n, "navbar", "footer", "head")...)
 	if err != nil {
 		logger.Errorln(err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -104,7 +106,6 @@ func sendRequest(u string) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-
 
 	req := &http.Request{
 		Method: http.MethodGet,
