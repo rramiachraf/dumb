@@ -18,19 +18,14 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 
 ## Public Instances
 
-| URL                                           | Tor                                                                               | Region | CDN? | Operator                     |
-| ---                                           | ---                                                                               | ---    | ---  | ---                          |
-| <https://dm.vern.cc>                          | [Yes](http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion)   | US     | No   | https://vern.cc              |
-| <https://sing.whatever.social>                | No                                                                                | US/DE  | Yes  | Whatever Social              |
-| <https://dumb.lunar.icu>                      | No                                                                                | DE     | Yes  | @MaximilianGT500             |
-| <https://dumb.privacydev.net>                 | [Yes](http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion) | FR     | No   | https://privacydev.net       |
-| <https://dumb.ducks.party>                    | No                                                                                | NL     | No   | https://ducks.party          |
-| <https://dumb.privacyfucking.rocks>           | No                                                                                | DE     | -    | https://privacyfucking.rocks |
-
-### I2P
-| URL                                                                   | Operator        |
-| ---                                                                   | ---             |
-| <http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p> | https://vern.cc |
+| URL                                           | Tor                                                                               | I2P | Region | CDN? | Operator                     |
+| ---                                           | ---                                                                               | --- | ---    | ---  | ---                          |
+| <https://dm.vern.cc>                          | [Yes](http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion)   | [Yes](http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p) | US     | No   | https://vern.cc              |
+| <https://sing.whatever.social>                | No                                                                                | No                                                                         | US/DE  | Yes  | Whatever Social              |
+| <https://dumb.lunar.icu>                      | No                                                                                | No                                                                         | DE     | Yes  | @MaximilianGT500             |
+| <https://dumb.privacydev.net>                 | [Yes](http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion) | No                                                                         | FR     | No   | https://privacydev.net       |
+| <https://dumb.ducks.party>                    | No                                                                                | No                                                                         | NL     | No   | https://ducks.party          |
+| <https://dumb.privacyfucking.rocks>           | No                                                                                | No                                                                         | DE     | -    | https://privacyfucking.rocks |
 
 For people who might be capable and interested in hosting a public instance feel free to do so and don't forget to open a pull request so your instance can be included here.
 
