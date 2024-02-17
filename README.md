@@ -18,8 +18,8 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 
 ## Public Instances
 
-| URL                                           | Tor                                                                               | I2P | Region | CDN? | Operator                     |
-| ---                                           | ---                                                                               | --- | ---    | ---  | ---                          |
+| URL                                           | Tor                                                                               | I2P                                                                        | Region | CDN? | Operator                     |
+| ---                                           | ---                                                                               | ---                                                                        | ---    | ---  | ---                          |
 | <https://dm.vern.cc>                          | [Yes](http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion)   | [Yes](http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p) | US     | No   | https://vern.cc              |
 | <https://sing.whatever.social>                | No                                                                                | No                                                                         | US/DE  | Yes  | Whatever Social              |
 | <https://dumb.lunar.icu>                      | No                                                                                | No                                                                         | DE     | Yes  | @MaximilianGT500             |
