@@ -18,20 +18,14 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 
 ## Public Instances
 
-| URL                                           | Region | CDN? | Operator         |
-| ---                                           | ---    | ---  | ---              |
-| <https://dm.vern.cc>                          | US     | No   | https://vern.cc  |
-| <https://sing.whatever.social>                | US/DE  | Yes  | Whatever Social  |
-| <https://dumb.lunar.icu>                      | DE     | Yes  | @MaximilianGT500 |
-| <https://dumb.privacydev.net>                 | FR     | No   | https://privacydev.net  |
-| <https://dumb.ducks.party>                    | NL     | No   | https://ducks.party |
-| <https://dumb.privacyfucking.rocks>           | DE     | -    | https://privacyfucking.rocks |
-
-### Tor
-| URL                                                                        | Operator        |
-| ---                                                                        | ---             |
-| <http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion> | https://vern.cc |
-| <http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion> | https://privacydev.net  |
+| URL                                           | Tor                                                                               | Region | CDN? | Operator                     |
+| ---                                           | ---                                                                               | ---    | ---  | ---                          |
+| <https://dm.vern.cc>                          | [Yes](http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion)   | US     | No   | https://vern.cc              |
+| <https://sing.whatever.social>                | No                                                                                | US/DE  | Yes  | Whatever Social              |
+| <https://dumb.lunar.icu>                      | No                                                                                | DE     | Yes  | @MaximilianGT500             |
+| <https://dumb.privacydev.net>                 | [Yes](http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion) | FR     | No   | https://privacydev.net       |
+| <https://dumb.ducks.party>                    | No                                                                                | NL     | No   | https://ducks.party          |
+| <https://dumb.privacyfucking.rocks>           | No                                                                                | DE     | -    | https://privacyfucking.rocks |
 
 ### I2P
 | URL                                                                   | Operator        |
