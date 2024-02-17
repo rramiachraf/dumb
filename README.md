@@ -38,6 +38,8 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 | ---                                                                   | ---             |
 | <http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p> | https://vern.cc |
 
+Instances list in JSON format can be found in [instances.json](instances.json) file.
+
 For people who might be capable and interested in hosting a public instance feel free to do so and don't forget to open a pull request so your instance can be included here.
 
 ## Contributing
