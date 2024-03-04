@@ -3,13 +3,13 @@ package data
 type AnnotationsResponse struct {
 	Response struct {
 		Referent struct {
-			Annotations []Annotation `json:"annotations"`
+			Annotations []struct {
+				Body Annotation `json:"body"`
+			} `json:"annotations"`
 		} `json:"referent"`
 	} `json:"response"`
 }
 
 type Annotation struct {
-	Body struct {
-		Html string `json:"html"`
-	} `json:"body"`
+	HTML string `json:"html"`
 }

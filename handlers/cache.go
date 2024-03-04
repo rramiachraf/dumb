@@ -8,6 +8,10 @@ import (
 	"github.com/rramiachraf/dumb/data"
 )
 
+type cachable interface {
+	data.Album | data.Song | data.Annotation
+}
+
 var c, _ = bigcache.NewBigCache(bigcache.DefaultConfig(time.Hour * 24))
 
 func setCache(key string, entry interface{}) error {
@@ -19,7 +23,7 @@ func setCache(key string, entry interface{}) error {
 	return c.Set(key, data)
 }
 
-func getCache[v data.Album | data.Song | data.Annotation](key string) (v, error) {
+func getCache[v cachable](key string) (v, error) {
 	var decoded v
 
 	data, err := c.Get(key)

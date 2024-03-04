@@ -18,14 +18,14 @@ import (
 func Annotations(l *logrus.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		id := mux.Vars(r)["id"]
-
-		if data, err := getCache[data.Annotation](id); err == nil {
+		if a, err := getCache[data.Annotation]("annotation:" + id); err == nil {
 			encoder := json.NewEncoder(w)
 
 			w.Header().Set("content-type", "application/json")
-			if err = encoder.Encode(&data); err != nil {
+			if err = encoder.Encode(&a); err != nil {
 				l.Errorln(err)
 			}
+
 			return
 		}
 
@@ -65,24 +65,19 @@ func Annotations(l *logrus.Logger) http.HandlerFunc {
 			return
 		}
 
-		w.Header().Set("content-type", "application/json")
 		body := data.Response.Referent.Annotations[0].Body
-		body.Html = cleanBody(body.Html)
-		response, err := json.Marshal(body)
+		body.HTML = cleanBody(body.HTML)
 
-		if err != nil {
-			l.Errorf("could not marshal json: %s\n", err)
-			w.WriteHeader(http.StatusInternalServerError)
-			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
+		w.Header().Set("content-type", "application/json")
+		encoder := json.NewEncoder(w)
+
+		if err = encoder.Encode(&body); err != nil {
+			l.Errorln("Error sending response: ", err)
 			return
 		}
 
-		if err = setCache(id, body); err != nil {
+		if err = setCache("annotation:"+id, body); err != nil {
 			l.Errorln(err)
-		}
-
-		if _, err = w.Write(response); err != nil {
-			l.Errorln("Error sending response: ", err)
 		}
 	}
 }
