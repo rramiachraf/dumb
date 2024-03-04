@@ -18,25 +18,14 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 
 ## Public Instances
 
-| URL                                           | Region | CDN? | Operator         |
-| ---                                           | ---    | ---  | ---              |
-| <https://dm.vern.cc>                          | US     | No   | https://vern.cc  |
-| <https://sing.whatever.social>                | US/DE  | Yes  | Whatever Social  |
-| <https://dumb.lunar.icu>                      | DE     | Yes  | @MaximilianGT500 |
-| <https://dumb.privacydev.net>                 | FR     | No   | https://privacydev.net  |
-| <https://dumb.ducks.party>                    | NL     | No   | https://ducks.party |
-| <https://dumb.privacyfucking.rocks>           | DE     | -    | https://privacyfucking.rocks |
-
-### Tor
-| URL                                                                        | Operator        |
-| ---                                                                        | ---             |
-| <http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion> | https://vern.cc |
-| <http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion> | https://privacydev.net  |
-
-### I2P
-| URL                                                                   | Operator        |
-| ---                                                                   | ---             |
-| <http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p> | https://vern.cc |
+| URL                                           | Tor                                                                               | I2P                                                                        | Region | CDN? | Operator                     |
+| ---                                           | ---                                                                               | ---                                                                        | ---    | ---  | ---                          |
+| <https://dm.vern.cc>                          | [Yes](http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion)   | [Yes](http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p) | US     | No   | https://vern.cc              |
+| <https://sing.whatever.social>                | No                                                                                | No                                                                         | US/DE  | Yes  | Whatever Social              |
+| <https://dumb.lunar.icu>                      | No                                                                                | No                                                                         | DE     | Yes  | @MaximilianGT500             |
+| <https://dumb.privacydev.net>                 | [Yes](http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion) | No                                                                         | FR     | No   | https://privacydev.net       |
+| <https://dumb.ducks.party>                    | No                                                                                | No                                                                         | NL     | No   | https://ducks.party          |
+| <https://dumb.privacyfucking.rocks>           | No                                                                                | No                                                                         | DE     | -    | https://privacyfucking.rocks |
 
 #### Notes:
 - Instances list in JSON format can be found in [instances.json](instances.json) file.
