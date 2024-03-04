@@ -14,6 +14,7 @@ document.querySelectorAll("#lyrics a").forEach(item => {
 
 function getAnnotation(e) {
 	e.preventDefault()
+	//document.querySelector('.annotation')?.remove()
 	const uri = e.target.parentElement.getAttribute("href")
 	const presentAnnotation = document.getElementById(uri)
 	if (presentAnnotation) {

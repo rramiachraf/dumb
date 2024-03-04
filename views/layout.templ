@@ -1,0 +1,15 @@
+package views 
+
+templ layout(title string) {
+	<!DOCTYPE html>
+	<html>
+		@head(title)
+		<body>
+			<main id="app">
+				@navbar()
+				{ children... }
+				@footer()
+			</main>
+		</body>
+	</html>
+}
