@@ -85,9 +85,11 @@ func Annotations(l *logrus.Logger) http.HandlerFunc {
 			return
 		}
 
-		setCache(id, body)
-		_, err = w.Write(response)
-		if err != nil {
+		if err = setCache(id, body); err != nil {
+			l.Errorln(err)
+		}
+
+		if _, err = w.Write(response); err != nil {
 			l.Errorln("Error sending response: ", err)
 		}
 	}

@@ -53,6 +53,8 @@ func ImageProxy(l *logrus.Logger) http.HandlerFunc {
 		}
 
 		w.Header().Add("Content-type", fmt.Sprintf("image/%s", ext))
-		io.Copy(w, res.Body)
+		if _, err = io.Copy(w, res.Body); err != nil {
+			l.Errorln("unable to write image", err)
+		}
 	}
 }

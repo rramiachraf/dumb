@@ -30,7 +30,11 @@ func Search(l *logrus.Logger) http.HandlerFunc {
 		var sRes data.SearchResponse
 
 		d := json.NewDecoder(res.Body)
-		d.Decode(&sRes)
+		if err = d.Decode(&sRes); err != nil {
+			l.Errorln(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
+		}
 
 		results := data.SearchResults{Query: query, Sections: sRes.Response.Sections}
 

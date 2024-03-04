@@ -45,30 +45,33 @@ type Artist struct {
 	Name string `json:"name"`
 }
 
-func (a *Album) parseAlbumData(doc *goquery.Document) {
+func (a *Album) parseAlbumData(doc *goquery.Document) error {
 	pageMetadata, exists := doc.Find("meta[itemprop='page_data']").Attr("content")
 	if !exists {
-		return
+		return nil
 	}
 
 	var albumMetadataFromPage albumMetadata
-	json.Unmarshal([]byte(pageMetadata), &albumMetadataFromPage)
+	if err := json.Unmarshal([]byte(pageMetadata), &albumMetadataFromPage); err != nil {
+		return err
+	}
 
 	albumData := albumMetadataFromPage.Album
 	a.Artist = albumData.Artist.Name
 	a.Name = albumData.Name
 	a.Image = albumData.Image
 	a.About[0] = albumData.Description
-	//a.About[1] = truncateText(albumData.Description)
+	a.About[1] = truncateText(albumData.Description)
 	a.About[1] = ""
 
 	for _, track := range albumMetadataFromPage.AlbumAppearances {
 		url := strings.Replace(track.Song.Url, "https://genius.com", "", -1)
 		a.Tracks = append(a.Tracks, Track{Title: track.Song.Title, Url: url})
 	}
+
+	return nil
 }
 
-func (a *Album) Parse(doc *goquery.Document) {
-	a.parseAlbumData(doc)
+func (a *Album) Parse(doc *goquery.Document) error {
+	return a.parseAlbumData(doc)
 }
-

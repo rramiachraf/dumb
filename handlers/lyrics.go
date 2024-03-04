@@ -57,6 +57,8 @@ func Lyrics(l *logrus.Logger) http.HandlerFunc {
 		s.Parse(doc)
 
 		views.LyricsPage(s).Render(context.Background(), w)
-		setCache(id, s)
+		if err = setCache(id, s); err != nil {
+			l.Errorln(err)
+		}
 	}
 }

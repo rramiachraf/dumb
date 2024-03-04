@@ -58,10 +58,14 @@ func Album(l *logrus.Logger) http.HandlerFunc {
 		}
 
 		var a data.Album
-		a.Parse(doc)
+		if err = a.Parse(doc); err != nil {
+			l.Error(err)
+		}
 
 		views.AlbumPage(a).Render(context.Background(), w)
 
-		setCache(id, a)
+		if err = setCache(id, a); err != nil {
+			l.Errorln(err)
+		}
 	}
 }
