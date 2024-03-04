@@ -53,7 +53,6 @@ body {
 
 #lyrics a {
 	color: inherit;
-	cursor: initial;
 }
 
 #lyrics a, .annotation {
@@ -84,7 +83,7 @@ a {
 #metadata {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
+	gap: 2rem;
 	flex-basis: 0;
 }
 
@@ -99,17 +98,25 @@ a {
 	font-weight: 500;
 }
 
+#metadata-info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
 #album-artwork {
-	width: 20rem;
+	width: 24rem;
 	border-radius: 3px;
 	box-shadow: 0 1px 1px #ddd;
-	max-width: 200px;
 }
 
 #container {
-	display: flex;
-	padding: 5rem 10rem;
-	gap: 5rem;
+	display: grid;
+	padding: 5rem 0;
+	grid-template-columns: 24rem 1fr 24rem;
+	max-width: 1024px;
+	margin: auto;
+	gap: 4rem;
 }
 
 #credits {
@@ -127,6 +134,12 @@ a {
 	font-size: 1.4rem;
 	cursor: pointer;
 	color: #1e1e1e;
+}
+
+#lyrics-album-container {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 }
 
 #album-tracklist{
@@ -214,6 +227,7 @@ a {
 @media screen and (max-width: 900px) {
 	#container {
 		padding: 3rem 2rem;
+		display: flex;
 		flex-direction: column;
 		gap: 3rem;
 	}

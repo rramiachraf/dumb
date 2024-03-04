@@ -10,14 +10,17 @@ import (
 )
 
 type Song struct {
-	Artist      string
-	Title       string
-	Image       string
-	Lyrics      string
-	Credits     map[string]string
-	About       [2]string
-	Album       string
-	LinkToAlbum string
+	Artist  string
+	Title   string
+	Image   string
+	Lyrics  string
+	Credits map[string]string
+	About   [2]string
+	Album   struct {
+		URL   string
+		Name  string
+		Image string
+	}
 }
 
 type songResponse struct {
@@ -30,8 +33,9 @@ type songResponse struct {
 				Plain string
 			}
 			Album struct {
-				Url  string `json:"url"`
-				Name string `json:"name"`
+				URL   string `json:"url"`
+				Name  string `json:"name"`
+				Image string `json:"cover_art_url"`
 			}
 			CustomPerformances []customPerformance `json:"custom_performances"`
 		}
@@ -83,8 +87,9 @@ func (s *Song) parseSongData(doc *goquery.Document) {
 		s.About[0] = songData.Description.Plain
 		s.About[1] = truncateText(songData.Description.Plain)
 		s.Credits = make(map[string]string)
-		s.Album = songData.Album.Name
-		s.LinkToAlbum = strings.Replace(songData.Album.Url, "https://genius.com", "", -1)
+		s.Album.Name = songData.Album.Name
+		s.Album.URL = strings.Replace(songData.Album.URL, "https://genius.com", "", -1)
+		s.Album.Image = ExtractImageURL(songData.Album.Image)
 
 		for _, perf := range songData.CustomPerformances {
 			var artists []string
