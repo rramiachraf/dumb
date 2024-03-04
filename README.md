@@ -10,7 +10,7 @@ With the massive daily increase of useless scripts on Genius's web frontend and 
 ```bash
 git clone https://github.com/rramiachraf/dumb
 cd dumb
-go build
+make build
 ./dumb
 ```
 

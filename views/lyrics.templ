@@ -1,0 +1,38 @@
+package views
+
+import (
+	"fmt"
+	"github.com/rramiachraf/dumb/data"
+)
+
+templ LyricsPage(s data.Song) {
+	@layout(fmt.Sprintf("%s - %s lyrics", s.Artist, s.Title)) {
+		<div id="container">
+			<div id="metadata">
+				<a href={ templ.URL(s.LinkToAlbum) }><img id="album-artwork" src={ data.ExtractImageURL(s.Image) }/></a>
+				<h2>{ s.Artist }</h2>
+				<h1>{ s.Title }</h1>
+				<a href={ templ.URL(s.LinkToAlbum) }><h2>{ s.Album }</h2></a>
+			</div>
+			<div id="lyrics">
+				@templ.Raw(s.Lyrics)
+			</div>
+			<div id="info">
+				<div id="about">
+					<h1 id="title">About</h1>
+					<p class="hidden" id="full_about">{ s.About[0] }</p>
+					<p id="summary">{ s.About[1] }</p>
+				</div>
+				<div id="credits">
+					<h1 id="title">Credits</h1>
+					for key, val := range s.Credits {
+						<details>
+							<summary>{ key }</summary>
+							<p>{ val }</p>
+						</details>
+					}
+				</div>
+			</div>
+		</div>
+	}
+}

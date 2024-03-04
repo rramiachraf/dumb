@@ -6,7 +6,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
-RUN go build
+RUN make build
 
 EXPOSE 5555/tcp
 

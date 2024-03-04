@@ -1,0 +1,32 @@
+package views
+
+import (
+	"fmt"
+	"github.com/rramiachraf/dumb/data"
+)
+
+templ AlbumPage(a data.Album) {
+	@layout(fmt.Sprintf("%s - %s", a.Artist, a.Name)) {
+		<div id="container">
+			<div id="metadata">
+				<img id="album-artwork" src={ data.ExtractImageURL(a.Image) }/>
+				<h2>{ a.Artist }</h2>
+				<h1>{ a.Name }</h1>
+			</div>
+			<div id="album-tracklist">
+				for _, t := range a.Tracks {
+					<a href={ templ.URL(t.Url) }>
+						<p>{ t.Title }</p>
+					</a>
+				}
+			</div>
+			<div id="info">
+				<div id="about">
+					<h1 id="title">About</h1>
+					<p class="hidden" id="full_about">{ a.About[0] }</p>
+					<p id="summary">{ a.About[1] }</p>
+				</div>
+			</div>
+		</div>
+	}
+}

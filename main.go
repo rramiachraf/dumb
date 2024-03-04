@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net"
 	"net/http"
@@ -8,38 +9,30 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/allegro/bigcache/v3"
+	"github.com/a-h/templ"
 	"github.com/gorilla/mux"
+	"github.com/rramiachraf/dumb/handlers"
+	"github.com/rramiachraf/dumb/views"
 	"github.com/sirupsen/logrus"
 )
 
 var logger = logrus.New()
 
 func main() {
-	c, err := bigcache.NewBigCache(bigcache.DefaultConfig(time.Hour * 24))
-	if err != nil {
-		logger.Fatalln("can't initialize caching")
-	}
-	cache = c
-
 	r := mux.NewRouter()
 
-	r.Use(securityHeaders)
+	r.Use(handlers.MustHeaders)
 
-	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { render("home", w, nil) })
-	r.HandleFunc("/search", searchHandler).Methods("GET")
-	r.HandleFunc("/{id}-lyrics", lyricsHandler)
-	r.HandleFunc("/{id}/{artist-song}/{verse}/annotations", annotationsHandler)
-	r.HandleFunc("/images/{filename}.{ext}", proxyHandler)
+	r.Handle("/", templ.Handler(views.HomePage()))
+	r.HandleFunc("/{id}-lyrics", handlers.Lyrics(logger)).Methods("GET")
+	r.HandleFunc("/albums/{artist}/{albumName}", handlers.Album(logger)).Methods("GET")
+	r.HandleFunc("/images/{filename}.{ext}", handlers.ImageProxy(logger)).Methods("GET")
+	r.HandleFunc("/search", handlers.Search(logger)).Methods("GET")
+	r.HandleFunc("/{id}/{artist-song}/{verse}/annotations", handlers.Annotations(logger)).Methods("GET")
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
-	r.HandleFunc("/albums/{artist}/{albumName}", albumHandler)
 	r.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
-		render("error", w, map[string]string{
-			"Status": "404",
-			"Error":  "page not found",
-		})
-
+		views.ErrorPage(404, "page not found").Render(context.Background(), w)
 	})
 
 	server := &http.Server{

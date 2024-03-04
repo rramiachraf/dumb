@@ -1,0 +1,29 @@
+package views
+
+import "github.com/rramiachraf/dumb/data"
+
+templ SearchPage(r data.SearchResults) {
+	@layout("Search - dumb") {
+		<div id="search-page" class="main">
+			<form method="GET">
+				<input type="text" name="q" id="search-input" placeholder="Search..." value={ r.Query }/>
+			</form>
+			<div id="search-results">
+				for _, s := range r.Sections {
+					if s.Type == "song" {
+						<h1>Songs</h1>
+						for _, s := range s.Hits {
+							<a id="search-item" href={ templ.URL(s.Result.Path) }>
+								<img src={ data.ExtractImageURL(s.Result.Thumbnail) }/>
+								<div>
+									<span>{ s.Result.ArtistNames }</span>
+									<h2>{ s.Result.Title }</h2>
+								</div>
+							</a>
+						}
+					}
+				}
+			</div>
+		</div>
+	}
+}
