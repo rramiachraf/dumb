@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"net/http"
 	"regexp"
-	"strings"
 
 	"github.com/gorilla/mux"
 	"github.com/rramiachraf/dumb/data"
@@ -83,11 +82,13 @@ func Annotations(l *logrus.Logger) http.HandlerFunc {
 }
 
 func cleanBody(body string) string {
-	var withCleanedImageLinks = strings.ReplaceAll(body, "https://images.rapgenius.com/", "/images/")
-	withCleanedImageLinks = strings.ReplaceAll(body, "https://images.genius.com/", "/images/")
+	re := regexp.MustCompile(`(?i)https:\/\/images\.(rapgenius|genius)\.com\/`)
+	clean := re.ReplaceAllString(body, "/images/")
 
-	var re = regexp.MustCompile(`https?:\/\/[a-z]*.?genius.com`)
-	var withCleanedLinks = re.ReplaceAllString(withCleanedImageLinks, "")
+	re = regexp.MustCompile(`https?:\/\/[a-z]*.?genius.com`)
+	clean = re.ReplaceAllString(clean, "")
 
-	return withCleanedLinks
+	fmt.Println(clean)
+
+	return clean
 }
