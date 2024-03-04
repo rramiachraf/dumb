@@ -88,7 +88,5 @@ func cleanBody(body string) string {
 	re = regexp.MustCompile(`https?:\/\/[a-z]*.?genius.com`)
 	clean = re.ReplaceAllString(clean, "")
 
-	fmt.Println(clean)
-
 	return clean
 }
