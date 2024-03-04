@@ -114,9 +114,10 @@ a {
 	display: grid;
 	padding: 5rem 0;
 	grid-template-columns: 24rem 1fr 24rem;
-	max-width: 1024px;
-	margin: auto;
+	width: 1024px;
+	margin: 0 auto;
 	gap: 4rem;
+	flex: 1;
 }
 
 #credits {
@@ -230,6 +231,7 @@ a {
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;
+		width: calc(100vw - 4rem);;
 	}
 
 	#metadata {

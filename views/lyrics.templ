@@ -19,20 +19,24 @@ templ LyricsPage(s data.Song) {
 				@templ.Raw(s.Lyrics)
 			</div>
 			<div id="info">
-				<div id="about">
-					<h1 id="title">About</h1>
-					<p class="hidden" id="full_about">{ s.About[0] }</p>
-					<p id="summary">{ s.About[1] }</p>
-				</div>
-				<div id="credits">
-					<h1 id="title">Credits</h1>
-					for key, val := range s.Credits {
-						<details>
-							<summary>{ key }</summary>
-							<p>{ val }</p>
-						</details>
-					}
-				</div>
+				if s.About[0] != "" {
+					<div id="about">
+						<h1 id="title">About</h1>
+						<p class="hidden" id="full_about">{ s.About[0] }</p>
+						<p id="summary">{ s.About[1] }</p>
+					</div>
+				}
+				if len(s.Credits) > 0 {
+					<div id="credits">
+						<h1 id="title">Credits</h1>
+						for key, val := range s.Credits {
+							<details>
+								<summary>{ key }</summary>
+								<p>{ val }</p>
+							</details>
+						}
+					</div>
+				}
 				if s.Album.Name != "" {
 					<div id="lyrics-album-container">
 						<h1 id="title">{ s.Album.Name }</h1>
