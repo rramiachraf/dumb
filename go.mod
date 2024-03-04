@@ -5,6 +5,8 @@ go 1.21
 toolchain go1.22.0
 
 require (
+	github.com/Danny-Dasilva/CycleTLS/cycletls v1.0.26
+	github.com/Danny-Dasilva/fhttp v0.0.0-20240217042913-eeeb0b347ce1
 	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/a-h/templ v0.2.598
 	github.com/allegro/bigcache/v3 v3.0.2
@@ -14,8 +16,6 @@ require (
 )
 
 require (
-	github.com/Danny-Dasilva/CycleTLS/cycletls v1.0.26 // indirect
-	github.com/Danny-Dasilva/fhttp v0.0.0-20240217042913-eeeb0b347ce1 // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/cloudflare/circl v1.3.7 // indirect
