@@ -20,19 +20,11 @@ func Annotations(l *logrus.Logger) http.HandlerFunc {
 		id := mux.Vars(r)["id"]
 
 		if data, err := getCache[data.Annotation](id); err == nil {
+			encoder := json.NewEncoder(w)
 
-			response, err := json.Marshal(data)
-
-			if err != nil {
-				l.Errorf("could not marshal json: %s\n", err)
-				w.WriteHeader(http.StatusInternalServerError)
-				views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
-				return
-			}
 			w.Header().Set("content-type", "application/json")
-			_, err = w.Write(response)
-			if err != nil {
-				l.Errorln("Error sending response: ", err)
+			if err = encoder.Encode(&data); err != nil {
+				l.Errorln(err)
 			}
 			return
 		}
@@ -96,7 +88,8 @@ func Annotations(l *logrus.Logger) http.HandlerFunc {
 }
 
 func cleanBody(body string) string {
-	var withCleanedImageLinks = strings.Replace(body, "https://images.rapgenius.com/", "/images/", -1)
+	var withCleanedImageLinks = strings.ReplaceAll(body, "https://images.rapgenius.com/", "/images/")
+	withCleanedImageLinks = strings.ReplaceAll(body, "https://images.genius.com/", "/images/")
 
 	var re = regexp.MustCompile(`https?:\/\/[a-z]*.?genius.com`)
 	var withCleanedLinks = re.ReplaceAllString(withCleanedImageLinks, "")
