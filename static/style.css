@@ -113,7 +113,7 @@ a {
 #container {
 	display: grid;
 	padding: 5rem 0;
-	grid-template-columns: 24rem 1fr 24rem;
+	grid-template-columns: 24rem calc(1024px - 56rem) 24rem;
 	width: 1024px;
 	margin: 0 auto;
 	gap: 4rem;
