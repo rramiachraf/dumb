@@ -1,7 +1,12 @@
 package views
 
+import "github.com/rramiachraf/dumb/data"
+
 templ footer() {
 	<footer>
-		<a rel="noopener noreferrer" target="_blank" href="https://github.com/rramiachraf/dumb">Source Code</a>
+		<div id="footer_container">
+			<a rel="noopener noreferrer" target="_blank" href="https://github.com/rramiachraf/dumb">Source Code</a>
+			<p id="version">{ data.Version }</p>
+		</div>
 	</footer>
 }
