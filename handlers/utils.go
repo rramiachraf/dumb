@@ -9,7 +9,7 @@ import (
 	fhttp "github.com/Danny-Dasilva/fhttp"
 )
 
-func MustHeaders(next http.Handler) http.Handler {
+func mustHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		csp := "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'"
 		w.Header().Add("content-security-policy", csp)

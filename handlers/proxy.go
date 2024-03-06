@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"mime"
 	"net/http"
 	"strings"
 
@@ -23,7 +24,7 @@ func isValidExt(ext string) bool {
 	return false
 }
 
-func ImageProxy(l *logrus.Logger) http.HandlerFunc {
+func imageProxy(l *logrus.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		v := mux.Vars(r)
 		f := v["filename"]
@@ -52,7 +53,7 @@ func ImageProxy(l *logrus.Logger) http.HandlerFunc {
 			return
 		}
 
-		w.Header().Add("Content-type", fmt.Sprintf("image/%s", ext))
+		w.Header().Add("Content-type", mime.TypeByExtension("."+ext))
 		w.Header().Add("Cache-Control", "max-age=1296000")
 		if _, err = io.Copy(w, res.Body); err != nil {
 			l.Errorln("unable to write image", err)

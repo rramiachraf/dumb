@@ -8,5 +8,7 @@ build:gentempl esbuild
 	templ generate
 	cat ./style/*.css | ./esbuild --loader=css --minify > ./static/style.css 
 	go build -ldflags="-X 'github.com/rramiachraf/dumb/data.Version=$(VERSION)' -s -w"
+test:
+	go test ./... -v
 fmt:
 	templ fmt .

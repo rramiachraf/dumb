@@ -12,7 +12,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func Search(l *logrus.Logger) http.HandlerFunc {
+func search(l *logrus.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query().Get("q")
 		url := fmt.Sprintf(`https://genius.com/api/search/multi?q=%s`, url.QueryEscape(query))

@@ -20,7 +20,7 @@ func sendError(err error, status int, msg string, l *logrus.Logger, w http.Respo
 	}
 }
 
-func Instances(l *logrus.Logger) http.HandlerFunc {
+func instances(l *logrus.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if instances, err := getCache[[]byte]("instances"); err == nil {
 			w.Header().Set("content-type", ContentTypeJSON)

@@ -16,7 +16,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func Annotations(l *logrus.Logger) http.HandlerFunc {
+func annotations(l *logrus.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		id := mux.Vars(r)["id"]
 		if a, err := getCache[data.Annotation]("annotation:" + id); err == nil {

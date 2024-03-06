@@ -12,7 +12,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func Album(l *logrus.Logger) http.HandlerFunc {
+func album(l *logrus.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		artist := mux.Vars(r)["artist"]
 		albumName := mux.Vars(r)["albumName"]
