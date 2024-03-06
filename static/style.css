@@ -245,12 +245,17 @@ footer {
 	padding: 1rem 0;
 }
 
-#footer_container {
+#footer-container {
 	width: 1024px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin: 0 auto;
+}
+
+#footer-links {
+	display: flex;
+	gap: 1rem;
 }
 
 #version {

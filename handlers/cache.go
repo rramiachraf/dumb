@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"context"
 	"encoding/json"
 	"time"
 
@@ -9,10 +10,10 @@ import (
 )
 
 type cachable interface {
-	data.Album | data.Song | data.Annotation
+	data.Album | data.Song | data.Annotation | []byte
 }
 
-var c, _ = bigcache.NewBigCache(bigcache.DefaultConfig(time.Hour * 24))
+var c, _ = bigcache.New(context.Background(), bigcache.DefaultConfig(time.Hour*24))
 
 func setCache(key string, entry interface{}) error {
 	data, err := json.Marshal(&entry)

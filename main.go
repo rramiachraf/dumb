@@ -29,6 +29,7 @@ func main() {
 	r.HandleFunc("/images/{filename}.{ext}", handlers.ImageProxy(logger)).Methods("GET")
 	r.HandleFunc("/search", handlers.Search(logger)).Methods("GET")
 	r.HandleFunc("/{id}/{artist-song}/{verse}/annotations", handlers.Annotations(logger)).Methods("GET")
+	r.HandleFunc("/instances.json", handlers.Instances(logger)).Methods("GET")
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	r.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
