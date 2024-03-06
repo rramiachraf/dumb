@@ -2,7 +2,7 @@ name: Test and Build
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -10,9 +10,8 @@ jobs:
     steps:
        - uses: actions/checkout@v4
        - uses: actions/setup-go@v5
-       - name: Install dependencies
-         run: go get .
-       - name: Build
-         run: make build
-       - name: Test
-         run: make test
+         with:
+           go-version-file: go.mod
+       - run: go install github.com/a-h/templ/cmd/templ@latest
+       - run: make build
+       - run: make test
