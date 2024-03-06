@@ -1,2 +1,4 @@
 dumb
 views/*_templ.go
+esbuild
+static/*.css

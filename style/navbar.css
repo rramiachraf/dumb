@@ -1,0 +1,17 @@
+nav {
+	background-color: #ffcd38;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem;
+}
+
+nav img {
+	width: 50px;
+}
+
+@media (prefers-color-scheme: dark) {
+	nav {
+		background-color: #fec260;
+	}
+}
