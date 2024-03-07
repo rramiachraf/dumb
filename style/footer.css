@@ -34,7 +34,7 @@ footer a:hover {
 }
 
 @media screen and (max-width: 1080px) {
-	#footer_container {
+	#footer-container {
 		width: 100%;
 		padding: 0 2rem;
 		box-sizing: border-box;
