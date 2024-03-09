@@ -20,12 +20,10 @@
 	text-align: center;
 }
 
-@media (prefers-color-scheme: dark) {
-	#error h1 {
-		color: #eee;
-	}
+.dark #error h1 {
+	color: #eee;
+}
 
-	#error p {
-		color: #ddd;
-	}
+.dark #error p {
+	color: #ddd;
 }

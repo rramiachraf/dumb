@@ -41,8 +41,6 @@ footer a:hover {
 	}
 }
 
-@media (prefers-color-scheme: dark) {
-	footer {
-		background-color: #fec260;
-	}
+.dark footer {
+	background-color: #fec260;
 }

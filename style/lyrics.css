@@ -95,41 +95,41 @@
 	display: none;
 }
 
+.dark #lyrics {
+	color: #ccc;
+}
+
+.dark #lyrics a {
+	background-color: #272d44;
+	color: inherit;
+}
+
+.dark #lyrics a:hover {
+	background-color: #32384f;
+}
+
+.dark #metadata h1 {
+	color: #ddd;
+}
+
+.dark #metadata h2,
+.dark #credits p {
+	color: #eee;
+}
+
+.dark #title {
+	color: #ddd;
+}
+
+.dark #about p,
+.dark #credits summary {
+	color: #ccc;
+}
+
 @media screen and (max-width: 1080px) {
 	#metadata {
 		align-items: center;
+		text-align: center;
 	}
 }
 
-@media (prefers-color-scheme: dark) {
-	#lyrics {
-		color: #ccc;
-	}
-
-	#lyrics a {
-		background-color: #272d44;
-		color: inherit;
-	}
-
-	#lyrics a:hover {
-		background-color: #32384f;
-	}
-
-	#metadata h1 {
-		color: #ddd;
-	}
-
-	#metadata h2,
-	#credits p {
-		color: #eee;
-	}
-
-	#title {
-		color: #ddd;
-	}
-
-	#about p,
-	#credits summary {
-		color: #ccc;
-	}
-}

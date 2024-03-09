@@ -26,9 +26,7 @@
 	padding-left: 1em;
 }
 
-@media (prefers-color-scheme: dark) {
-	.annotation {
-		background-color: #272d44;
-		color: inherit;
-	}
+.dark .annotation {
+	background-color: #272d44;
+	color: inherit;
 }

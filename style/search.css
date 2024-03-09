@@ -95,20 +95,18 @@
 	border-radius: 5px;
 }
 
-@media (prefers-color-scheme: dark) {
-	#search-page h1 {
-		color: #eee;
-	}
+.dark #search-page h1 {
+	color: #eee;
+}
 
-	#search-item {
-		border: 1px solid #888;
-	}
+.dark #search-item {
+	border: 1px solid #888;
+}
 
-	#search-item h2 {
-		color: #ddd;
-	}
+.dark #search-item h2 {
+	color: #ddd;
+}
 
-	#search-item span {
-		color: #bbb;
-	}
+.dark #search-item span {
+	color: #bbb;
 }

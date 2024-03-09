@@ -6,7 +6,7 @@ function showAbout() {
 	fullAbout.classList.toggle("hidden")
 }
 
-[fullAbout, summary].forEach(item => item.onclick = showAbout)
+fullAbout && [fullAbout, summary].forEach(item => item.onclick = showAbout)
 
 document.querySelectorAll("#lyrics a").forEach(item => {
 	item.addEventListener("click", getAnnotation)
@@ -34,5 +34,36 @@ function getAnnotation(e) {
 			annotationDiv.className = "annotation"
 			e.target.parentElement.insertAdjacentElement('afterend', annotationDiv)
 		}
+	}
+}
+
+window._currentTheme = localStorage.getItem("_theme") || "light"
+setTheme(window._currentTheme)
+
+const themeChooser = document.getElementById("choose-theme")
+themeChooser.addEventListener("click", function() {
+	if (window._currentTheme === "dark") {
+		setTheme("light")
+	} else {
+		setTheme("dark")
+	}
+})
+
+function setTheme(theme) {
+	const toggler = document.getElementById("ic_fluent_dark_theme_24_regular")
+	switch (theme) {
+		case "dark":
+			toggler.setAttribute("fill", "#fff")
+			localStorage.setItem("_theme", "dark")
+			document.body.classList.add("dark")
+			window._currentTheme = "dark"
+			return
+		case "light":
+			toggler.setAttribute("fill", "#181d31")
+			localStorage.setItem("_theme", "light")
+			document.body.classList.remove("dark")
+			window._currentTheme = "light"
+			return
+
 	}
 }

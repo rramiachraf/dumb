@@ -37,16 +37,14 @@
 	color: #222;
 }
 
-@media (prefers-color-scheme: dark) {
-	#home h1 {
-		color: #eee;
-	}
+.dark #home h1 {
+	color: #eee;
+}
 
-	#home p {
-		color: #ddd;
-	}
+.dark #home p {
+	color: #ddd;
+}
 
-	#search-input {
-		background-color: #ddd;
-	}
+.dark #search-input {
+	background-color: #ddd;
 }
