@@ -6,6 +6,15 @@ With the massive daily increase of useless scripts on Genius's web frontend, and
 ![Screenshot](https://raw.githubusercontent.com/rramiachraf/dumb/main/screenshot.png)
 
 ## Installation & Usage
+### Docker
+```bash
+git clone https://github.com/rramiachraf/dumb
+cd dumb
+docker buildx build -t dumb .
+docker run -p 8080:5555 --name dumb dumb
+```
+
+### Your own machine
 [Go 1.20+](https://go.dev/dl) is required.
 ```bash
 git clone https://github.com/rramiachraf/dumb
