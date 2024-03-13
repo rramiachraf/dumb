@@ -1,0 +1,18 @@
+name: Build container image
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v4
+       - uses: docker/login-action@v3
+         with:
+           registry: ghcr.io
+           username: ${{ github.actor }}
+           password: ${{ secrets.GITHUB_TOKEN }}
+       - run: docker buildx build . -t ghcr.io/rramiachraf/dumb:latest
+       - run: docker push ghcr.io/rramiachraf/dumb:latest
