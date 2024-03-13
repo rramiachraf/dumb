@@ -8,13 +8,10 @@ With the massive daily increase of useless scripts on Genius's web frontend, and
 ## Installation & Usage
 ### Docker
 ```bash
-git clone https://github.com/rramiachraf/dumb
-cd dumb
-docker buildx build -t dumb .
-docker run -p 8080:5555 --name dumb dumb
+docker run -p 8080:5555 --name dumb ghcr.io/rramiachraf/dumb:latest
 ```
 
-### Without Docker
+### Build from source
 [Go 1.20+](https://go.dev/dl) is required.
 ```bash
 git clone https://github.com/rramiachraf/dumb
