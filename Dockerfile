@@ -10,15 +10,11 @@ RUN go mod download
 COPY . .
 RUN make build
 
-FROM alpine:3.19
-
-RUN adduser user -D
-
-USER user
-WORKDIR /home/user/dumb
+FROM scratch
 
 COPY --from=build /code/dumb .
 COPY --from=build /code/static static
+COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 EXPOSE 5555/tcp
 
