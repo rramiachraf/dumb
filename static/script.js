@@ -41,7 +41,9 @@ function getAnnotation(e) {
 			annotationDiv.innerHTML = parsedReponse.html
 			annotationDiv.id = uri
 			annotationDiv.className = "annotation"
-			e.target.parentElement.insertAdjacentElement('afterend', annotationDiv)
+			if (!document.getElementById(uri)) {
+				e.target.parentElement.insertAdjacentElement('afterend', annotationDiv)
+			}
 		}
 	}
 }
