@@ -62,7 +62,6 @@ func (a *Album) parseAlbumData(doc *goquery.Document) error {
 	a.Image = albumData.Image
 	a.About[0] = albumData.Description
 	a.About[1] = truncateText(albumData.Description)
-	a.About[1] = ""
 
 	for _, track := range albumMetadataFromPage.AlbumAppearances {
 		url := strings.Replace(track.Song.Url, "https://genius.com", "", -1)
