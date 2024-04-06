@@ -8,8 +8,17 @@ function showAbout() {
 
 fullAbout && [fullAbout, summary].forEach(item => item.onclick = showAbout)
 
-document.querySelectorAll("#lyrics a").forEach(item => {
-	item.addEventListener("click", getAnnotation)
+window.addEventListener("load", () => {
+	document.querySelectorAll("#lyrics a").forEach(item => {
+		item.addEventListener("click", getAnnotation)
+	})
+
+	const linkedAnnotationId = window.location.pathname.match(new RegExp("/(\\d+)"))?.[1]
+	if (linkedAnnotationId) {
+		const target = document.querySelector(`a[href^="/${linkedAnnotationId}"][class^="ReferentFragmentdesktop__ClickTarget"] > span`)
+		target?.click()
+		target?.scrollIntoView()
+	}
 })
 
 function getAnnotation(e) {

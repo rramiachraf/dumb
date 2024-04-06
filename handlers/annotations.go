@@ -18,7 +18,7 @@ import (
 
 func annotations(l *logrus.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		id := mux.Vars(r)["id"]
+		id := mux.Vars(r)["annotation-id"]
 		if a, err := getCache[data.Annotation]("annotation:" + id); err == nil {
 			encoder := json.NewEncoder(w)
 
