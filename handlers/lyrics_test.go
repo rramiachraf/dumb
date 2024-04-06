@@ -10,7 +10,18 @@ import (
 )
 
 func TestLyrics(t *testing.T) {
-	url := "/The-silver-seas-catch-yer-own-train-lyrics"
+	urls := []string{"/The-silver-seas-catch-yer-own-train-lyrics",
+		"/1784308/The-silver-seas-catch-yer-own-train",
+		"/1784308/The-silver-seas-catch-yer-own-train-lyrics",
+		"/1784308/The-silver-seas-catch-yer-own-train/Baby-you-and-i-are-not-the-same-you-say-you-like-sun-i-like-the-rain",
+		"/1784308/The-silver-seas-catch-yer-own-train-lyrics/Baby-you-and-i-are-not-the-same-you-say-you-like-sun-i-like-the-rain",
+		"/1784308"}
+	for _, url := range urls {
+		t.Run(url, func(t *testing.T) { testLyrics(t, url) })
+	}
+}
+
+func testLyrics(t *testing.T, url string) {
 	title := "The Silver Seas"
 	artist := "Catch Yer Own Train"
 

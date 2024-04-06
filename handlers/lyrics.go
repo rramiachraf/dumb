@@ -14,14 +14,20 @@ import (
 
 func lyrics(l *logrus.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		id := mux.Vars(r)["id"]
+		// prefer artist-song over annotation-id for cache key when available
+		id := mux.Vars(r)["artist-song"]
+		if id == "" {
+			id = mux.Vars(r)["annotation-id"]
+		} else {
+			id = id + "-lyrics"
+		}
 
 		if s, err := getCache[data.Song](id); err == nil {
 			views.LyricsPage(s).Render(context.Background(), w)
 			return
 		}
 
-		url := fmt.Sprintf("https://genius.com/%s-lyrics", id)
+		url := fmt.Sprintf("https://genius.com/%s", id)
 		resp, err := sendRequest(url)
 		if err != nil {
 			l.Errorln(err)
