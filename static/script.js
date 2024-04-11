@@ -24,8 +24,9 @@ window.addEventListener("load", () => {
 function getAnnotation(e) {
 	e.preventDefault()
 	//document.querySelector('.annotation')?.remove()
-	const uri = e.target.parentElement.getAttribute("href")
-	const presentAnnotation = document.getElementById(uri)
+	const link = e.target.parentElement
+	const uri = link.getAttribute("href")
+	const presentAnnotation = link.nextElementSibling.matches(".annotation") && link.nextElementSibling
 	if (presentAnnotation) {
 		presentAnnotation.remove()
 		return
@@ -41,8 +42,8 @@ function getAnnotation(e) {
 			annotationDiv.innerHTML = parsedReponse.html
 			annotationDiv.id = uri
 			annotationDiv.className = "annotation"
-			if (!document.getElementById(uri)) {
-				e.target.parentElement.insertAdjacentElement('afterend', annotationDiv)
+			if (!link.nextElementSibling.matches(".annotation")) {
+				link.insertAdjacentElement('afterend', annotationDiv)
 			}
 		}
 	}
