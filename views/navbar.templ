@@ -4,24 +4,38 @@ templ navbar() {
 	<nav>
 		<div id="nav-container">
 			<a href="/"><img src="/static/logo.svg"/></a>
-			<button id="choose-theme">
-				<svg
-					width="25px"
-					height="25px"
-					viewBox="0 0 24 24"
-					version="1.1"
-					xmlns="http://www.w3.org/2000/svg"
-					xmlns:xlink="http://www.w3.org/1999/xlink"
+			<div id="nav-icons">
+				<a
+					title="Go to Genius.com"
+					alt="Go to Genius.com"
+					class="nav-icon"
+					id="goto-genius"
+					rel="noopener noreferrer"
+					target="_blank"
 				>
-					<g id="🔍-Product-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-						<g id="ic_fluent_dark_theme_24_regular" fill="#181d31" fill-rule="nonzero">
-							<path
-								d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20.5 L12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 Z"
-							></path>
+					<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" fill="none" viewBox="0 0 24 24">
+						<path stroke="#181d31" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 14v4.833A1.166 1.166 0 0 1 16.833 20H5.167A1.167 1.167 0 0 1 4 18.833V7.167A1.166 1.166 0 0 1 5.167 6h4.618m4.447-2H20v5.768m-7.889 2.121 7.778-7.778"></path>
+					</svg>
+				</a>
+				<button id="choose-theme" class="nav-icon">
+					<svg
+						width="25px"
+						height="25px"
+						viewBox="0 0 24 24"
+						version="1.1"
+						xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink"
+					>
+						<g id="🔍-Product-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+							<g id="ic_fluent_dark_theme_24_regular" fill="#181d31" fill-rule="nonzero">
+								<path
+									d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20.5 L12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 Z"
+								></path>
+							</g>
 						</g>
-					</g>
-				</svg>
-			</button>
+					</svg>
+				</button>
+			</div>
 		</div>
 	</nav>
 }

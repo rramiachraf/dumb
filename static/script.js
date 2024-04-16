@@ -9,6 +9,8 @@ function showAbout() {
 fullAbout && [fullAbout, summary].forEach(item => item.onclick = showAbout)
 
 window.addEventListener("load", () => {
+	const geniusURL = "https://genius.com" + document.location.pathname + document.location.search
+	document.getElementById("goto-genius").setAttribute("href", geniusURL)
 	document.querySelectorAll("#lyrics a").forEach(item => {
 		item.addEventListener("click", getAnnotation)
 	})

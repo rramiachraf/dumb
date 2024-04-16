@@ -24,7 +24,13 @@ nav img {
 	width: 50px;
 }
 
-#choose-theme {
+#nav-icons {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.nav-icon {
 	background: none;
 	border: none;
 	cursor: pointer;
