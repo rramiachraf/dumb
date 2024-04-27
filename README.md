@@ -23,7 +23,6 @@ make build
 The default port is 5555, you can use other ports by setting the `PORT` environment variable.
 
 ## Public Instances
-
 | URL                                           | Tor                                                                               | I2P                                                                        | Region | CDN? | Operator               
 | ---                                           | ---                                                                               | ---                                                                        | ---    | ---  | ---                    
 | <https://dumb.ducks.party>                    | No                                                                                | No                                                                         | NL     | No   | https://ducks.party 
@@ -32,6 +31,8 @@ The default port is 5555, you can use other ports by setting the `PORT` environm
 | <https://dumb.privacydev.net>                 | [Yes](http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion) | No                                                                         | FR     | No   | https://privacydev.net 
 | <https://dumb.privacyfucking.rocks>           | No                                                                                | No                                                                         | DE     | -    | https://privacyfucking.rocks |
 | <https://sing.whatever.social>                | No                                                                                | No                                                                         | US/DE  | Yes  | Whatever Social        
+
+[Status Page](https://github.com/rramiachraf/dumb-instances)
 
 #### Notes:
 - Instances list in JSON format can be found in [instances.json](instances.json) file.
