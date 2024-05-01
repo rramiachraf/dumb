@@ -8,12 +8,14 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/rramiachraf/dumb/views"
 	"github.com/sirupsen/logrus"
+	gorillaHandlers "github.com/gorilla/handlers"
 )
 
 func New(logger *logrus.Logger) *mux.Router {
 	r := mux.NewRouter()
 
 	r.Use(mustHeaders)
+	r.Use(gorillaHandlers.CompressHandler)
 
 	r.Handle("/", templ.Handler(views.HomePage()))
 	r.HandleFunc("/albums/{artist}/{albumName}", album(logger)).Methods("GET")

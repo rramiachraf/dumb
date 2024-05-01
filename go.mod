@@ -11,6 +11,7 @@ require (
 	github.com/a-h/templ v0.2.598
 	github.com/allegro/bigcache/v3 v3.1.0
 	github.com/caffix/cloudflare-roundtripper v0.0.0-20181218223503-4c29d231c9cb
+	github.com/gorilla/handlers v1.5.2
 	github.com/gorilla/mux v1.8.1
 	github.com/sirupsen/logrus v1.9.3
 )
@@ -19,6 +20,7 @@ require (
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/andybalholm/cascadia v1.3.2 // indirect
 	github.com/cloudflare/circl v1.3.7 // indirect
+	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
 	github.com/klauspost/compress v1.17.7 // indirect
 	github.com/quic-go/quic-go v0.41.0 // indirect
