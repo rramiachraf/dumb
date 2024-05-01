@@ -5,10 +5,10 @@ import (
 	"net/http"
 
 	"github.com/a-h/templ"
+	gorillaHandlers "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/rramiachraf/dumb/views"
 	"github.com/sirupsen/logrus"
-	gorillaHandlers "github.com/gorilla/handlers"
 )
 
 func New(logger *logrus.Logger) *mux.Router {
@@ -18,6 +18,9 @@ func New(logger *logrus.Logger) *mux.Router {
 	r.Use(gorillaHandlers.CompressHandler)
 
 	r.Handle("/", templ.Handler(views.HomePage()))
+	r.HandleFunc("/robots.txt", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("User-agent: *\nDisallow: /\n"))
+	})
 	r.HandleFunc("/albums/{artist}/{albumName}", album(logger)).Methods("GET")
 	r.HandleFunc("/images/{filename}.{ext}", imageProxy(logger)).Methods("GET")
 	r.HandleFunc("/search", search(logger)).Methods("GET")

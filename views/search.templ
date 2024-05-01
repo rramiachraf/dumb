@@ -1,6 +1,9 @@
 package views
 
-import "github.com/rramiachraf/dumb/data"
+import (
+	"fmt"
+	"github.com/rramiachraf/dumb/data"
+)
 
 templ SearchPage(r data.SearchResults) {
 	@layout("Search - dumb") {
@@ -14,7 +17,10 @@ templ SearchPage(r data.SearchResults) {
 						<h1>Songs</h1>
 						for _, s := range s.Hits {
 							<a id="search-item" href={ templ.URL(s.Result.Path) }>
-								<img src={ data.ExtractImageURL(s.Result.Thumbnail) }/>
+								<img
+									src={ data.ExtractImageURL(s.Result.Thumbnail) }
+									alt={ fmt.Sprintf("%s image", s.Result.Title) }
+								/>
 								<div>
 									<span>{ s.Result.ArtistNames }</span>
 									<h2>{ s.Result.Title }</h2>
