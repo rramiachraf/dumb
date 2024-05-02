@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
-	"github.com/sirupsen/logrus"
+	"github.com/rramiachraf/dumb/utils"
 )
 
 func TestAnnotations(t *testing.T) {
@@ -18,7 +19,7 @@ func TestAnnotations(t *testing.T) {
 	}
 
 	rr := httptest.NewRecorder()
-	l := logrus.New()
+	l := utils.NewLogger(os.Stdout)
 	m := New(l)
 
 	m.ServeHTTP(rr, r)

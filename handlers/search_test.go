@@ -3,10 +3,11 @@ package handlers
 import (
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/sirupsen/logrus"
+	"github.com/rramiachraf/dumb/utils"
 )
 
 func TestSearch(t *testing.T) {
@@ -19,7 +20,7 @@ func TestSearch(t *testing.T) {
 	}
 
 	rr := httptest.NewRecorder()
-	l := logrus.New()
+	l := utils.NewLogger(os.Stdout)
 	m := New(l)
 
 	m.ServeHTTP(rr, r)

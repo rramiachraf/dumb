@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/sirupsen/logrus"
 )
 
 type Song struct {
@@ -49,17 +48,25 @@ type customPerformance struct {
 	}
 }
 
-func (s *Song) parseLyrics(doc *goquery.Document) {
+func (s *Song) parseLyrics(doc *goquery.Document) error {
+	var htmlError error
+
 	doc.Find("[data-lyrics-container='true']").Each(func(i int, ss *goquery.Selection) {
 		h, err := ss.Html()
 		if err != nil {
-			logrus.Errorln("unable to parse lyrics", err)
+			htmlError = err
 		}
 		s.Lyrics += h
 	})
+
+	if htmlError != nil {
+		return htmlError
+	}
+
+	return nil
 }
 
-func (s *Song) parseSongData(doc *goquery.Document) {
+func (s *Song) parseSongData(doc *goquery.Document) error {
 	attr, exists := doc.Find("meta[property='twitter:app:url:iphone']").Attr("content")
 	if exists {
 		songID := strings.Replace(attr, "genius://songs/", "", 1)
@@ -68,7 +75,7 @@ func (s *Song) parseSongData(doc *goquery.Document) {
 
 		res, err := sendRequest(u)
 		if err != nil {
-			logrus.Errorln(err)
+			return err
 		}
 
 		defer res.Body.Close()
@@ -77,7 +84,7 @@ func (s *Song) parseSongData(doc *goquery.Document) {
 		decoder := json.NewDecoder(res.Body)
 		err = decoder.Decode(&data)
 		if err != nil {
-			logrus.Errorln(err)
+			return err
 		}
 
 		songData := data.Response.Song
@@ -99,6 +106,8 @@ func (s *Song) parseSongData(doc *goquery.Document) {
 			s.Credits[perf.Label] = strings.Join(artists, ", ")
 		}
 	}
+
+	return nil
 }
 
 func truncateText(text string) string {
@@ -111,7 +120,14 @@ func truncateText(text string) string {
 	return text
 }
 
-func (s *Song) Parse(doc *goquery.Document) {
-	s.parseLyrics(doc)
-	s.parseSongData(doc)
+func (s *Song) Parse(doc *goquery.Document) error {
+	if err := s.parseLyrics(doc); err != nil {
+		return err
+	}
+
+	if err := s.parseSongData(doc); err != nil {
+		return err
+	}
+
+	return nil
 }

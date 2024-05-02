@@ -8,11 +8,11 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gorilla/mux"
 	"github.com/rramiachraf/dumb/data"
+	"github.com/rramiachraf/dumb/utils"
 	"github.com/rramiachraf/dumb/views"
-	"github.com/sirupsen/logrus"
 )
 
-func album(l *logrus.Logger) http.HandlerFunc {
+func album(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		artist := mux.Vars(r)["artist"]
 		albumName := mux.Vars(r)["albumName"]
@@ -28,7 +28,7 @@ func album(l *logrus.Logger) http.HandlerFunc {
 
 		resp, err := sendRequest(url)
 		if err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			views.ErrorPage(500, "cannot reach Genius servers").Render(context.Background(), w)
 			return
@@ -44,7 +44,7 @@ func album(l *logrus.Logger) http.HandlerFunc {
 
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		if err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
 			return
@@ -52,20 +52,20 @@ func album(l *logrus.Logger) http.HandlerFunc {
 
 		cf := doc.Find(".cloudflare_content").Length()
 		if cf > 0 {
-			l.Errorln("cloudflare got in the way")
+			l.Error("cloudflare got in the way")
 			views.ErrorPage(500, "i'll fix this later #21").Render(context.Background(), w)
 			return
 		}
 
 		var a data.Album
 		if err = a.Parse(doc); err != nil {
-			l.Error(err)
+			l.Error(err.Error())
 		}
 
 		views.AlbumPage(a).Render(context.Background(), w)
 
 		if err = setCache(id, a); err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 		}
 	}
 }

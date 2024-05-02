@@ -11,7 +11,6 @@ require (
 	github.com/caffix/cloudflare-roundtripper v0.0.0-20181218223503-4c29d231c9cb
 	github.com/gorilla/handlers v1.5.2
 	github.com/gorilla/mux v1.8.1
-	github.com/sirupsen/logrus v1.9.3
 )
 
 require (

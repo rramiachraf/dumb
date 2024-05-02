@@ -9,11 +9,11 @@ import (
 	"time"
 
 	"github.com/rramiachraf/dumb/handlers"
-	"github.com/sirupsen/logrus"
+	"github.com/rramiachraf/dumb/utils"
 )
 
 func main() {
-	var logger = logrus.New()
+	logger := utils.NewLogger(os.Stdout)
 
 	server := &http.Server{
 		Handler:      handlers.New(logger),
@@ -25,14 +25,18 @@ func main() {
 
 	if port == 0 {
 		port = 5555
+		logger.Info("using default port %d", port)
 	}
 
 	l, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
-		logger.Fatalln(err)
+		logger.Error(err.Error())
 	}
 
-	logger.Infof("server is listening on port %d\n", port)
+	logger.Info("server is listening on port %d", port)
 
-	logger.Fatalln(server.Serve(l))
+	if err := server.Serve(l); err != nil {
+		logger.Error(err.Error())
+		os.Exit(1)
+	}
 }

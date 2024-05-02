@@ -8,11 +8,11 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gorilla/mux"
 	"github.com/rramiachraf/dumb/data"
+	"github.com/rramiachraf/dumb/utils"
 	"github.com/rramiachraf/dumb/views"
-	"github.com/sirupsen/logrus"
 )
 
-func lyrics(l *logrus.Logger) http.HandlerFunc {
+func lyrics(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// prefer artist-song over annotation-id for cache key when available
 		id := mux.Vars(r)["artist-song"]
@@ -30,7 +30,7 @@ func lyrics(l *logrus.Logger) http.HandlerFunc {
 		url := fmt.Sprintf("https://genius.com/%s", id)
 		resp, err := sendRequest(url)
 		if err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			views.ErrorPage(500, "cannot reach Genius servers").Render(context.Background(), w)
 			return
@@ -46,7 +46,7 @@ func lyrics(l *logrus.Logger) http.HandlerFunc {
 
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		if err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
 			return
@@ -54,17 +54,19 @@ func lyrics(l *logrus.Logger) http.HandlerFunc {
 
 		cf := doc.Find(".cloudflare_content").Length()
 		if cf > 0 {
-			l.Errorln("cloudflare got in the way")
+			l.Error("cloudflare got in the way")
 			views.ErrorPage(500, "TODO: fix Cloudflare #21").Render(context.Background(), w)
 			return
 		}
 
 		var s data.Song
-		s.Parse(doc)
+		if err := s.Parse(doc); err != nil {
+			l.Error(err.Error())
+		}
 
 		views.LyricsPage(s).Render(context.Background(), w)
 		if err = setCache(id, s); err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 		}
 	}
 }

@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	"github.com/gorilla/mux"
+	"github.com/rramiachraf/dumb/utils"
 	"github.com/rramiachraf/dumb/views"
-	"github.com/sirupsen/logrus"
 )
 
 func isValidExt(ext string) bool {
@@ -24,7 +24,7 @@ func isValidExt(ext string) bool {
 	return false
 }
 
-func imageProxy(l *logrus.Logger) http.HandlerFunc {
+func imageProxy(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		v := mux.Vars(r)
 		f := v["filename"]
@@ -41,7 +41,7 @@ func imageProxy(l *logrus.Logger) http.HandlerFunc {
 
 		res, err := sendRequest(url)
 		if err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			views.ErrorPage(500, "cannot reach Genius servers").Render(context.Background(), w)
 			return
@@ -56,7 +56,7 @@ func imageProxy(l *logrus.Logger) http.HandlerFunc {
 		w.Header().Add("Content-type", mime.TypeByExtension("."+ext))
 		w.Header().Add("Cache-Control", "max-age=1296000")
 		if _, err = io.Copy(w, res.Body); err != nil {
-			l.Errorln("unable to write image", err)
+			l.Error("unable to write image, %s", err.Error())
 		}
 	}
 }

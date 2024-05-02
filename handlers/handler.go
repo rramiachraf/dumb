@@ -7,11 +7,11 @@ import (
 	"github.com/a-h/templ"
 	gorillaHandlers "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	"github.com/rramiachraf/dumb/utils"
 	"github.com/rramiachraf/dumb/views"
-	"github.com/sirupsen/logrus"
 )
 
-func New(logger *logrus.Logger) *mux.Router {
+func New(logger *utils.Logger) *mux.Router {
 	r := mux.NewRouter()
 
 	r.Use(mustHeaders)

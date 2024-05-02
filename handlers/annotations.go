@@ -12,11 +12,11 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gorilla/mux"
 	"github.com/rramiachraf/dumb/data"
+	"github.com/rramiachraf/dumb/utils"
 	"github.com/rramiachraf/dumb/views"
-	"github.com/sirupsen/logrus"
 )
 
-func annotations(l *logrus.Logger) http.HandlerFunc {
+func annotations(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		id := mux.Vars(r)["annotation-id"]
 		if a, err := getCache[data.Annotation]("annotation:" + id); err == nil {
@@ -24,7 +24,7 @@ func annotations(l *logrus.Logger) http.HandlerFunc {
 
 			w.Header().Set("content-type", "application/json")
 			if err = encoder.Encode(&a); err != nil {
-				l.Errorln(err)
+				l.Error(err.Error())
 			}
 
 			return
@@ -34,7 +34,7 @@ func annotations(l *logrus.Logger) http.HandlerFunc {
 		resp, err := sendRequest(url)
 
 		if err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			views.ErrorPage(500, "cannot reach genius servers").Render(context.Background(), w)
 			return
@@ -51,7 +51,7 @@ func annotations(l *logrus.Logger) http.HandlerFunc {
 		buf := new(bytes.Buffer)
 		_, err = buf.ReadFrom(resp.Body)
 		if err != nil {
-			l.Errorln("Error paring genius api response", err)
+			l.Error("Error paring genius api response: %s", err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
 			return
@@ -60,7 +60,7 @@ func annotations(l *logrus.Logger) http.HandlerFunc {
 		var data data.AnnotationsResponse
 		err = json.Unmarshal(buf.Bytes(), &data)
 		if err != nil {
-			l.Errorf("could not unmarshal json: %s\n", err)
+			l.Error("could not unmarshal json: %s\n", err)
 			w.WriteHeader(http.StatusInternalServerError)
 			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
 			return
@@ -73,12 +73,12 @@ func annotations(l *logrus.Logger) http.HandlerFunc {
 		encoder := json.NewEncoder(w)
 
 		if err = encoder.Encode(&body); err != nil {
-			l.Errorln("Error sending response: ", err)
+			l.Error("Error sending response: %s", err.Error())
 			return
 		}
 
 		if err = setCache("annotation:"+id, body); err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 		}
 	}
 }

@@ -5,22 +5,22 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/rramiachraf/dumb/utils"
 	"github.com/rramiachraf/dumb/views"
-	"github.com/sirupsen/logrus"
 )
 
 const ContentTypeJSON = "application/json"
 
 // TODO: move this to utils, so it can be used by other handlers.
-func sendError(err error, status int, msg string, l *logrus.Logger, w http.ResponseWriter) {
-	l.Errorln(err)
+func sendError(err error, status int, msg string, l *utils.Logger, w http.ResponseWriter) {
+	l.Error(err.Error())
 	w.WriteHeader(status)
 	if err := views.ErrorPage(status, msg).Render(context.Background(), w); err != nil {
-		l.Errorln(err)
+		l.Error(err.Error())
 	}
 }
 
-func instances(l *logrus.Logger) http.HandlerFunc {
+func instances(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if instances, err := getCache[[]byte]("instances"); err == nil {
 			w.Header().Set("content-type", ContentTypeJSON)
@@ -46,11 +46,11 @@ func instances(l *logrus.Logger) http.HandlerFunc {
 
 		w.Header().Set("content-type", ContentTypeJSON)
 		if _, err = w.Write(instances); err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 		}
 
 		if err = setCache("instances", instances); err != nil {
-			l.Errorln(err)
+			l.Error(err.Error())
 		}
 	}
 }
