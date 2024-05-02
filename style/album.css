@@ -12,3 +12,25 @@
 	flex-shrink: 0;
 	flex-grow: 1;
 }
+
+#album-single-track {
+	display: grid;
+	grid-template-columns: 3rem 1fr;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
+}
+
+#album-single-track p {
+	color: #181d31;
+	font-weight: 500;
+}
+
+#album-single-track small {
+	font-size: 1.5rem;
+	color: #333;
+}
+
+#album-single-track:hover p {
+	text-decoration: underline;
+}

@@ -10,12 +10,15 @@ templ AlbumPage(a data.Album) {
 		<div id="container">
 			<div id="metadata">
 				<img id="album-artwork" src={ data.ExtractImageURL(a.Image) } alt="Album image"/>
-				<h2>{ a.Artist }</h2>
-				<h1>{ a.Name }</h1>
+				<div id="metadata-info">
+					<h2>{ a.Artist }</h2>
+					<h1>{ a.Name }</h1>
+				</div>
 			</div>
 			<div id="album-tracklist">
 				for _, t := range a.Tracks {
-					<a href={ templ.URL(t.Url) }>
+					<a href={ templ.URL(t.Url) } id="album-single-track">
+						<small>{ fmt.Sprintf("%d", t.Number) }</small>
 						<p>{ t.Title }</p>
 					</a>
 				}

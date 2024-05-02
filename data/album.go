@@ -17,8 +17,9 @@ type Album struct {
 }
 
 type Track struct {
-	Title string
-	Url   string
+	Title  string
+	Url    string
+	Number int
 }
 
 type albumMetadata struct {
@@ -65,7 +66,7 @@ func (a *Album) parseAlbumData(doc *goquery.Document) error {
 
 	for _, track := range albumMetadataFromPage.AlbumAppearances {
 		url := strings.Replace(track.Song.Url, "https://genius.com", "", -1)
-		a.Tracks = append(a.Tracks, Track{Title: track.Song.Title, Url: url})
+		a.Tracks = append(a.Tracks, Track{Title: track.Song.Title, Url: url, Number: track.TrackNumber})
 	}
 
 	return nil
