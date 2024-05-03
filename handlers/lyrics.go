@@ -28,7 +28,7 @@ func lyrics(l *utils.Logger) http.HandlerFunc {
 		}
 
 		url := fmt.Sprintf("https://genius.com/%s", id)
-		resp, err := sendRequest(url)
+		resp, err := utils.SendRequest(url)
 		if err != nil {
 			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
@@ -55,7 +55,7 @@ func lyrics(l *utils.Logger) http.HandlerFunc {
 		cf := doc.Find(".cloudflare_content").Length()
 		if cf > 0 {
 			l.Error("cloudflare got in the way")
-			views.ErrorPage(500, "TODO: fix Cloudflare #21").Render(context.Background(), w)
+			views.ErrorPage(500, "cloudflare is detected").Render(context.Background(), w)
 			return
 		}
 

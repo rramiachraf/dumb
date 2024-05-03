@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/rramiachraf/dumb/utils"
 )
 
 type Song struct {
@@ -73,7 +74,7 @@ func (s *Song) parseSongData(doc *goquery.Document) error {
 
 		u := fmt.Sprintf("https://genius.com/api/songs/%s?text_format=plain", songID)
 
-		res, err := sendRequest(u)
+		res, err := utils.SendRequest(u)
 		if err != nil {
 			return err
 		}

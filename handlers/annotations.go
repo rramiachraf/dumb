@@ -31,7 +31,7 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 		}
 
 		url := fmt.Sprintf("https://genius.com/api/referents/%s?text_format=html", id)
-		resp, err := sendRequest(url)
+		resp, err := utils.SendRequest(url)
 
 		if err != nil {
 			l.Error(err.Error())

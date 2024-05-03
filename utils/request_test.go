@@ -1,4 +1,4 @@
-package handlers
+package utils
 
 /*
 import (
@@ -7,7 +7,7 @@ import (
 )
 
 func TestSendRequest(t *testing.T) {
-	res, err := sendRequest("https://tls.peet.ws/api/clean")
+	res, err := SendRequest("https://tls.peet.ws/api/clean")
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"net/http"
+	"net/url"
 	"os"
 	"strconv"
 	"time"
@@ -19,6 +20,16 @@ func main() {
 		Handler:      handlers.New(logger),
 		WriteTimeout: 25 * time.Second,
 		ReadTimeout:  25 * time.Second,
+	}
+
+	PROXY_ENV := os.Getenv("PROXY")
+	if PROXY_ENV != "" {
+		if _, err := url.ParseRequestURI(PROXY_ENV); err != nil {
+			logger.Error("invalid proxy")
+			os.Exit(1)
+		}
+
+		logger.Info("using a custom proxy for requests")
 	}
 
 	port, _ := strconv.Atoi(os.Getenv("PORT"))

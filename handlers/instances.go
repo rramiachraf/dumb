@@ -30,7 +30,7 @@ func instances(l *utils.Logger) http.HandlerFunc {
 			}
 		}
 
-		res, err := sendRequest("https://raw.githubusercontent.com/rramiachraf/dumb/main/instances.json")
+		res, err := utils.SendRequest("https://raw.githubusercontent.com/rramiachraf/dumb/main/instances.json")
 		if err != nil {
 			sendError(err, http.StatusInternalServerError, "something went wrong", l, w)
 			return

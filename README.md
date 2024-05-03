@@ -20,7 +20,9 @@ make build
 ./dumb
 ```
 
-The default port is 5555, you can use other ports by setting the `PORT` environment variable.
+#### Notes:
+- The default port is 5555, you can use other ports by setting the `PORT` environment variable.
+- Genius servers are behind a Cloudflare reverse proxy, which means certain IPs won't be able to send requests, to partially mitigate this, you can specify a proxy by setting the `PROXY` variable (must be a valid URI).
 
 ## Public Instances
 | URL                                           | Tor                                                                               | I2P                                                                        | Region | CDN? | Operator               
