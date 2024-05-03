@@ -19,7 +19,7 @@ func TestInstancesList(t *testing.T) {
 	rr := httptest.NewRecorder()
 	l := utils.NewLogger(os.Stdout)
 
-	m := New(l)
+	m := New(l, &assets{})
 	m.ServeHTTP(rr, r)
 
 	c := rr.Result().Header.Get("content-type")

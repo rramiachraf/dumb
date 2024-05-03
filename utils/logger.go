@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"log/slog"
+	"os"
 )
 
 type Logger struct {
@@ -23,4 +24,9 @@ func (l *Logger) Error(f string, args ...any) {
 
 func (l *Logger) Info(f string, args ...any) {
 	l.slog.Info(fmt.Sprintf(f, args...))
+}
+
+func (l *Logger) Fatal(f string, args ...any) {
+	l.Error(f, args...)
+	os.Exit(1)
 }

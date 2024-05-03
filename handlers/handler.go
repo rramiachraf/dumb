@@ -2,12 +2,7 @@ package handlers
 
 import (
 	"context"
-	"io"
-	"mime"
 	"net/http"
-	"os"
-	"path"
-	"strings"
 
 	"github.com/a-h/templ"
 	gorillaHandlers "github.com/gorilla/handlers"
@@ -16,7 +11,7 @@ import (
 	"github.com/rramiachraf/dumb/views"
 )
 
-func New(logger *utils.Logger) *mux.Router {
+func New(logger *utils.Logger, staticFiles static) *mux.Router {
 	r := mux.NewRouter()
 
 	r.Use(utils.MustHeaders)
@@ -31,25 +26,7 @@ func New(logger *utils.Logger) *mux.Router {
 	r.HandleFunc("/search", search(logger)).Methods("GET")
 	r.HandleFunc("/{annotation-id}/{artist-song}/{verse}/annotations", annotations(logger)).Methods("GET")
 	r.HandleFunc("/instances.json", instances(logger)).Methods("GET")
-	r.PathPrefix("/static/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		url := strings.Replace(r.URL.Path, "/static", "static", 1)
-		f, err := os.Open(url)
-		if err != nil {
-			w.WriteHeader(http.StatusNotFound)
-			views.ErrorPage(http.StatusNotFound, "page not found")
-			return
-		}
-
-		defer f.Close()
-
-		mimeType := mime.TypeByExtension(path.Ext(r.URL.Path))
-		w.Header().Set("content-type", mimeType)
-
-		if _, err := io.Copy(w, f); err != nil {
-			logger.Error(err.Error())
-		}
-
-	})
+	r.PathPrefix("/static/").HandlerFunc(staticAssets(logger, staticFiles))
 	r.PathPrefix("/{annotation-id}/{artist-song}-lyrics").HandlerFunc(lyrics(logger)).Methods("GET")
 	r.PathPrefix("/{annotation-id}/{artist-song}").HandlerFunc(lyrics(logger)).Methods("GET")
 	r.PathPrefix("/{annotation-id}").HandlerFunc(lyrics(logger)).Methods("GET")

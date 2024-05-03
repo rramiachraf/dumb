@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"fmt"
 	"net"
 	"net/http"
@@ -13,11 +14,14 @@ import (
 	"github.com/rramiachraf/dumb/utils"
 )
 
+//go:embed static
+var staticFiles embed.FS
+
 func main() {
 	logger := utils.NewLogger(os.Stdout)
 
 	server := &http.Server{
-		Handler:      handlers.New(logger),
+		Handler:      handlers.New(logger, staticFiles),
 		WriteTimeout: 25 * time.Second,
 		ReadTimeout:  25 * time.Second,
 	}
@@ -25,8 +29,7 @@ func main() {
 	PROXY_ENV := os.Getenv("PROXY")
 	if PROXY_ENV != "" {
 		if _, err := url.ParseRequestURI(PROXY_ENV); err != nil {
-			logger.Error("invalid proxy")
-			os.Exit(1)
+			logger.Fatal("invalid proxy")
 		}
 
 		logger.Info("using a custom proxy for requests")
@@ -41,13 +44,12 @@ func main() {
 
 	l, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
-		logger.Error(err.Error())
+		logger.Fatal(err.Error())
 	}
 
 	logger.Info("server is listening on port %d", port)
 
 	if err := server.Serve(l); err != nil {
-		logger.Error(err.Error())
-		os.Exit(1)
+		logger.Fatal(err.Error())
 	}
 }

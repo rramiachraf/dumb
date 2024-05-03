@@ -33,7 +33,7 @@ func testLyrics(t *testing.T, url string) {
 
 	rr := httptest.NewRecorder()
 	l := utils.NewLogger(os.Stdout)
-	m := New(l)
+	m := New(l, &assets{})
 
 	m.ServeHTTP(rr, r)
 
