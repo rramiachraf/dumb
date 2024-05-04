@@ -26,9 +26,17 @@
 	font-weight: 500;
 }
 
+.dark #album-single-track p {
+	color: #ddd;
+}
+
 #album-single-track small {
 	font-size: 1.5rem;
 	color: #333;
+}
+
+.dark #album-single-track small {
+	color: #ccc;
 }
 
 #album-single-track:hover p {
