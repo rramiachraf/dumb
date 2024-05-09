@@ -19,7 +19,7 @@ templ SearchPage(r data.SearchResults) {
 							<a id="search-item" href={ templ.URL(s.Result.Path) }>
 								<img
 									src={ data.ExtractImageURL(s.Result.Thumbnail) }
-									alt={ fmt.Sprintf("%s image", s.Result.Title) }
+									alt=""
 								/>
 								<div>
 									<span>{ s.Result.ArtistNames }</span>
