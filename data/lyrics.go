@@ -38,6 +38,12 @@ type songResponse struct {
 				Image string `json:"cover_art_url"`
 			}
 			CustomPerformances []customPerformance `json:"custom_performances"`
+			WriterArtists []struct {
+				Name string
+			} `json:"writer_artists"`
+			ProducerArtists    []struct {
+				Name string
+			} `json:"producer_artists"`
 		}
 	}
 }
@@ -99,16 +105,24 @@ func (s *Song) parseSongData(doc *goquery.Document) error {
 		s.Album.URL = strings.Replace(songData.Album.URL, "https://genius.com", "", -1)
 		s.Album.Image = ExtractImageURL(songData.Album.Image)
 
+		s.Credits["Writers"] = joinNames(songData.WriterArtists)
+		s.Credits["Producers"] = joinNames(songData.ProducerArtists)
 		for _, perf := range songData.CustomPerformances {
-			var artists []string
-			for _, artist := range perf.Artists {
-				artists = append(artists, artist.Name)
-			}
-			s.Credits[perf.Label] = strings.Join(artists, ", ")
+			s.Credits[perf.Label] = joinNames(perf.Artists)
 		}
 	}
 
 	return nil
+}
+
+func joinNames(data []struct {
+	Name string
+}) string {
+	var names []string
+	for _, hasName := range data {
+		names = append(names, hasName.Name)
+	}
+	return strings.Join(names, ", ")
 }
 
 func truncateText(text string) string {
