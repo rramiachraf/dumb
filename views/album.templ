@@ -23,13 +23,15 @@ templ AlbumPage(a data.Album) {
 					</a>
 				}
 			</div>
-			<div id="info">
-				<div id="about">
-					<h1 id="title">About</h1>
-					<p class="hidden" id="full_about">{ a.About[0] }</p>
-					<p id="summary">{ a.About[1] }</p>
+			if a.About[0] != "" {
+				<div id="info">
+					<div id="about">
+						<h1 id="title">About</h1>
+						<p class="hidden" id="full_about">{ a.About[0] }</p>
+						<p id="summary">{ a.About[1] }</p>
+					</div>
 				</div>
-			</div>
+			}
 		</div>
 	}
 }

@@ -23,7 +23,7 @@ templ LyricsPage(s data.Song) {
 				@templ.Raw(s.Lyrics)
 			</div>
 			<div id="info">
-				if s.About[0] != "" {
+				if s.About[0] != "?" {
 					<div id="about">
 						<h1 id="title">About</h1>
 						<p class="hidden" id="full_about">{ s.About[0] }</p>
