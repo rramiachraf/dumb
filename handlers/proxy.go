@@ -14,11 +14,14 @@ import (
 )
 
 func isValidExt(ext string) bool {
-	valid := []string{"jpg", "jpeg", "png", "gif"}
-	for _, c := range valid {
-		if strings.ToLower(ext) == c {
-			return true
-		}
+	extType := mime.TypeByExtension("." + strings.ToLower(ext))
+	isImage, _, found := strings.Cut(extType, "/")
+	if !found {
+		return false
+	}
+
+	if isImage == "image" {
+		return true
 	}
 
 	return false
