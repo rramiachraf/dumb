@@ -1,0 +1,25 @@
+artist-albumlist #artist-albumlist p {
+  color: #181d31;
+  font-weight: 500;
+}
+
+.dark #artist-albumlist p {
+  color: #ddd;
+}
+
+#artist-albumlist small {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.dark #artist-albumlist small {
+  color: #ccc;
+}
+
+#metadata p {
+  color: #171717;
+}
+
+.dark #metadata p {
+  color: #ddd;
+}

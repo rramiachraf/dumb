@@ -16,11 +16,7 @@ type Song struct {
 	Lyrics  string
 	Credits map[string]string
 	About   [2]string
-	Album   struct {
-		URL   string
-		Name  string
-		Image string
-	}
+	Album   AlbumPreview
 }
 
 type songResponse struct {
@@ -38,10 +34,10 @@ type songResponse struct {
 				Image string `json:"cover_art_url"`
 			}
 			CustomPerformances []customPerformance `json:"custom_performances"`
-			WriterArtists []struct {
+			WriterArtists      []struct {
 				Name string
 			} `json:"writer_artists"`
-			ProducerArtists    []struct {
+			ProducerArtists []struct {
 				Name string
 			} `json:"producer_artists"`
 		}
@@ -117,7 +113,8 @@ func (s *Song) parseSongData(doc *goquery.Document) error {
 
 func joinNames(data []struct {
 	Name string
-}) string {
+},
+) string {
 	var names []string
 	for _, hasName := range data {
 		names = append(names, hasName.Name)

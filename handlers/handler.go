@@ -22,6 +22,7 @@ func New(logger *utils.Logger, staticFiles static) *mux.Router {
 		w.Write([]byte("User-agent: *\nDisallow: /\n"))
 	})
 	r.HandleFunc("/albums/{artist}/{albumName}", album(logger)).Methods("GET")
+	r.HandleFunc("/artists/{artist}", artist(logger)).Methods("GET")
 	r.HandleFunc("/images/{filename}.{ext}", imageProxy(logger)).Methods("GET")
 	r.HandleFunc("/search", search(logger)).Methods("GET")
 	r.HandleFunc("/{annotation-id}/{artist-song}/{verse}/annotations", annotations(logger)).Methods("GET")

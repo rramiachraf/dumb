@@ -1,0 +1,27 @@
+package views
+
+import (
+	"github.com/rramiachraf/dumb/data"
+)
+
+templ ArtistPage(a data.Artist) {
+	@layout(a.Name) {
+		<div id="container">
+			<div id="metadata">
+				<img id="artist-image" src={ data.ExtractImageURL(a.Image) } alt="Artist image"/>
+				<div id="metadata-info">
+					<h1>{ a.Name }</h1>
+					<p>@templ.Raw(a.Description)</p>
+				</div>
+			</div>
+			<div id="artist-albumlist">
+				for _, album := range a.Albums {
+					<a href={ templ.URL(album.URL) } id="artist-single-album">
+						<img id="album-image" src={ data.ExtractImageURL(album.Image) } alt="Artist image" />
+						<p>{ album.Name }</p>
+					</a>
+				}
+			</div>
+		</div>
+	}
+}
