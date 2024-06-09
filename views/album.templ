@@ -7,7 +7,7 @@ import (
 
 templ AlbumPage(a data.Album) {
 	@layout(fmt.Sprintf("%s - %s", a.Artist, a.Name)) {
-		<div id="container">
+		<div id="container" class="trio-split">
 			<div id="metadata">
 				<img id="album-artwork" src={ data.ExtractImageURL(a.Image) } alt="Album image"/>
 				<div id="metadata-info">
@@ -25,9 +25,9 @@ templ AlbumPage(a data.Album) {
 			</div>
 			if a.About[0] != "" {
 				<div id="info">
-					<div id="about">
+					<div id="description" dir="auto">
 						<h1 id="title">About</h1>
-						<p class="hidden" id="full_about">{ a.About[0] }</p>
+						<p class="hidden" id="full">{ a.About[0] }</p>
 						<p id="summary">{ a.About[1] }</p>
 					</div>
 				</div>

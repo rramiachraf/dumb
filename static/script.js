@@ -1,12 +1,12 @@
-const fullAbout = document.querySelector("#about #full_about")
-const summary = document.querySelector("#about #summary")
+const description = document.querySelector("#description > #full")
+const summary = document.querySelector("#description > #summary")
 
-function showAbout() {
+function showDescription() {
 	summary.classList.toggle("hidden")
-	fullAbout.classList.toggle("hidden")
+	description.classList.toggle("hidden")
 }
 
-fullAbout && [fullAbout, summary].forEach(item => item.onclick = showAbout)
+description && [description, summary].forEach(item => item.onclick = showDescription)
 
 window.addEventListener("load", () => {
 	const geniusURL = "https://genius.com" + document.location.pathname + document.location.search

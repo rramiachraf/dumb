@@ -7,7 +7,7 @@ import (
 
 templ LyricsPage(s data.Song) {
 	@layout(fmt.Sprintf("%s - %s lyrics", s.Artist, s.Title)) {
-		<div id="container">
+		<div id="container" class="trio-split">
 			<div id="metadata">
 				<img
 					id="album-artwork"
@@ -24,9 +24,9 @@ templ LyricsPage(s data.Song) {
 			</div>
 			<div id="info">
 				if s.About[0] != "?" {
-					<div id="about">
+					<div id="description" dir="auto">
 						<h1 id="title">About</h1>
-						<p class="hidden" id="full_about">{ s.About[0] }</p>
+						<p class="hidden" id="full">{ s.About[0] }</p>
 						<p id="summary">{ s.About[1] }</p>
 					</div>
 				}

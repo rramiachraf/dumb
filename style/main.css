@@ -57,6 +57,10 @@ a {
 	text-decoration: none;
 }
 
+a:hover {
+	text-decoration: underline;
+}
+
 body.dark {
 	background-color: #181d31;
 }
