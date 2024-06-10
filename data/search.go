@@ -11,6 +11,11 @@ type result struct {
 	Title       string
 	Path        string
 	Thumbnail   string `json:"song_art_image_thumbnail_url"`
+	ArtistImage string `json:"image_url"`
+	ArtistName  string `json:"name"`
+	URL         string `json:"url"`
+	AlbumImage  string `json:"cover_art_url"`
+	AlbumName   string `json:"full_title"`
 }
 
 type hits []struct {

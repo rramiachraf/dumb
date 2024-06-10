@@ -66,3 +66,7 @@
 #artist-section h2 {
 	font-size: 2rem;
 }
+
+.dark #artist-section h2 {
+	color: #ddd;
+}
