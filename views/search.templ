@@ -1,8 +1,8 @@
 package views
 
 import (
-	"fmt"
 	"github.com/rramiachraf/dumb/data"
+	"github.com/rramiachraf/dumb/utils"
 )
 
 templ SearchPage(r data.SearchResults) {
@@ -14,19 +14,44 @@ templ SearchPage(r data.SearchResults) {
 			<div id="search-results">
 				for _, s := range r.Sections {
 					if s.Type == "song" {
-						<h1>Songs</h1>
-						for _, s := range s.Hits {
-							<a id="search-item" href={ templ.URL(s.Result.Path) }>
-								<img
-									src={ data.ExtractImageURL(s.Result.Thumbnail) }
-									alt={ fmt.Sprintf("%s image", s.Result.Title) }
-								/>
-								<div>
-									<span>{ s.Result.ArtistNames }</span>
-									<h2>{ s.Result.Title }</h2>
-								</div>
-							</a>
-						}
+						<div id="search-section">
+							<h2>Songs</h2>
+							for _, s := range s.Hits {
+								<a id="search-item" href={ templ.URL(s.Result.Path) }>
+									<img src={ data.ExtractImageURL(s.Result.Thumbnail) } alt="Song image"/>
+									<div>
+										<span>{ s.Result.ArtistNames }</span>
+										<h3>{ utils.TrimText(s.Result.Title,70) }</h3>
+									</div>
+								</a>
+							}
+						</div>
+					}
+					if s.Type == "album" {
+						<div id="search-section">
+							<h2>Albums</h2>
+							for _, a := range s.Hits {
+								<a id="search-item" href={ templ.URL(utils.TrimURL(a.Result.URL)) }>
+									<img src={ data.ExtractImageURL(a.Result.AlbumImage) } alt="Album image"/>
+									<div>
+										<h3>{ utils.TrimText(a.Result.AlbumName, 70) }</h3>
+									</div>
+								</a>
+							}
+						</div>
+					}
+					if s.Type == "artist" {
+						<div id="search-section">
+							<h2>Artists</h2>
+							for _, a := range s.Hits {
+								<a id="search-item" href={ templ.URL(utils.TrimURL(a.Result.URL)) }>
+									<img src={ data.ExtractImageURL(a.Result.ArtistImage) } alt="Artist image"/>
+									<div>
+										<h3>{ utils.TrimText(a.Result.ArtistName, 70) }</h3>
+									</div>
+								</a>
+							}
+						</div>
 					}
 				}
 			</div>

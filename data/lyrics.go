@@ -10,17 +10,14 @@ import (
 )
 
 type Song struct {
-	Artist  string
-	Title   string
-	Image   string
-	Lyrics  string
-	Credits map[string]string
-	About   [2]string
-	Album   struct {
-		URL   string
-		Name  string
-		Image string
-	}
+	Artist        string
+	Title         string
+	Image         string
+	Lyrics        string
+	Credits       map[string]string
+	About         string
+	Album         AlbumPreview
+	ArtistPageURL string
 }
 
 type songResponse struct {
@@ -38,12 +35,15 @@ type songResponse struct {
 				Image string `json:"cover_art_url"`
 			}
 			CustomPerformances []customPerformance `json:"custom_performances"`
-			WriterArtists []struct {
+			WriterArtists      []struct {
 				Name string
 			} `json:"writer_artists"`
-			ProducerArtists    []struct {
+			ProducerArtists []struct {
 				Name string
 			} `json:"producer_artists"`
+			PrimaryArtist struct {
+				URL string
+			} `json:"primary_artist"`
 		}
 	}
 }
@@ -98,11 +98,11 @@ func (s *Song) parseSongData(doc *goquery.Document) error {
 		s.Artist = songData.ArtistNames
 		s.Image = songData.Image
 		s.Title = songData.Title
-		s.About[0] = songData.Description.Plain
-		s.About[1] = truncateText(songData.Description.Plain)
+		s.About = songData.Description.Plain
 		s.Credits = make(map[string]string)
 		s.Album.Name = songData.Album.Name
-		s.Album.URL = strings.Replace(songData.Album.URL, "https://genius.com", "", -1)
+		s.ArtistPageURL = utils.TrimURL(songData.PrimaryArtist.URL)
+		s.Album.URL = utils.TrimURL(songData.Album.URL)
 		s.Album.Image = ExtractImageURL(songData.Album.Image)
 
 		s.Credits["Writers"] = joinNames(songData.WriterArtists)
@@ -117,22 +117,13 @@ func (s *Song) parseSongData(doc *goquery.Document) error {
 
 func joinNames(data []struct {
 	Name string
-}) string {
+},
+) string {
 	var names []string
 	for _, hasName := range data {
 		names = append(names, hasName.Name)
 	}
 	return strings.Join(names, ", ")
-}
-
-func truncateText(text string) string {
-	textArr := strings.Split(text, "")
-
-	if len(textArr) > 250 {
-		return strings.Join(textArr[0:250], "") + "..."
-	}
-
-	return text
 }
 
 func (s *Song) Parse(doc *goquery.Document) error {

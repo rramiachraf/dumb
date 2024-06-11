@@ -47,13 +47,13 @@
 	flex-basis: 0;
 }
 
-#about {
+#description {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
 }
 
-#about p {
+#description p {
 	font-size: 1.4rem;
 	color: #171717;
 	line-height: 1.8rem;
@@ -121,7 +121,7 @@
 	color: #ddd;
 }
 
-.dark #about p,
+.dark #description p,
 .dark #credits summary {
 	color: #ccc;
 }
@@ -132,4 +132,3 @@
 		text-align: center;
 	}
 }
-

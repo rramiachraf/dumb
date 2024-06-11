@@ -3,19 +3,18 @@ package views
 import (
 	"fmt"
 	"github.com/rramiachraf/dumb/data"
+	"github.com/rramiachraf/dumb/utils"
 )
 
 templ LyricsPage(s data.Song) {
 	@layout(fmt.Sprintf("%s - %s lyrics", s.Artist, s.Title)) {
-		<div id="container">
+		<div id="container" class="trio-split">
 			<div id="metadata">
-				<img
-					id="album-artwork"
-					src={ data.ExtractImageURL(s.Image) }
-					alt="Song image"
-				/>
+				<img id="album-artwork" src={ data.ExtractImageURL(s.Image) } alt="Song image"/>
 				<div id="metadata-info">
-					<h2>{ s.Artist }</h2>
+					<a href={ templ.URL(s.ArtistPageURL) }>
+						<h2>{ s.Artist }</h2>
+					</a>
 					<h1>{ s.Title }</h1>
 				</div>
 			</div>
@@ -23,11 +22,11 @@ templ LyricsPage(s data.Song) {
 				@templ.Raw(s.Lyrics)
 			</div>
 			<div id="info">
-				if s.About[0] != "?" {
-					<div id="about">
+				if s.About != "?" {
+					<div id="description" dir="auto">
 						<h1 id="title">About</h1>
-						<p class="hidden" id="full_about">{ s.About[0] }</p>
-						<p id="summary">{ s.About[1] }</p>
+						<p class="hidden" id="full">{ s.About }</p>
+						<p id="summary">{ utils.TrimText(s.About, 250) }</p>
 					</div>
 				}
 				if len(s.Credits) > 0 {

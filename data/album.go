@@ -5,13 +5,19 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/rramiachraf/dumb/utils"
 )
 
+type AlbumPreview struct {
+	Name  string
+	Image string
+	URL   string
+}
+
 type Album struct {
-	Artist string
-	Name   string
-	Image  string
-	About  [2]string
+	AlbumPreview
+	Artist ArtistPreview
+	About  string
 
 	Tracks []Track
 }
@@ -24,11 +30,11 @@ type Track struct {
 
 type albumMetadata struct {
 	Album struct {
-		Id          int    `json:"id"`
-		Image       string `json:"cover_art_thumbnail_url"`
-		Name        string `json:"name"`
-		Description string `json:"description_preview"`
-		Artist      `json:"artist"`
+		Id                    int    `json:"id"`
+		Image                 string `json:"cover_art_thumbnail_url"`
+		Name                  string `json:"name"`
+		Description           string `json:"description_preview"`
+		artistPreviewMetadata `json:"artist"`
 	}
 	AlbumAppearances []AlbumAppearances `json:"album_appearances"`
 }
@@ -42,8 +48,9 @@ type AlbumAppearances struct {
 	}
 }
 
-type Artist struct {
+type artistPreviewMetadata struct {
 	Name string `json:"name"`
+	URL  string `json:"url"`
 }
 
 func (a *Album) parseAlbumData(doc *goquery.Document) error {
@@ -58,11 +65,13 @@ func (a *Album) parseAlbumData(doc *goquery.Document) error {
 	}
 
 	albumData := albumMetadataFromPage.Album
-	a.Artist = albumData.Artist.Name
+	a.Artist = ArtistPreview{
+		Name: albumData.artistPreviewMetadata.Name,
+		URL:  utils.TrimURL(albumData.artistPreviewMetadata.URL),
+	}
 	a.Name = albumData.Name
 	a.Image = albumData.Image
-	a.About[0] = albumData.Description
-	a.About[1] = truncateText(albumData.Description)
+	a.About = albumData.Description
 
 	for _, track := range albumMetadataFromPage.AlbumAppearances {
 		url := strings.Replace(track.Song.Url, "https://genius.com", "", -1)

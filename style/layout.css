@@ -5,13 +5,21 @@
 }
 
 #container {
-	display: grid;
 	padding: 5rem 0;
-	grid-template-columns: 24rem calc(1024px - 56rem) 24rem;
 	width: 1024px;
 	margin: 0 auto;
-	gap: 4rem;
+	display: grid;
 	flex: 1;
+}
+
+.trio-split {
+	grid-template-columns: 24rem calc(1024px - 56rem) 24rem;
+	gap: 4rem;
+}
+
+.duo-split {
+	grid-template-columns: 24rem 1fr;
+	gap: 4rem;
 }
 
 .main {
