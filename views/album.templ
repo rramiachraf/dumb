@@ -6,7 +6,7 @@ import (
 )
 
 templ AlbumPage(a data.Album) {
-	@layout(fmt.Sprintf("%s - %s", a.Artist, a.Name)) {
+	@layout(fmt.Sprintf("%s - %s", a.Artist.Name, a.Name)) {
 		<div id="container" class="trio-split">
 			<div id="metadata">
 				<img id="album-artwork" src={ data.ExtractImageURL(a.Image) } alt="Album image"/>
