@@ -44,8 +44,8 @@ func testLyrics(t *testing.T, url string) {
 		t.Fatal(err)
 	}
 
-	docTitle := doc.Find("#metadata-info > h2").Text()
-	docArtist := doc.Find("#metadata-info > h1").Text()
+	docArtist := doc.Find("#metadata-info h1").Text()
+	docTitle := doc.Find("#metadata-info h2").Text()
 
 	if docTitle != title {
 		t.Fatalf("expected %q, got %q\n", title, docTitle)
