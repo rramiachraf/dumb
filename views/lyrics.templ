@@ -3,6 +3,7 @@ package views
 import (
 	"fmt"
 	"github.com/rramiachraf/dumb/data"
+	"github.com/rramiachraf/dumb/utils"
 )
 
 templ LyricsPage(s data.Song) {
@@ -23,11 +24,11 @@ templ LyricsPage(s data.Song) {
 				@templ.Raw(s.Lyrics)
 			</div>
 			<div id="info">
-				if s.About[0] != "?" {
+				if s.About != "?" {
 					<div id="description" dir="auto">
 						<h1 id="title">About</h1>
-						<p class="hidden" id="full">{ s.About[0] }</p>
-						<p id="summary">{ s.About[1] }</p>
+						<p class="hidden" id="full">{ s.About }</p>
+						<p id="summary">{ utils.TrimText(s.About, 250) }</p>
 					</div>
 				}
 				if len(s.Credits) > 0 {

@@ -3,6 +3,7 @@ package views
 import (
 	"fmt"
 	"github.com/rramiachraf/dumb/data"
+	"github.com/rramiachraf/dumb/utils"
 )
 
 templ AlbumPage(a data.Album) {
@@ -11,7 +12,9 @@ templ AlbumPage(a data.Album) {
 			<div id="metadata">
 				<img id="album-artwork" src={ data.ExtractImageURL(a.Image) } alt="Album image"/>
 				<div id="metadata-info">
-					<a href={ templ.URL(a.Artist.URL) } id="album-artist"><h2>{ a.Artist.Name }</h2></a>
+					<a href={ templ.URL(a.Artist.URL) } id="album-artist">
+						<h2>{ a.Artist.Name }</h2>
+					</a>
 					<h1>{ a.Name }</h1>
 				</div>
 			</div>
@@ -23,12 +26,12 @@ templ AlbumPage(a data.Album) {
 					</a>
 				}
 			</div>
-			if a.About[0] != "" {
+			if a.About != "" {
 				<div id="info">
 					<div id="description" dir="auto">
 						<h1 id="title">About</h1>
-						<p class="hidden" id="full">{ a.About[0] }</p>
-						<p id="summary">{ a.About[1] }</p>
+						<p class="hidden" id="full">{ a.About }</p>
+						<p id="summary">{ utils.TrimText(a.About, 250) }</p>
 					</div>
 				</div>
 			}
