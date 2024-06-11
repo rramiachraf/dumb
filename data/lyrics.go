@@ -10,13 +10,14 @@ import (
 )
 
 type Song struct {
-	Artist  string
-	Title   string
-	Image   string
-	Lyrics  string
-	Credits map[string]string
-	About   string
-	Album   AlbumPreview
+	Artist        string
+	Title         string
+	Image         string
+	Lyrics        string
+	Credits       map[string]string
+	About         string
+	Album         AlbumPreview
+	ArtistPageURL string
 }
 
 type songResponse struct {
@@ -40,6 +41,9 @@ type songResponse struct {
 			ProducerArtists []struct {
 				Name string
 			} `json:"producer_artists"`
+			PrimaryArtist struct {
+				URL string
+			} `json:"primary_artist"`
 		}
 	}
 }
@@ -97,6 +101,7 @@ func (s *Song) parseSongData(doc *goquery.Document) error {
 		s.About = songData.Description.Plain
 		s.Credits = make(map[string]string)
 		s.Album.Name = songData.Album.Name
+		s.ArtistPageURL = utils.TrimURL(songData.PrimaryArtist.URL)
 		s.Album.URL = strings.Replace(songData.Album.URL, "https://genius.com", "", -1)
 		s.Album.Image = ExtractImageURL(songData.Album.Image)
 
