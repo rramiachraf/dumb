@@ -2,9 +2,9 @@ package data
 
 import (
 	"encoding/json"
-	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/rramiachraf/dumb/utils"
 )
 
 type ArtistPreview struct {
@@ -53,7 +53,7 @@ func (a *Artist) parseArtistData(doc *goquery.Document) error {
 		a.Albums = append(a.Albums, AlbumPreview{
 			Name:  album.Name,
 			Image: album.Image,
-			URL:   strings.Replace(album.URL, "https://genius.com", "", -1),
+			URL:   utils.TrimURL(album.URL),
 		})
 	}
 

@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/rramiachraf/dumb/utils"
 )
 
 type AlbumPreview struct {
@@ -66,7 +67,7 @@ func (a *Album) parseAlbumData(doc *goquery.Document) error {
 	albumData := albumMetadataFromPage.Album
 	a.Artist = ArtistPreview{
 		Name: albumData.artistPreviewMetadata.Name,
-		URL:  strings.Replace(albumData.artistPreviewMetadata.URL, "https://genius.com", "", -1),
+		URL:  utils.TrimURL(albumData.artistPreviewMetadata.URL),
 	}
 	a.Name = albumData.Name
 	a.Image = albumData.Image

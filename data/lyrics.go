@@ -102,7 +102,7 @@ func (s *Song) parseSongData(doc *goquery.Document) error {
 		s.Credits = make(map[string]string)
 		s.Album.Name = songData.Album.Name
 		s.ArtistPageURL = utils.TrimURL(songData.PrimaryArtist.URL)
-		s.Album.URL = strings.Replace(songData.Album.URL, "https://genius.com", "", -1)
+		s.Album.URL = utils.TrimURL(songData.Album.URL)
 		s.Album.Image = ExtractImageURL(songData.Album.Image)
 
 		s.Credits["Writers"] = joinNames(songData.WriterArtists)
