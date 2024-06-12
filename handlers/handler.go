@@ -12,9 +12,10 @@ import (
 )
 
 type route struct {
-	Path    string
-	Handler func(*utils.Logger) http.HandlerFunc
-	Method  string
+	Path     string
+	Handler  func(*utils.Logger) http.HandlerFunc
+	Method   string
+	Template func() templ.Component
 }
 
 func New(logger *utils.Logger, staticFiles static) *mux.Router {
@@ -24,6 +25,8 @@ func New(logger *utils.Logger, staticFiles static) *mux.Router {
 	r.Use(gorillaHandlers.CompressHandler)
 
 	routes := []route{
+		{Path: "/", Template: views.HomePage},
+		{Path: "/robots.txt", Handler: robotsHandler},
 		{Path: "/albums/{artist}/{albumName}", Handler: album},
 		{Path: "/artists/{artist}", Handler: artist},
 		{Path: "/images/{filename}.{ext}", Handler: imageProxy},
@@ -32,22 +35,9 @@ func New(logger *utils.Logger, staticFiles static) *mux.Router {
 		{Path: "/instances.json", Handler: instances},
 	}
 
-	for _, rr := range routes {
-		method := rr.Method
-		if method == "" {
-			method = http.MethodGet
-		}
-
-		r.HandleFunc(rr.Path, rr.Handler(logger)).Methods(method)
-	}
+	registerRoutes(r, routes, logger)
 
 	r.PathPrefix("/static/").HandlerFunc(staticAssets(logger, staticFiles))
-
-	r.Handle("/", templ.Handler(views.HomePage()))
-	r.HandleFunc("/robots.txt", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("User-agent: *\nDisallow: /\n"))
-	})
-
 	r.PathPrefix("/{annotation-id}/{artist-song}-lyrics").HandlerFunc(lyrics(logger)).Methods("GET")
 	r.PathPrefix("/{annotation-id}/{artist-song}").HandlerFunc(lyrics(logger)).Methods("GET")
 	r.PathPrefix("/{annotation-id}").HandlerFunc(lyrics(logger)).Methods("GET")
@@ -58,4 +48,28 @@ func New(logger *utils.Logger, staticFiles static) *mux.Router {
 	})
 
 	return r
+}
+
+func robotsHandler(l *utils.Logger) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if _, err := w.Write([]byte("User-agent: *\nDisallow: /\n")); err != nil {
+			l.Error(err.Error())
+		}
+	}
+}
+
+func registerRoutes(router *mux.Router, routes []route, logger *utils.Logger) {
+	for _, r := range routes {
+		method := r.Method
+		if method == "" {
+			method = http.MethodGet
+		}
+
+		if r.Template != nil {
+			router.Handle(r.Path, templ.Handler(r.Template())).Methods(method)
+			continue
+		}
+
+		router.HandleFunc(r.Path, r.Handler(logger)).Methods(method)
+	}
 }
