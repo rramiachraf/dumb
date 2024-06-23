@@ -4,7 +4,7 @@
 	padding: 2px 6px;
 }
 
-.annotation {
+.annotation, blockquote {
 	padding: 1rem;
 	border-radius: 4px;
 	background: #eee;
@@ -12,21 +12,21 @@
 	color: #222;
 }
 
-.annotation img {
+.annotation img, blockquote img {
 	max-width: 100%;
 	height: auto;
 }
 
-.annotation a {
+.annotation a, blockquote a {
 	background: none;
 	font-weight: 500;
 }
 
-.annotation ul {
+.annotation ul, blockquote ul {
 	padding-left: 1em;
 }
 
-.dark .annotation {
+.dark .annotation, .dark blockquote {
 	background-color: #272d44;
 	color: inherit;
 }
