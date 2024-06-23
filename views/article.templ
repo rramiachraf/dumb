@@ -1,0 +1,32 @@
+package views
+
+import (
+	"time"
+
+	"github.com/rramiachraf/dumb/data"
+)
+
+templ ArticlePage(a data.Article) {
+	@layout(a.Title) {
+		<div id="container" class="duo-split">
+			<div id="metadata">
+				<img src={ a.Image } alt="Article image"/>
+				<h3>Authored By</h3>
+				for _, author := range a.Authors {
+					<details>
+						<summary>{ author.Name } - { author.Role }</summary>
+						{ author.About }
+					</details>
+				}
+			</div>
+			<div>
+				<h1 id="article-title">{ a.Title }</h1>
+				<time datetime={ a.PublishedAt.Format(time.RFC3339) } id="article-date">{ a.PublishedAt.Format(time.DateOnly) }</time>
+				<h2 id="article-subtitle">{ a.Subtitle }</h2>
+				<div id="article-body">
+					@templ.Raw(a.HTML)
+				</div>
+			</div>
+		</div>
+	}
+}

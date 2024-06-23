@@ -1,0 +1,19 @@
+#article-body {
+	line-height: 1.75;
+}
+
+#metadata, #article-subtitle, #article-date {
+	color: #333;
+}
+
+.dark #metadata, .dark #article-subtitle, .dark #article-date {
+	color: #ccc;
+}
+
+.dark #article-title {
+	color: #eee;
+}
+
+.dark #article-body {
+	color: #eee;
+}
