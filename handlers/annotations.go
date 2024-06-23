@@ -6,10 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"regexp"
-	"strings"
 
-	"github.com/PuerkitoBio/goquery"
 	"github.com/gorilla/mux"
 	"github.com/rramiachraf/dumb/data"
 	"github.com/rramiachraf/dumb/utils"
@@ -67,7 +64,7 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 		}
 
 		body := data.Response.Referent.Annotations[0].Body
-		body.HTML = cleanBody(body.HTML)
+		body.HTML = utils.CleanBody(body.HTML)
 
 		w.Header().Set("content-type", "application/json")
 		encoder := json.NewEncoder(w)
@@ -81,32 +78,4 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 			l.Error(err.Error())
 		}
 	}
-}
-
-func cleanBody(body string) string {
-	if doc, err := goquery.NewDocumentFromReader(strings.NewReader(body)); err == nil {
-		doc.Find("iframe").Each(func(i int, s *goquery.Selection) {
-			src, exists := s.Attr("src")
-			if exists {
-				html := fmt.Sprintf(`<a id="iframed-link" href="%s">Link</a>`, src)
-				s.ReplaceWithHtml(html)
-			}
-		})
-
-		doc.Find("img").Each(func(i int, s *goquery.Selection) {
-			src, exists := s.Attr("src")
-			if exists {
-				re := regexp.MustCompile(`(?i)https:\/\/images\.(rapgenius|genius)\.com\/`)
-				pSrc := re.ReplaceAllString(src, "/images/")
-				s.SetAttr("src", pSrc)
-			}
-		})
-
-		if source, err := doc.Html(); err == nil {
-			body = source
-		}
-	}
-
-	re := regexp.MustCompile(`https?:\/\/[a-z]*.?genius.com`)
-	return re.ReplaceAllString(body, "")
 }

@@ -10,7 +10,7 @@ import (
 )
 
 type cachable interface {
-	data.Album | data.Song | data.Annotation | data.Artist | []byte
+	data.Album | data.Song | data.Annotation | data.Artist | data.Article | []byte
 }
 
 var c, _ = bigcache.New(context.Background(), bigcache.DefaultConfig(time.Hour*24))
