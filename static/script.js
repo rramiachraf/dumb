@@ -26,7 +26,7 @@ window.addEventListener("load", () => {
 function getAnnotation(e) {
 	e.preventDefault()
 	//document.querySelector('.annotation')?.remove()
-	const link = e.target.parentElement
+	const link = e.currentTarget
 	const uri = link.getAttribute("href")
 	const presentAnnotation = link.nextElementSibling.matches(".annotation") && link.nextElementSibling
 	if (presentAnnotation) {
