@@ -8,24 +8,26 @@ import (
 
 templ ArticlePage(a data.Article) {
 	@layout(a.Title) {
-		<div id="container" class="duo-split">
-			<div id="metadata">
-				<img src={ a.Image } alt="Article image"/>
-				<h3>Authored By</h3>
+		<div id="container" class="solo">
+			<div id="article-metadata">
+				<h1 id="article-title">{ a.Title }</h1>
+				<time datetime={ a.PublishedAt.Format(time.RFC3339) } id="article-date">
+					{ a.PublishedAt.Format("2 Jan, 2006") }
+				</time>
+			</div>
+			<img id="article-image" src={ a.Image } alt="Article image"/>
+			<h2 id="article-subtitle">{ a.Subtitle }</h2>
+			<div id="article-body">
+				@templ.Raw(a.HTML)
+			</div>
+			<div id="article-authors">
+				<h3>Authors</h3>
 				for _, author := range a.Authors {
 					<details>
 						<summary>{ author.Name } - { author.Role }</summary>
 						{ author.About }
 					</details>
 				}
-			</div>
-			<div>
-				<h1 id="article-title">{ a.Title }</h1>
-				<time datetime={ a.PublishedAt.Format(time.RFC3339) } id="article-date">{ a.PublishedAt.Format(time.DateOnly) }</time>
-				<h2 id="article-subtitle">{ a.Subtitle }</h2>
-				<div id="article-body">
-					@templ.Raw(a.HTML)
-				</div>
 			</div>
 		</div>
 	}

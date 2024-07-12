@@ -12,6 +12,10 @@
 	flex: 1;
 }
 
+.solo {
+	gap: 4rem;
+}
+
 .trio-split {
 	grid-template-columns: 24rem calc(1024px - 56rem) 24rem;
 	gap: 4rem;
