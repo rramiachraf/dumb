@@ -1,0 +1,50 @@
+#home {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	align-items: center;
+	padding: 2rem;
+	flex-grow: 1;
+}
+
+#home div {
+	text-align: center;
+}
+
+#home h1 {
+	font-weight: 600;
+	font-size: 2.2rem;
+	color: #222;
+}
+
+#home p {
+	color: #333;
+}
+
+#home code {
+	background-color: #eee;
+	padding: 0.3rem 1rem;
+	border-radius: 0.5rem;
+	color: #333;
+}
+
+#search-input {
+	width: 100%;
+	padding: 1rem 2rem;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	color: #222;
+}
+
+.dark #home h1 {
+	color: #eee;
+}
+
+.dark #home p {
+	color: #ddd;
+}
+
+.dark #search-input {
+	background-color: #ddd;
+}

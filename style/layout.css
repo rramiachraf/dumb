@@ -1,0 +1,42 @@
+#app {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+#container {
+	padding: 5rem 0;
+	width: 1024px;
+	margin: 0 auto;
+	display: grid;
+	flex: 1;
+}
+
+.solo {
+	gap: 4rem;
+}
+
+.trio-split {
+	grid-template-columns: 24rem calc(1024px - 56rem) 24rem;
+	gap: 4rem;
+}
+
+.duo-split {
+	grid-template-columns: 24rem 1fr;
+	gap: 4rem;
+}
+
+.main {
+	flex-grow: 1;
+}
+
+@media screen and (max-width: 1080px) {
+	#container {
+		padding: 3rem 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		width: calc(100vw - 4rem);
+		;
+	}
+}

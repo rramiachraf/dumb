@@ -1,0 +1,44 @@
+nav {
+	background-color: #ffcd38;
+	padding: 1rem 0;
+}
+
+#nav-container {
+	width: 1024px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 1080px) {
+	#nav-container {
+		width: 100%;
+		padding: 0 2rem;
+		box-sizing: border-box;
+	}
+}
+
+
+nav img {
+	width: 50px;
+}
+
+#nav-icons {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.nav-icon {
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.dark nav {
+	background-color: #fec260;
+}

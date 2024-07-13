@@ -1,0 +1,15 @@
+package views
+
+templ HomePage() {
+	@layout("dumb") {
+		<div id="home">
+			<div>
+				<h1>Welcome to dumb</h1>
+				<p>An alternative frontend for genius.com</p>
+			</div>
+			<form method="GET" action="/search">
+				<input type="text" name="q" id="search-input" placeholder="Search..."/>
+			</form>
+		</div>
+	}
+}

@@ -1,0 +1,59 @@
+package views
+
+import (
+	"fmt"
+	"github.com/rramiachraf/dumb/data"
+	"github.com/rramiachraf/dumb/utils"
+)
+
+templ LyricsPage(s data.Song) {
+	@layout(fmt.Sprintf("%s - %s lyrics", s.Artist, s.Title)) {
+		<div id="container" class="trio-split">
+			<div id="metadata">
+				<img id="album-artwork" src={ data.ExtractImageURL(s.Image) } alt="Song image"/>
+				<div id="metadata-info">
+					<a href={ templ.URL(s.ArtistPageURL) }>
+						<h2>{ s.Artist }</h2>
+					</a>
+					<h1>{ s.Title }</h1>
+				</div>
+			</div>
+			<div id="lyrics">
+				@templ.Raw(s.Lyrics)
+			</div>
+			<div id="info">
+				if s.About != "?" {
+					<div id="description" dir="auto">
+						<h1 id="title">About</h1>
+						<p class="hidden" id="full">{ s.About }</p>
+						<p id="summary">{ utils.TrimText(s.About, 250) }</p>
+					</div>
+				}
+				if len(s.Credits) > 0 {
+					<div id="credits">
+						<h1 id="title">Credits</h1>
+						for key, val := range s.Credits {
+							<details>
+								<summary>{ key }</summary>
+								<p>{ val }</p>
+							</details>
+						}
+					</div>
+				}
+				if s.Album.Name != "" {
+					<div id="lyrics-album-container">
+						<h1 id="title">{ s.Album.Name }</h1>
+						<a href={ templ.URL(s.Album.URL) }>
+							<img
+								title={ "Album: " + s.Album.Name }
+								id="album-artwork"
+								src={ s.Album.Image }
+								alt="Album image"
+							/>
+						</a>
+					</div>
+				}
+			</div>
+		</div>
+	}
+}

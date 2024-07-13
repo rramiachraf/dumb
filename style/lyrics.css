@@ -1,0 +1,134 @@
+#lyrics {
+	color: #171717;
+	line-height: 2.5rem;
+	flex-basis: 0;
+	flex-shrink: 0;
+	flex-grow: 1;
+}
+
+#lyrics a {
+	color: inherit;
+	background-color: #ddd;
+	color: inherit;
+}
+
+#lyrics a:hover {
+	background-color: #ccc;
+}
+
+#metadata {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	flex-basis: 0;
+}
+
+#metadata h1 {
+	font-size: 2rem;
+	color: #171717;
+}
+
+#metadata h2 {
+	font-size: 1.4rem;
+	color: #1e1e1e;
+	font-weight: 500;
+}
+
+#metadata-info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+#info {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	flex-basis: 0;
+}
+
+#description {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+#description p {
+	font-size: 1.4rem;
+	color: #171717;
+	line-height: 1.8rem;
+	cursor: pointer;
+}
+
+#title {
+	font-size: 2rem;
+	color: #1b1a17;
+}
+
+
+#lyrics-album-container {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+#credits {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+
+#credits summary {
+	font-size: 1.4rem;
+	cursor: pointer;
+	color: #1e1e1e;
+}
+
+#credits p {
+	font-size: 1.3rem;
+	padding: 0.5rem;
+	color: #171717;
+}
+
+.hidden {
+	display: none;
+}
+
+.dark #lyrics {
+	color: #ccc;
+}
+
+.dark #lyrics a {
+	background-color: #272d44;
+	color: inherit;
+}
+
+.dark #lyrics a:hover {
+	background-color: #32384f;
+}
+
+.dark #metadata h1 {
+	color: #ddd;
+}
+
+.dark #metadata h2,
+.dark #credits p {
+	color: #eee;
+}
+
+.dark #title {
+	color: #ddd;
+}
+
+.dark #description p,
+.dark #credits summary {
+	color: #ccc;
+}
+
+@media screen and (max-width: 1080px) {
+	#metadata {
+		align-items: center;
+		text-align: center;
+	}
+}

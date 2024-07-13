@@ -1,0 +1,15 @@
+package views
+
+import "github.com/rramiachraf/dumb/data"
+
+templ footer() {
+	<footer>
+		<div id="footer-container">
+			<div id="footer-links">
+				<a rel="noopener noreferrer" target="_blank" href="https://github.com/rramiachraf/dumb">Source Code</a>
+				<a rel="noopener noreferrer" target="_blank" href="/instances.json">Instances</a>
+			</div>
+			<p id="version">v.{ data.Version }</p>
+		</div>
+	</footer>
+}

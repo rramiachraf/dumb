@@ -1,0 +1,17 @@
+name: Test and Build
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v4
+       - uses: actions/setup-go@v5
+         with:
+           go-version-file: go.mod
+       - run: go install github.com/a-h/templ/cmd/templ@latest
+       - run: make build
+         #- run: make test
