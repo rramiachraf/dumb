@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"context"
 	"fmt"
 	"io"
 	"mime"
@@ -35,7 +34,7 @@ func imageProxy(l *utils.Logger) http.HandlerFunc {
 
 		if !isValidExt(ext) {
 			w.WriteHeader(http.StatusBadRequest)
-			views.ErrorPage(400, "something went wrong").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(400, "something went wrong"), l)
 			return
 		}
 
@@ -46,13 +45,13 @@ func imageProxy(l *utils.Logger) http.HandlerFunc {
 		if err != nil {
 			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			views.ErrorPage(500, "cannot reach Genius servers").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(500, "cannot reach Genius servers"), l)
 			return
 		}
 
 		if res.StatusCode != http.StatusOK {
 			w.WriteHeader(http.StatusInternalServerError)
-			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(500, "something went wrong"), l)
 			return
 		}
 
