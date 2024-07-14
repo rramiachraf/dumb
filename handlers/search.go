@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -21,7 +20,7 @@ func search(l *utils.Logger) http.HandlerFunc {
 		if err != nil {
 			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			views.ErrorPage(500, "cannot reach Genius servers").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(500, "cannot reach Genius servers"), l)
 			return
 		}
 
@@ -33,12 +32,12 @@ func search(l *utils.Logger) http.HandlerFunc {
 		if err = d.Decode(&sRes); err != nil {
 			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(500, "something went wrong"), l)
 		}
 
 		results := data.SearchResults{Query: query, Sections: sRes.Response.Sections}
 
-		views.SearchPage(results).Render(context.Background(), w)
+		utils.RenderTemplate(w, views.SearchPage(results), l)
 	}
 
 }

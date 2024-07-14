@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"bytes"
-	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -33,7 +32,7 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 		if err != nil {
 			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			views.ErrorPage(500, "cannot reach genius servers").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(500, "cannot reach genius servers"), l)
 			return
 		}
 
@@ -41,7 +40,7 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 
 		if resp.StatusCode == http.StatusNotFound {
 			w.WriteHeader(http.StatusNotFound)
-			views.ErrorPage(404, "page not found").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(404, "page not found"), l)
 			return
 		}
 
@@ -50,7 +49,7 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 		if err != nil {
 			l.Error("Error paring genius api response: %s", err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(500, "something went wrong"), l)
 			return
 		}
 
@@ -59,7 +58,7 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 		if err != nil {
 			l.Error("could not unmarshal json: %s\n", err)
 			w.WriteHeader(http.StatusInternalServerError)
-			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(500, "something went wrong"), l)
 			return
 		}
 

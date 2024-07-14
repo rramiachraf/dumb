@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"context"
 	"net/http"
 
 	"github.com/a-h/templ"
@@ -45,7 +44,7 @@ func New(logger *utils.Logger, staticFiles static) *mux.Router {
 
 	r.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
-		views.ErrorPage(404, "page not found").Render(context.Background(), w)
+		utils.RenderTemplate(w, views.ErrorPage(404, "page not found"), logger)
 	})
 
 	return r

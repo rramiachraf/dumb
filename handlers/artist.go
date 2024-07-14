@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"context"
 	"fmt"
 	"net/http"
 
@@ -19,7 +18,7 @@ func artist(l *utils.Logger) http.HandlerFunc {
 		id := fmt.Sprintf("artist:%s", artistName)
 
 		if a, err := getCache[data.Artist](id); err == nil {
-			views.ArtistPage(a).Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ArtistPage(a), l)
 			return
 		}
 
@@ -29,7 +28,7 @@ func artist(l *utils.Logger) http.HandlerFunc {
 		if err != nil {
 			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			views.ErrorPage(500, "cannot reach Genius servers").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(500, "cannot reach Genius servers"), l)
 			return
 		}
 
@@ -37,7 +36,7 @@ func artist(l *utils.Logger) http.HandlerFunc {
 
 		if resp.StatusCode == http.StatusNotFound {
 			w.WriteHeader(http.StatusNotFound)
-			views.ErrorPage(404, "page not found").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(404, "page not found"), l)
 			return
 		}
 
@@ -45,14 +44,14 @@ func artist(l *utils.Logger) http.HandlerFunc {
 		if err != nil {
 			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			views.ErrorPage(500, "something went wrong").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(500, "something went wrong"), l)
 			return
 		}
 
 		cf := doc.Find(".cloudflare_content").Length()
 		if cf > 0 {
 			l.Error("cloudflare got in the way")
-			views.ErrorPage(500, "cloudflare is detected").Render(context.Background(), w)
+			utils.RenderTemplate(w, views.ErrorPage(500, "cloudflare is detected"), l)
 			return
 		}
 
@@ -61,7 +60,7 @@ func artist(l *utils.Logger) http.HandlerFunc {
 			l.Error(err.Error())
 		}
 
-		views.ArtistPage(a).Render(context.Background(), w)
+		utils.RenderTemplate(w, views.ArtistPage(a), l)
 
 		if err = setCache(id, a); err != nil {
 			l.Error(err.Error())
