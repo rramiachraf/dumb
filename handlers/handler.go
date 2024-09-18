@@ -32,6 +32,7 @@ func New(logger *utils.Logger, staticFiles static) *mux.Router {
 		{Path: "/images/{filename}.{ext}", Handler: imageProxy},
 		{Path: "/search", Handler: search},
 		{Path: "/{annotation-id}/{artist-song}/{verse}/annotations", Handler: annotations},
+		{Path: "/{annotation-id}/{artist-song}/annotations", Handler: annotations},
 		{Path: "/instances.json", Handler: instances},
 	}
 
