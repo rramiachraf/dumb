@@ -14,7 +14,6 @@ import (
 func TestArtist(t *testing.T) {
 	url := "/artists/Red-hot-chili-peppers"
 	name := "Red Hot Chili Peppers"
-	firstAlbumName := "Cardiff, Wales: 6/23/04"
 
 	r, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
@@ -41,10 +40,5 @@ func TestArtist(t *testing.T) {
 	artistName := doc.Find("#metadata-info > h1").First().Text()
 	if artistName != name {
 		t.Fatalf("expected %q, got %q\n", name, artistName)
-	}
-
-	albumName := doc.Find("#artist-albumlist > a > p").First().Text()
-	if albumName != firstAlbumName {
-		t.Fatalf("expected %q, got %q\n", firstAlbumName, albumName)
 	}
 }

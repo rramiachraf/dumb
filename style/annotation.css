@@ -4,7 +4,8 @@
 	padding: 2px 6px;
 }
 
-.annotation, blockquote {
+.annotation,
+blockquote {
 	padding: 1rem;
 	border-radius: 4px;
 	background: #eee;
@@ -13,21 +14,32 @@
 	margin: 1rem 0;
 }
 
-.annotation img, blockquote img {
+.annotation img,
+blockquote img {
 	max-width: 100%;
 	height: auto;
 }
 
-.annotation a, blockquote a {
+.annotation a,
+blockquote a {
 	background: none;
 	font-weight: 500;
 }
 
-.annotation ul, blockquote ul {
+.annotation ul,
+blockquote ul {
 	padding-left: 1em;
 }
 
-.dark .annotation, .dark blockquote {
+#unreviewed-annotation {
+	text-align: center;
+	font-weight: 500;
+	color: #be3144;
+	margin-bottom: 1rem;
+}
+
+.dark .annotation,
+.dark blockquote {
 	background-color: #272d44;
 	color: inherit;
 }

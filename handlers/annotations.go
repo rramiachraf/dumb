@@ -62,18 +62,18 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 			return
 		}
 
-		body := data.Response.Referent.Annotations[0].Body
-		body.HTML = utils.CleanBody(body.HTML)
+		annotation := data.Response.Referent.Annotations[0]
+		annotation.Body.HTML = utils.CleanBody(annotation.Body.HTML)
 
 		w.Header().Set("content-type", "application/json")
 		encoder := json.NewEncoder(w)
 
-		if err = encoder.Encode(&body); err != nil {
+		if err = encoder.Encode(&annotation); err != nil {
 			l.Error("Error sending response: %s", err.Error())
 			return
 		}
 
-		if err = setCache("annotation:"+id, body); err != nil {
+		if err = setCache("annotation:"+id, annotation); err != nil {
 			l.Error(err.Error())
 		}
 	}

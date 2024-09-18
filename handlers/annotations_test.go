@@ -7,11 +7,12 @@ import (
 	"os"
 	"testing"
 
+	"github.com/rramiachraf/dumb/data"
 	"github.com/rramiachraf/dumb/utils"
 )
 
 func TestAnnotations(t *testing.T) {
-	url := "/61590/Black-star-respiration/The-new-moon-rode-high-in-the-crown-of-the-metropolis/annotations"
+	url := "/943841/Black-star-respiration/Shinin-like-who-on-top-of-this/annotations"
 
 	r, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
@@ -27,13 +28,13 @@ func TestAnnotations(t *testing.T) {
 	defer rr.Result().Body.Close()
 
 	decoder := json.NewDecoder(rr.Result().Body)
-	annotation := map[string]string{}
+	var annotation data.Annotation
 
 	if err := decoder.Decode(&annotation); err != nil {
 		t.Fatal(err)
 	}
 
-	if _, exists := annotation["html"]; !exists {
-		t.Fatalf("html field not found on annotation\n")
+	if annotation.State != "accepted" {
+		t.Fatalf("expected state to be %q, got %q\n", "accepted", annotation.State)
 	}
 }
