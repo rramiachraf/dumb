@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"strings"
 
 	"github.com/rramiachraf/dumb/data"
 	"github.com/rramiachraf/dumb/utils"
@@ -20,11 +21,17 @@ func search(l *utils.Logger) http.HandlerFunc {
 		if err != nil {
 			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			utils.RenderTemplate(w, views.ErrorPage(500, "cannot reach Genius servers"), l)
+			utils.RenderTemplate(w, views.ErrorPage(500, "cannot reach Genius servers."), l)
 			return
 		}
 
 		defer res.Body.Close()
+
+		if strings.HasPrefix(res.Header.Get("content-type"), "text/html") {
+			w.WriteHeader(http.StatusInternalServerError)
+			utils.RenderTemplate(w, views.ErrorPage(500, "Cloudflare got in the way."), l)
+			return
+		}
 
 		var sRes data.SearchResponse
 
@@ -32,7 +39,8 @@ func search(l *utils.Logger) http.HandlerFunc {
 		if err = d.Decode(&sRes); err != nil {
 			l.Error(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			utils.RenderTemplate(w, views.ErrorPage(500, "something went wrong"), l)
+			utils.RenderTemplate(w, views.ErrorPage(500, "something went wrong."), l)
+			return
 		}
 
 		results := data.SearchResults{Query: query, Sections: sRes.Response.Sections}
