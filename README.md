@@ -34,6 +34,7 @@ make build
 | <https://dumb.lunar.icu>                      | No                                                                                | No                                                                         | DE     | Yes  | @MaximilianGT500       
 | <https://dumb.privacyfucking.rocks>           | No                                                                                | No                                                                         | DE     | -    | https://privacyfucking.rocks |
 | <https://sing.whatever.social>                | No                                                                                | No                                                                         | US/DE  | Yes  | Whatever Social        
+| <https://dumb.gitro.xyz>                		| No                                                                                | No                                                                         | DE  	  | Yes  | https://gitro.xyz        
 
 [Status Page](https://github.com/rramiachraf/dumb-instances)
 
