@@ -57,6 +57,8 @@ jobs:
           cache-to: type=gha,mode=max
           platforms: ${{ matrix.platform }}
           tags: ${{ steps.image-metadata.outputs.tags }}
+          build-args: |
+            BUILDKIT_CONTEXT_KEEP_GIT_DIR=true
 
   merge:
     runs-on: ubuntu-20.04
