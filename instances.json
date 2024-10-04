@@ -31,5 +31,10 @@
         "clearnet": "https://dumb.privacyfucking.rocks/",
         "country": "DE",
         "cdn": false
+    },
+    {
+        "clearnet": "https://dumb.bloat.cat/",
+        "country": "DE",
+        "cdn": false
     }
 ]

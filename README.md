@@ -25,15 +25,16 @@ make build
 - Genius servers are behind a Cloudflare reverse proxy, which means certain IPs won't be able to send requests, to partially mitigate this, you can specify a proxy by setting the `PROXY` variable (must be a valid URI).
 
 ## Public Instances
-| URL                                           | Tor                                                                               | I2P                                                                        | Region | CDN? | Operator               
-| ---                                           | ---                                                                               | ---                                                                        | ---    | ---  | ---                    
-| <https://dumb.ducks.party>                    | No                                                                                | No                                                                         | NL     | No   | https://ducks.party 
-| <https://dumb.privacydev.net>                 | [Yes](http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion) | No                                                                         | FR     | No   | https://privacydev.net
-| <https://dumb.hyperreal.coffee>               | No                                                                                | No                                                                         | US     | No   | https://hyperreal.coffee
-| <https://dm.vern.cc>                          | [Yes](http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion)   | [Yes](http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p) | US     | No   | https://vern.cc        
-| <https://dumb.lunar.icu>                      | No                                                                                | No                                                                         | DE     | Yes  | @MaximilianGT500       
-| <https://dumb.privacyfucking.rocks>           | No                                                                                | No                                                                         | DE     | -    | https://privacyfucking.rocks |
-| <https://sing.whatever.social>                | No                                                                                | No                                                                         | US/DE  | Yes  | Whatever Social        
+| URL | Tor | I2P | Region | CDN? | Operator |
+| --- | :----: | :----: | :----: | :----: | --- |
+| <https://dumb.ducks.party> | No | No | NL | No | https://ducks.party |
+| <https://dumb.privacydev.net> | [Yes](http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion) | No | FR | No | https://privacydev.net |
+| <https://dumb.hyperreal.coffee> | No | No | US | No | https://hyperreal.coffee |
+| <https://dm.vern.cc> | [Yes](http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion) | [Yes](http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p) | US | No | https://vern.cc |
+| <https://dumb.lunar.icu> | No | No | DE | Yes | @MaximilianGT500 |
+| <https://dumb.privacyfucking.rocks> | No | No | DE | - | https://privacyfucking.rocks |
+| <https://sing.whatever.social> | No | No | US/DE | Yes | Whatever Social |
+| <https://dumb.bloat.cat> | No | No | DE | Yes | https://bloat.cat |
 
 [Status Page](https://github.com/rramiachraf/dumb-instances)
 
