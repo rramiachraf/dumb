@@ -33,6 +33,10 @@
         "cdn": false
     },
     {
+        "clearnet": "https://dumb.gitro.xyz",
+        "country": "DE",
+        "cdn": true
+    },
         "clearnet": "https://dumb.bloat.cat/",
         "country": "DE",
         "cdn": false
