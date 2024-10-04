@@ -1,4 +1,4 @@
-FROM golang:1.22.2-alpine3.19 AS build
+FROM docker.io/golang:1.22.2-alpine3.19 AS build
 
 RUN apk add make git curl
 
@@ -8,6 +8,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
+COPY .git .
 RUN make build
 
 ###############################################################
