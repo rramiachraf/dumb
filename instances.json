@@ -39,12 +39,12 @@
 	},
 	{
 		"clearnet": "https://dumb.bloat.cat/",
-		"country": "US",
+		"country": "DE",
 		"cdn": false
 	},
 	{
-		"clearnet": "https://dumb.bloat.cat/",
+		"clearnet": "https://dumb.gitro.xyz/",
 		"country": "DE",
-		"cdn": false
+		"cdn": true
 	}
 ]
