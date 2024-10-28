@@ -45,6 +45,6 @@
 	{
 		"clearnet": "https://dumb.gitro.xyz/",
 		"country": "DE",
-		"cdn": true
+		"cdn": false
 	}
 ]
