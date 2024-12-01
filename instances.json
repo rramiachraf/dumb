@@ -50,6 +50,6 @@
 	{
 		"clearnet": "https://dumb.jeikobu.net/",
 		"country": "DE",
-		"cdn": false
+		"cdn": true
 	}
 ]
