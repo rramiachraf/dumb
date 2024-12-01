@@ -36,6 +36,7 @@ make build
 | <https://sing.whatever.social> | No | No | US/DE | Yes | Whatever Social |
 | <https://dumb.bloat.cat> | No | No | DE | No | https://bloat.cat |
 | <https://dumb.gitro.xyz> | No | No | DE | No | https://gitro.xyz |
+| <https://dumb.jeikobu.net> | No | No | DE | Yes | https://jeikobu.net |
 
 [Status Page](https://github.com/rramiachraf/dumb-instances)
 

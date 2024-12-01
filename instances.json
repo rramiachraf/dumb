@@ -46,5 +46,10 @@
 		"clearnet": "https://dumb.gitro.xyz/",
 		"country": "DE",
 		"cdn": false
+	},
+	{
+		"clearnet": "https://dumb.jeikobu.net/",
+		"country": "DE",
+		"cdn": true
 	}
 ]
