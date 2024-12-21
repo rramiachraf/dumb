@@ -21,7 +21,6 @@ LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.description="Private alternative front-end for Genius."
 
 COPY --from=build /code/dumb .
-COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 EXPOSE 5555/tcp
 

@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   build:
-    if: ${{ startsWith(github.event.head_commit.message, 'feat:') || startsWith(github.event.head_commit.message, 'fix:') }}
+    if: ${{ startsWith(github.event.head_commit.message, 'feat:') || startsWith(github.event.head_commit.message, 'fix:') || startsWith(github.event.head_commit.message, 'ci:') }}
     runs-on: ubuntu-20.04
     outputs:
       commit: ${{ steps.metadata.outputs.commit }}
