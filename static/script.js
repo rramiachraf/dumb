@@ -76,7 +76,7 @@ function getAnnotation(e) {
 	};
 }
 
-window._currentTheme = localStorage.getItem("_theme") || "light";
+window._currentTheme = localStorage.getItem("_theme") || (window.matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light");
 setTheme(window._currentTheme);
 
 const themeChooser = document.getElementById("choose-theme");
