@@ -1,0 +1,8 @@
+services:
+  dumb:
+    image: ghcr.io/rramiachraf/dumb:latest
+    restart: unless-stopped
+    container_name: "dumb"
+    ports:
+      - 8080:5555 # Change the port if you need to
+    read_only: true
