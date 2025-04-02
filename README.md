@@ -11,6 +11,18 @@ With the massive daily increase of useless scripts on Genius's web frontend, and
 docker run -p 8080:5555 --name dumb ghcr.io/rramiachraf/dumb:latest
 ```
 
+### Docker Compose
+```yaml
+services:
+  dumb:
+    image: ghcr.io/rramiachraf/dumb:latest
+    restart: unless-stopped
+    container_name: "dumb"
+    ports:
+      - 8080:5555 # Change the port if you need to
+    read_only: true
+```
+
 ### Build from source
 [Go 1.22+](https://go.dev/dl) is required.
 ```bash
