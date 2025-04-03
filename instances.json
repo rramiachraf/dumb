@@ -51,5 +51,10 @@
 		"clearnet": "https://dumb.jeikobu.net/",
 		"country": "DE",
 		"cdn": true
+	},
+    {
+		"clearnet": "https://dumb.canine.tools/",
+		"country": "US",
+		"cdn": false
 	}
 ]
