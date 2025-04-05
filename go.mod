@@ -6,14 +6,14 @@ toolchain go1.24.2
 
 require (
 	github.com/PuerkitoBio/goquery v1.9.2
-	github.com/a-h/templ v0.2.747
+	github.com/a-h/templ v0.3.857
 	github.com/allegro/bigcache/v3 v3.1.0
 	github.com/gorilla/handlers v1.5.2
 	github.com/gorilla/mux v1.8.1
 )
 
 require (
-	github.com/a-h/parse v0.0.0-20240121214402-3caf7543159a // indirect
+	github.com/a-h/parse v0.0.0-20250122154542-74294addb73e // indirect
 	github.com/a-h/protocol v0.0.0-20240704131721-1e461c188041 // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/andybalholm/cascadia v1.3.2 // indirect
@@ -33,11 +33,11 @@ require (
 	go.lsp.dev/uri v0.3.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
-	golang.org/x/mod v0.17.0 // indirect
-	golang.org/x/net v0.24.0 // indirect
-	golang.org/x/sync v0.3.0 // indirect
-	golang.org/x/sys v0.21.0 // indirect
-	golang.org/x/tools v0.13.0 // indirect
+	golang.org/x/mod v0.20.0 // indirect
+	golang.org/x/net v0.37.0 // indirect
+	golang.org/x/sync v0.10.0 // indirect
+	golang.org/x/sys v0.31.0 // indirect
+	golang.org/x/tools v0.24.0 // indirect
 )
 
 tool (
