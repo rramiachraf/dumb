@@ -58,6 +58,8 @@ type customPerformance struct {
 func (s *Song) parseLyrics(doc *goquery.Document) error {
 	var htmlError error
 
+	doc.Find("[class^=LyricsHeader]").Remove()
+
 	doc.Find("[data-lyrics-container='true']").Each(func(i int, ss *goquery.Selection) {
 		h, err := ss.Html()
 		if err != nil {

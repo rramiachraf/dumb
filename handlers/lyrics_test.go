@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/PuerkitoBio/goquery"
@@ -25,6 +26,7 @@ func TestLyrics(t *testing.T) {
 func testLyrics(t *testing.T, url string) {
 	title := "The Silver Seas"
 	artist := "Catch Yer Own Train"
+	firstLyricLine := "[Verse 1]"
 
 	r, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
@@ -46,6 +48,7 @@ func testLyrics(t *testing.T, url string) {
 
 	docArtist := doc.Find("#metadata-info h1").Text()
 	docTitle := doc.Find("#metadata-info h2").Text()
+	docLyrics := doc.Find("#lyrics").Text()
 
 	if docTitle != title {
 		t.Fatalf("expected %q, got %q\n", title, docTitle)
@@ -53,5 +56,9 @@ func testLyrics(t *testing.T, url string) {
 
 	if docArtist != artist {
 		t.Fatalf("expected %q, got %q\n", artist, docArtist)
+	}
+
+	if !strings.HasPrefix(docLyrics, firstLyricLine) {
+		t.Fatalf("expected lyrics to start with %q, got %q\n", firstLyricLine, docLyrics)
 	}
 }
