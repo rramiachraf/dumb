@@ -47,7 +47,7 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 		buf := new(bytes.Buffer)
 		_, err = buf.ReadFrom(resp.Body)
 		if err != nil {
-			l.Error("Error paring genius api response: %s", err.Error())
+			l.Errorf("Error paring genius api response: %s", err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			utils.RenderTemplate(w, views.ErrorPage(500, "something went wrong"), l)
 			return
@@ -56,7 +56,7 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 		var data data.AnnotationsResponse
 		err = json.Unmarshal(buf.Bytes(), &data)
 		if err != nil {
-			l.Error("could not unmarshal json: %s\n", err)
+			l.Errorf("could not unmarshal json: %s\n", err)
 			w.WriteHeader(http.StatusInternalServerError)
 			utils.RenderTemplate(w, views.ErrorPage(500, "something went wrong"), l)
 			return
@@ -69,7 +69,7 @@ func annotations(l *utils.Logger) http.HandlerFunc {
 		encoder := json.NewEncoder(w)
 
 		if err = encoder.Encode(&annotation); err != nil {
-			l.Error("Error sending response: %s", err.Error())
+			l.Errorf("Error sending response: %s", err.Error())
 			return
 		}
 

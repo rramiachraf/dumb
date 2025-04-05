@@ -39,7 +39,7 @@ func main() {
 
 	if port == 0 {
 		port = 5555
-		logger.Info("using default port %d", port)
+		logger.Infof("using default port %d", port)
 	}
 
 	l, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
@@ -47,7 +47,7 @@ func main() {
 		logger.Fatal(err.Error())
 	}
 
-	logger.Info("server is listening on port %d", port)
+	logger.Infof("server is listening on port %d", port)
 
 	if err := server.Serve(l); err != nil {
 		logger.Fatal(err.Error())

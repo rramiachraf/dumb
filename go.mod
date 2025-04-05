@@ -1,6 +1,8 @@
 module github.com/rramiachraf/dumb
 
-go 1.22.2
+go 1.24
+
+toolchain go1.24.2
 
 require (
 	github.com/PuerkitoBio/goquery v1.9.2
