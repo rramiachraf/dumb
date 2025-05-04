@@ -37,6 +37,7 @@ make build
 | <https://dumb.bloat.cat> | No | No | DE | No | https://bloat.cat |
 | <https://dumb.jeikobu.net> | No | No | DE | Yes | https://jeikobu.net |
 | <https://dumb.canine.tools> | No | No | US | No | https://canine.tools |
+| <https://lyr.dc09.ru> | No | No | RU | No | @DarkCat09 |
 
 [Status Page](https://github.com/rramiachraf/dumb-instances)
 
