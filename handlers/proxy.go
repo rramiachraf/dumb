@@ -58,7 +58,7 @@ func imageProxy(l *utils.Logger) http.HandlerFunc {
 		w.Header().Set("Content-type", mime.TypeByExtension("."+ext))
 		w.Header().Add("Cache-Control", "max-age=1296000")
 		if _, err = io.Copy(w, res.Body); err != nil {
-			l.Error("unable to write image, %s", err.Error())
+			l.Errorf("unable to write image, %s", err.Error())
 		}
 	}
 }

@@ -12,7 +12,7 @@ docker run -p 8080:5555 --name dumb ghcr.io/rramiachraf/dumb:latest
 ```
 
 ### Build from source
-[Go 1.22+](https://go.dev/dl) is required.
+[Go 1.24+](https://go.dev/dl) is required.
 ```bash
 git clone https://github.com/rramiachraf/dumb
 cd dumb
