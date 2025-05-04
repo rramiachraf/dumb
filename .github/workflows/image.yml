@@ -9,7 +9,7 @@ permissions:
 jobs:
   build:
     if: ${{ !startsWith(github.event.head_commit.message, 'test:') || !startsWith(github.event.head_commit.message, 'docs:') }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     outputs:
       commit: ${{ steps.metadata.outputs.commit }}
     strategy:
@@ -62,7 +62,7 @@ jobs:
             BUILDKIT_CONTEXT_KEEP_GIT_DIR=true
 
   merge:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [ build ]
     env:
       IMAGE: ghcr.io/${{ github.repository }}
