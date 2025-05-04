@@ -37,6 +37,7 @@ make build
 | <https://dumb.bloat.cat> | No | No | DE | No | https://bloat.cat |
 | <https://dumb.gitro.xyz> | No | No | DE | No | https://gitro.xyz |
 | <https://dumb.jeikobu.net> | No | No | DE | Yes | https://jeikobu.net |
+| <https://dumb.canine.tools> | No | No | US | No | https://canine.tools |
 
 [Status Page](https://github.com/rramiachraf/dumb-instances)
 
