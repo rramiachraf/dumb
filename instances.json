@@ -47,9 +47,14 @@
 		"country": "DE",
 		"cdn": true
 	},
-    {
+    	{
 		"clearnet": "https://dumb.canine.tools/",
 		"country": "US",
+		"cdn": false
+	}, 
+	{
+		"clearnet": "https://lyr.dc09.ru/",
+		"country": "RU",
 		"cdn": false
 	}
 ]
