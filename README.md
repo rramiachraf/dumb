@@ -38,6 +38,7 @@ make build
 | <https://dumb.jeikobu.net> | No | No | DE | Yes | https://jeikobu.net |
 | <https://dumb.canine.tools> | No | No | US | No | https://canine.tools |
 | <https://lyr.dc09.ru> | No | No | RU | No | @DarkCat09 |
+| <https://db.kuuro.net> | [Yes](http://db.kuuro5abqix6tfku77wj32srkicgqh3f7ro77ctpda7ub7a7mlv4jsid.onion/) | No | US | No | https://kuuro.net/ |
 
 [Status Page](https://github.com/rramiachraf/dumb-instances)
 

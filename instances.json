@@ -47,14 +47,20 @@
 		"country": "DE",
 		"cdn": true
 	},
-    	{
+	{
 		"clearnet": "https://dumb.canine.tools/",
 		"country": "US",
 		"cdn": false
-	}, 
+	},
 	{
 		"clearnet": "https://lyr.dc09.ru/",
 		"country": "RU",
+		"cdn": false
+	},
+	{
+		"clearnet": "https://db.kuuro.net",
+		"tor": "http://db.kuuro5abqix6tfku77wj32srkicgqh3f7ro77ctpda7ub7a7mlv4jsid.onion/",
+		"country": "US",
 		"cdn": false
 	}
 ]
