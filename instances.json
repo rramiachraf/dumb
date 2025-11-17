@@ -62,5 +62,11 @@
 		"tor": "http://db.kuuro5abqix6tfku77wj32srkicgqh3f7ro77ctpda7ub7a7mlv4jsid.onion/",
 		"country": "US",
 		"cdn": false
+	},
+	{
+		"clearnet": "https://genius.fsky.io/",
+		"tor": "http://geniusw3sdwpbz7ajx34qmqkozewdryhpwtcqk3ann332qtragcb3ead.onion/",
+		"country": "NL",
+		"cdn": false
 	}
 ]
