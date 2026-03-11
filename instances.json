@@ -62,5 +62,10 @@
 		"tor": "http://db.kuuro5abqix6tfku77wj32srkicgqh3f7ro77ctpda7ub7a7mlv4jsid.onion/",
 		"country": "US",
 		"cdn": false
+	},
+	{
+		"clearnet": "https://dumb.fedi.run/",
+		"country": "DE",
+		"cdn": false
 	}
 ]
