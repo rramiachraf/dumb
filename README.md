@@ -40,6 +40,7 @@ make build
 | <https://lyr.dc09.ru> | No | No | RU | No | @DarkCat09 |
 | <https://db.kuuro.net> | [Yes](http://db.kuuro5abqix6tfku77wj32srkicgqh3f7ro77ctpda7ub7a7mlv4jsid.onion/) | No | US | No | https://kuuro.net/ |
 | <https://genius.fsky.io> | [Yes](http://geniusw3sdwpbz7ajx34qmqkozewdryhpwtcqk3ann332qtragcb3ead.onion/) | No | PL | No | https://fsky.io/ |
+| <https://dumb.artemislena.eu> | [Yes](http://dumb.lpoaj7z2zkajuhgnlltpeqh3zyq7wk2iyeggqaduhgxhyajtdt2j7wad.onion) | No | DE | No | https://artemislena.eu |
 
 [Status Page](https://github.com/rramiachraf/dumb-instances)
 
