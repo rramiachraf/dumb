@@ -64,9 +64,15 @@
 		"cdn": false
 	},
 	{
-    		"clearnet": "https://dumb.artemislena.eu",
-    		"tor": "http://dumb.lpoaj7z2zkajuhgnlltpeqh3zyq7wk2iyeggqaduhgxhyajtdt2j7wad.onion",
-    		"country": "DE",
-    		"cdn": false
+		"clearnet": "https://genius.fsky.io",
+		"tor": "http://geniusw3sdwpbz7ajx34qmqkozewdryhpwtcqk3ann332qtragcb3ead.onion/",
+		"country": "PL",
+		"cdn": false
+  },
+  {
+    "clearnet": "https://dumb.artemislena.eu",
+    "tor": "http://dumb.lpoaj7z2zkajuhgnlltpeqh3zyq7wk2iyeggqaduhgxhyajtdt2j7wad.onion",
+    "country": "DE",
+    "cdn": false
 	}
 ]
