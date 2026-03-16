@@ -12,7 +12,7 @@ import (
 	"github.com/rramiachraf/dumb/views"
 )
 
-func search(l *utils.Logger) http.HandlerFunc {
+func (rt ResponseType) search(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query().Get("q")
 		url := fmt.Sprintf(`https://genius.com/api/search/multi?q=%s`, url.QueryEscape(query))
@@ -45,7 +45,12 @@ func search(l *utils.Logger) http.HandlerFunc {
 
 		results := data.SearchResults{Query: query, Sections: sRes.Response.Sections}
 
-		utils.RenderTemplate(w, views.SearchPage(results), l)
+		if rt.asApi {
+			utils.EncodeJSON(w, results, l)
+		} else {
+			utils.RenderTemplate(w, views.SearchPage(results), l)
+		}
+
 	}
 
 }

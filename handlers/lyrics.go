@@ -11,7 +11,7 @@ import (
 	"github.com/rramiachraf/dumb/views"
 )
 
-func lyrics(l *utils.Logger) http.HandlerFunc {
+func (rt ResponseType) lyrics(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// prefer artist-song over annotation-id for cache key when available
 		id := mux.Vars(r)["artist-song"]
@@ -63,7 +63,11 @@ func lyrics(l *utils.Logger) http.HandlerFunc {
 			l.Error(err.Error())
 		}
 
-		utils.RenderTemplate(w, views.LyricsPage(s), l)
+		if rt.asApi {
+			utils.EncodeJSON(w, s, l)
+		} else {
+			utils.RenderTemplate(w, views.LyricsPage(s), l)
+		}
 
 		if err = setCache(id, s); err != nil {
 			l.Error(err.Error())
