@@ -41,4 +41,18 @@ func TestArtist(t *testing.T) {
 	if artistName != name {
 		t.Fatalf("expected %q, got %q\n", name, artistName)
 	}
+
+	expectedFirstAlbumName := "Road Trippin’ through Time"
+	actualFirstAlbumName := doc.Find("#artist-single-album > p").First().Text()
+
+	if expectedFirstAlbumName != actualFirstAlbumName {
+		t.Fatalf("expected %q, got %q\n", expectedFirstAlbumName, actualFirstAlbumName)
+	}
+
+	expectedFirstAlbumReleaseDate := "May 5, 2011"
+	actualFirstAlbumReleaseDate := doc.Find("#artist-single-album > small").First().Text()
+
+	if expectedFirstAlbumReleaseDate != actualFirstAlbumReleaseDate {
+		t.Fatalf("expected %q, got %q\n", expectedFirstAlbumReleaseDate, expectedFirstAlbumReleaseDate)
+	}
 }
