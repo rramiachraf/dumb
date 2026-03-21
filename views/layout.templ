@@ -1,12 +1,17 @@
-package views 
+package views
 
-templ layout(title string) {
+type LayoutOpts struct {
+	title         string
+	hideNavSearch bool
+}
+
+templ layout(opts *LayoutOpts) {
 	<!DOCTYPE html>
 	<html lang="en">
-		@head(title)
+		@head(opts.title)
 		<body>
 			<main id="app">
-				@navbar()
+				@navbar(opts.hideNavSearch)
 				{ children... }
 				@footer()
 			</main>

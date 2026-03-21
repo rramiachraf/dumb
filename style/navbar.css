@@ -1,44 +1,54 @@
 nav {
-	background-color: #ffcd38;
-	padding: 1rem 0;
+    background-color: #ffcd38;
+    padding: 1rem 0;
 }
 
 #nav-container {
-	width: 1024px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin: 0 auto;
+    width: 1024px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
 }
 
 @media screen and (max-width: 1080px) {
-	#nav-container {
-		width: 100%;
-		padding: 0 2rem;
-		box-sizing: border-box;
-	}
+    #nav-container {
+        width: 100%;
+        padding: 0 2rem;
+        box-sizing: border-box;
+    }
 }
 
-
 nav img {
-	width: 50px;
+    width: 50px;
 }
 
 #nav-icons {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .nav-icon {
-	background: none;
-	border: none;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dark nav {
-	background-color: #fec260;
+    background-color: #fec260;
+}
+
+#nav-search-input {
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    color: #222;
+}
+
+.dark #nav-search-input {
+    background-color: #ddd;
 }

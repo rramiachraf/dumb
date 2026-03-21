@@ -1,7 +1,7 @@
 package views
 
 templ HomePage() {
-	@layout("dumb") {
+	@layout(&LayoutOpts{title: "dumb", hideNavSearch: true}) {
 		<div id="home">
 			<div>
 				<h1>Welcome to dumb</h1>

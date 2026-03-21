@@ -3,7 +3,7 @@ package views
 import "strconv"
 
 templ ErrorPage(code int, display string) {
-	@layout("Error - dumb") {
+	@layout(&LayoutOpts{title: "Error - dumb"}) {
 		<div id="error">
 			<h1>{ strconv.Itoa(code) }</h1>
 			<p>{ display }</p>

@@ -1,9 +1,14 @@
 package views
 
-templ navbar() {
+templ navbar(hideSearch bool) {
 	<nav>
 		<div id="nav-container">
 			<a href="/"><img src="/static/logo.png" alt="Logo"/></a>
+			if !hideSearch {
+				<form method="GET" action="/search">
+					<input id="nav-search-input" type="text" name="q" placeholder="Search..."/>
+				</form>
+			}
 			<div id="nav-icons">
 				<a
 					title="Go to Genius.com"

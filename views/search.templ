@@ -6,7 +6,7 @@ import (
 )
 
 templ SearchPage(r data.SearchResults) {
-	@layout("Search - dumb") {
+	@layout(&LayoutOpts{title: "Search - dumb", hideNavSearch: true}) {
 		<div id="search-page" class="main">
 			<form method="GET">
 				<input type="text" name="q" id="search-input" placeholder="Search..." value={ r.Query }/>

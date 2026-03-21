@@ -6,7 +6,7 @@ import (
 )
 
 templ ArtistPage(a data.Artist) {
-	@layout(a.Name) {
+	@layout(&LayoutOpts{title: a.Name}) {
 		<div id="container" class="duo-split">
 			<div id="metadata">
 				<img id="artist-image" src={ data.ExtractImageURL(a.Image) } alt="Artist image"/>

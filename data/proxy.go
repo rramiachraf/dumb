@@ -13,4 +13,3 @@ func ExtractImageURL(image string) string {
 
 	return fmt.Sprintf("/images%s", u.Path)
 }
-

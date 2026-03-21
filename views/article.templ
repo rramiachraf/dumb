@@ -6,7 +6,7 @@ import (
 )
 
 templ ArticlePage(a data.Article) {
-	@layout(a.Title) {
+	@layout(&LayoutOpts{title: a.Title}) {
 		<div id="container" class="solo">
 			<div id="article-metadata">
 				<h1 id="article-title">{ a.Title }</h1>

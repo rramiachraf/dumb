@@ -8,3 +8,4 @@ test:
 	go test ./... -v
 fmt:
 	go tool templ fmt .
+	gofmt -w .
