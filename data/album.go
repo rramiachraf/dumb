@@ -9,9 +9,10 @@ import (
 )
 
 type AlbumPreview struct {
-	Name  string
-	Image string
-	URL   string
+	Name        string
+	Image       string
+	ReleaseDate string
+	URL         string
 }
 
 type Album struct {
@@ -33,6 +34,7 @@ type albumMetadata struct {
 		Id                    int    `json:"id"`
 		Image                 string `json:"cover_art_thumbnail_url"`
 		Name                  string `json:"name"`
+		ReleaseDate           string `json:"release_date_for_display"`
 		Description           string `json:"description_preview"`
 		artistPreviewMetadata `json:"artist"`
 	}
@@ -72,9 +74,10 @@ func (a *Album) parseAlbumData(doc *goquery.Document) error {
 	a.Name = albumData.Name
 	a.Image = albumData.Image
 	a.About = albumData.Description
+	a.ReleaseDate = albumData.ReleaseDate
 
 	for _, track := range albumMetadataFromPage.AlbumAppearances {
-		url := strings.Replace(track.Song.Url, "https://genius.com", "", -1)
+		url := strings.ReplaceAll(track.Song.Url, "https://genius.com", "")
 		a.Tracks = append(a.Tracks, Track{Title: track.Song.Title, Url: url, Number: track.TrackNumber})
 	}
 
