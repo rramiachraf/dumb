@@ -41,6 +41,9 @@ templ ArtistPage(a data.Artist) {
 								</a>
 							}
 						</div>
+						if !a.AlbumsComplete {
+						<a href="?allAlbums=true">Fetch all albums</a>
+						}
 					</div>
 				}
 			</div>
