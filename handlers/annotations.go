@@ -12,7 +12,7 @@ import (
 	"github.com/rramiachraf/dumb/views"
 )
 
-func annotations(l *utils.Logger) http.HandlerFunc {
+func (rt ResponseType)annotations(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		id := mux.Vars(r)["annotation-id"]
 		if a, err := getCache[data.Annotation]("annotation:" + id); err == nil {
