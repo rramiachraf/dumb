@@ -11,7 +11,7 @@ import (
 	"github.com/rramiachraf/dumb/views"
 )
 
-func article(l *utils.Logger) http.HandlerFunc {
+func (rt ResponseType)article(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		articleSlug := mux.Vars(r)["article"]
 
@@ -58,7 +58,11 @@ func article(l *utils.Logger) http.HandlerFunc {
 			l.Error(err.Error())
 		}
 
-		utils.RenderTemplate(w, views.ArticlePage(a), l)
+		if rt.asApi {
+			utils.EncodeJSON(w, a, l)
+		} else {
+			utils.RenderTemplate(w, views.ArticlePage(a), l)
+		}
 
 		if err = setCache(articleSlug, a); err != nil {
 			l.Error(err.Error())

@@ -44,6 +44,13 @@ make build
 
 [Status Page](https://github.com/rramiachraf/dumb-instances)
 
+#### API Endpoints:
+- /api/v1/albums/{artist}/{albumName}
+- /api/v1/artists/{artist}
+- /api/v1/annotations/{annotation-id}
+- /api/v1/search (eg. ../search?q=search+term)
+
+
 #### Notes:
 - Instances list in JSON format can be found in [instances.json](instances.json) file.
 - For people who might be capable and interested in hosting a public instance feel free to do so, and don't forget to open a pull request, so your instance can be included here.
@@ -53,4 +60,7 @@ Contributions are welcome.
 
 ## License
 [MIT](https://github.com/rramiachraf/dumb/blob/main/LICENCE)
+
+
+
 

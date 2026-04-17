@@ -17,31 +17,43 @@ type route struct {
 	Template func() templ.Component
 }
 
+type ResponseType struct {
+	asApi bool
+}
+
 func New(logger *utils.Logger, staticFiles static) *mux.Router {
 	r := mux.NewRouter()
 
 	r.Use(utils.MustHeaders)
 	r.Use(gorillaHandlers.CompressHandler)
 
+	rH := ResponseType{asApi: false}
+	rJ := ResponseType{asApi: true}
+
 	routes := []route{
 		{Path: "/", Template: views.HomePage},
 		{Path: "/robots.txt", Handler: robotsHandler},
-		{Path: "/albums/{artist}/{albumName}", Handler: album},
-		{Path: "/artists/{artist}", Handler: artist},
-		{Path: "/a/{article}", Handler: article},
+		{Path: "/albums/{artist}/{albumName}", Handler: rH.albums},
+		{Path: "/artists/{artist}", Handler:  rH.artist},
+		{Path: "/a/{article}", Handler: rH.article},
 		{Path: "/images/{filename}.{ext}", Handler: imageProxy},
-		{Path: "/search", Handler: search},
-		{Path: "/{annotation-id}/{artist-song}/{verse}/annotations", Handler: annotations},
-		{Path: "/{annotation-id}/{artist-song}/annotations", Handler: annotations},
+		{Path: "/search", Handler:  rH.search},
+		{Path: "/{annotation-id}/{artist-song}/{verse}/annotations", Handler:  rH.annotations},
+		{Path: "/{annotation-id}/{artist-song}/annotations", Handler:  rH.annotations},
 		{Path: "/instances.json", Handler: instances},
+
+		{Path: "api/v1/albums/{artist}/{albumName}", Handler: rJ.albums},
+		{Path: "api/v1/artists/{artist}", Handler: rJ.artist},
+		{Path: "api/v1/annotations/{annotation-id}", Handler: rJ.annotations},
+		{Path: "api/v1/search", Handler: rJ.search},
 	}
 
 	registerRoutes(r, routes, logger)
 
 	r.PathPrefix("/static/").HandlerFunc(staticAssets(logger, staticFiles))
-	r.PathPrefix("/{annotation-id}/{artist-song}-lyrics").HandlerFunc(lyrics(logger)).Methods("GET")
-	r.PathPrefix("/{annotation-id}/{artist-song}").HandlerFunc(lyrics(logger)).Methods("GET")
-	r.PathPrefix("/{annotation-id}").HandlerFunc(lyrics(logger)).Methods("GET")
+	r.PathPrefix("/{annotation-id}/{artist-song}-lyrics").HandlerFunc(rH.lyrics(logger)).Methods("GET")
+	r.PathPrefix("/{annotation-id}/{artist-song}").HandlerFunc(rH.lyrics(logger)).Methods("GET")
+	r.PathPrefix("/{annotation-id}").HandlerFunc(rH.lyrics(logger)).Methods("GET")
 
 	r.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)

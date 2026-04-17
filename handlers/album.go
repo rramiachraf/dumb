@@ -11,7 +11,7 @@ import (
 	"github.com/rramiachraf/dumb/views"
 )
 
-func album(l *utils.Logger) http.HandlerFunc {
+func (d ResponseType) albums(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		artist := mux.Vars(r)["artist"]
 		albumName := mux.Vars(r)["albumName"]
@@ -61,7 +61,11 @@ func album(l *utils.Logger) http.HandlerFunc {
 			l.Error(err.Error())
 		}
 
-		utils.RenderTemplate(w, views.AlbumPage(a), l)
+		if d.asApi {
+			utils.EncodeJSON(w, a, l)
+		} else {
+			utils.RenderTemplate(w, views.AlbumPage(a), l)
+		}
 
 		if err = setCache(id, a); err != nil {
 			l.Error(err.Error())
