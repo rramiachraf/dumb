@@ -33,9 +33,9 @@
 		"cdn": false
 	},
 	{
-		"clearnet": "https://dumb.hyperreal.coffee/",
-		"country": "DE",
-		"cdn": true
+		"clearnet": "https://dumb.moonshadow.dev/",
+		"country": "CA",
+		"cdn": false
 	},
 	{
 		"clearnet": "https://dumb.bloat.cat/",
