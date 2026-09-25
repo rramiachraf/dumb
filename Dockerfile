@@ -1,4 +1,4 @@
-FROM docker.io/golang:1.24.2-alpine3.21 AS build
+FROM docker.io/golang:1.26-alpine3.24 AS build
 
 RUN apk add make git curl
 
@@ -13,7 +13,7 @@ RUN make build
 
 ###############################################################
 
-FROM docker.io/alpine:3.21
+FROM docker.io/alpine:3.24
 
 LABEL org.opencontainers.image.source="https://github.com/rramiachraf/dumb"
 LABEL org.opencontainers.image.url="https://github.com/rramiachraf/dumb"
@@ -25,4 +25,3 @@ COPY --from=build /code/dumb .
 EXPOSE 5555/tcp
 
 CMD ["./dumb"]
-
