@@ -1,78 +1,34 @@
 [
-	{
-		"clearnet": "https://dm.vern.cc/",
-		"tor": "http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
-		"i2p": "http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p/",
-		"country": "US",
-		"cdn": false
-	},
-	{
-		"clearnet": "https://sing.whatever.social/",
-		"country": "US/DE",
-		"cdn": true
-	},
-	{
-		"clearnet": "https://dumb.lunar.icu/",
-		"country": "DE",
-		"cdn": true
-	},
-	{
-		"clearnet": "https://dumb.privacydev.net/",
-		"tor": "http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion/",
-		"country": "FR",
-		"cdn": false
-	},
-	{
-		"clearnet": "https://dumb.ducks.party/",
-		"country": "NL",
-		"cdn": false
-	},
-	{
-		"clearnet": "https://dumb.privacyfucking.rocks/",
-		"country": "DE",
-		"cdn": false
-	},
-	{
-		"clearnet": "https://dumb.hyperreal.coffee/",
-		"country": "DE",
-		"cdn": true
-	},
-	{
-		"clearnet": "https://dumb.bloat.cat/",
-		"country": "DE",
-		"cdn": false
-	},
-	{
-		"clearnet": "https://dumb.jeikobu.net/",
-		"country": "DE",
-		"cdn": true
-	},
-	{
-		"clearnet": "https://dumb.canine.tools/",
-		"country": "US",
-		"cdn": false
-	},
-	{
-		"clearnet": "https://lyr.dc09.ru/",
-		"country": "RU",
-		"cdn": false
-	},
-	{
-		"clearnet": "https://db.kuuro.net",
-		"tor": "http://db.kuuro5abqix6tfku77wj32srkicgqh3f7ro77ctpda7ub7a7mlv4jsid.onion/",
-		"country": "US",
-		"cdn": false
-	},
-	{
-		"clearnet": "https://genius.fsky.io",
-		"tor": "http://geniusw3sdwpbz7ajx34qmqkozewdryhpwtcqk3ann332qtragcb3ead.onion/",
-		"country": "PL",
-		"cdn": false
+  {
+    "clearnet": "https://dumb.bloat.cat/",
+    "country": "DE",
+    "cdn": false
+  },
+  {
+    "clearnet": "https://dumb.jeikobu.net/",
+    "country": "DE",
+    "cdn": true
+  },
+  {
+    "clearnet": "https://dumb.canine.tools/",
+    "country": "US",
+    "cdn": false
+  },
+  {
+    "clearnet": "https://genius.fsky.io",
+    "tor": "http://geniusw3sdwpbz7ajx34qmqkozewdryhpwtcqk3ann332qtragcb3ead.onion/",
+    "country": "PL",
+    "cdn": false
   },
   {
     "clearnet": "https://dumb.artemislena.eu",
     "tor": "http://dumb.lpoaj7z2zkajuhgnlltpeqh3zyq7wk2iyeggqaduhgxhyajtdt2j7wad.onion",
     "country": "DE",
     "cdn": false
-	}
+  },
+  {
+    "clearnet": "https://dumb.ducks.party/",
+    "country": "NL",
+    "cdn": false
+  }
 ]

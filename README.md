@@ -27,22 +27,12 @@ make build
 ## Public Instances
 | URL | Tor | I2P | Region | CDN? | Operator |
 | --- | :----: | :----: | :----: | :----: | --- |
-| <https://dumb.ducks.party> | No | No | NL | No | https://ducks.party |
-| <https://dumb.privacydev.net> | [Yes](http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion) | No | FR | No | https://privacydev.net |
-| <https://dumb.hyperreal.coffee> | No | No | US | No | https://hyperreal.coffee |
-| <https://dm.vern.cc> | [Yes](http://dm.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion) | [Yes](http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p) | US | No | https://vern.cc |
-| <https://dumb.lunar.icu> | No | No | DE | Yes | @MaximilianGT500 |
-| <https://dumb.privacyfucking.rocks> | No | No | DE | - | https://privacyfucking.rocks |
-| <https://sing.whatever.social> | No | No | US/DE | Yes | Whatever Social |
 | <https://dumb.bloat.cat> | No | No | DE | No | https://bloat.cat |
 | <https://dumb.jeikobu.net> | No | No | DE | Yes | https://jeikobu.net |
 | <https://dumb.canine.tools> | No | No | US | No | https://canine.tools |
-| <https://lyr.dc09.ru> | No | No | RU | No | @DarkCat09 |
-| <https://db.kuuro.net> | [Yes](http://db.kuuro5abqix6tfku77wj32srkicgqh3f7ro77ctpda7ub7a7mlv4jsid.onion/) | No | US | No | https://kuuro.net/ |
 | <https://genius.fsky.io> | [Yes](http://geniusw3sdwpbz7ajx34qmqkozewdryhpwtcqk3ann332qtragcb3ead.onion/) | No | PL | No | https://fsky.io/ |
 | <https://dumb.artemislena.eu> | [Yes](http://dumb.lpoaj7z2zkajuhgnlltpeqh3zyq7wk2iyeggqaduhgxhyajtdt2j7wad.onion) | No | DE | No | https://artemislena.eu |
-
-[Status Page](https://github.com/rramiachraf/dumb-instances)
+| <https://dumb.ducks.party> | No | No | NL | No | https://ducks.party |
 
 #### Notes:
 - Instances list in JSON format can be found in [instances.json](instances.json) file.
@@ -53,4 +43,3 @@ Contributions are welcome.
 
 ## License
 [MIT](https://github.com/rramiachraf/dumb/blob/main/LICENCE)
-
