@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gorilla/mux"
@@ -14,10 +15,20 @@ import (
 func artist(l *utils.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		artistName := mux.Vars(r)["artist"]
+		allAlbumsStr := r.URL.Query().Get("allAlbums")
+		allAlbums := false
+		if allAlbumsStr != "" {
+			v, err := strconv.ParseBool(allAlbumsStr)
+			if err != nil {
+				http.Error(w, "invalid value for allAlbums, use true or false", http.StatusBadRequest)
+				return
+			}
+			allAlbums = v
+		}
 
-		id := fmt.Sprintf("artist:%s", artistName)
+		cacheKey := fmt.Sprintf("artist:%s-%t", artistName, allAlbums)
 
-		if a, err := getCache[data.Artist](id); err == nil {
+		if a, err := getCache[data.Artist](cacheKey); err == nil {
 			utils.RenderTemplate(w, views.ArtistPage(a), l)
 			return
 		}
@@ -60,9 +71,20 @@ func artist(l *utils.Logger) http.HandlerFunc {
 			l.Error(err.Error())
 		}
 
+		if allAlbums {
+			err = a.GetAllAlbums()
+			if err != nil {
+				l.Error(err.Error())
+				w.WriteHeader(http.StatusInternalServerError)
+				utils.RenderTemplate(w, views.ErrorPage(500, "something went wrong fetching all albums"), l)
+				return
+			}
+			a.AlbumsComplete = true
+		}
+
 		utils.RenderTemplate(w, views.ArtistPage(a), l)
 
-		if err = setCache(id, a); err != nil {
+		if err = setCache(cacheKey, a); err != nil {
 			l.Error(err.Error())
 		}
 	}
