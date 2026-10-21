@@ -38,4 +38,11 @@ func TestAlbum(t *testing.T) {
 	if docTitle != title {
 		t.Fatalf("expected %q, got %q\n", title, docTitle)
 	}
+
+	expectedReleaseDate := "May 17, 2013"
+	actualReleaseDate := doc.Find("#metadata-info > small").First().Text()
+
+	if expectedReleaseDate != actualReleaseDate {
+		t.Fatalf("expected %q, got %q\n", expectedReleaseDate, actualReleaseDate)
+	}
 }

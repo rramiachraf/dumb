@@ -27,10 +27,11 @@ type artistMetadata struct {
 		Image       string `json:"image_url"`
 	}
 	Albums []struct {
-		Id    int    `json:"id"`
-		Image string `json:"cover_art_thumbnail_url"`
-		Name  string `json:"name"`
-		URL   string `json:"url"`
+		Id          int    `json:"id"`
+		Image       string `json:"cover_art_thumbnail_url"`
+		Name        string `json:"name"`
+		ReleaseDate string `json:"release_date_for_display"`
+		URL         string `json:"url"`
 	} `json:"artist_albums"`
 }
 
@@ -51,9 +52,10 @@ func (a *Artist) parseArtistData(doc *goquery.Document) error {
 
 	for _, album := range artistMetadataFromPage.Albums {
 		a.Albums = append(a.Albums, AlbumPreview{
-			Name:  album.Name,
-			Image: album.Image,
-			URL:   utils.TrimURL(album.URL),
+			Name:        album.Name,
+			Image:       album.Image,
+			ReleaseDate: album.ReleaseDate,
+			URL:         utils.TrimURL(album.URL),
 		})
 	}
 
