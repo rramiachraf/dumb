@@ -59,6 +59,7 @@ func (s *Song) parseLyrics(doc *goquery.Document) error {
 	var htmlError error
 
 	doc.Find("[class^=LyricsHeader]").Remove()
+	doc.Find("[data-lyrics-container='true'] span[tabindex][style]:empty").Remove()
 
 	doc.Find("[data-lyrics-container='true']").Each(func(i int, ss *goquery.Selection) {
 		h, err := ss.Html()

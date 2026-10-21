@@ -61,4 +61,8 @@ func testLyrics(t *testing.T, url string) {
 	if !strings.HasPrefix(docLyrics, firstLyricLine) {
 		t.Fatalf("expected lyrics to start with %q, got %q\n", firstLyricLine, docLyrics)
 	}
+
+	if n := doc.Find("#lyrics [style]").Length(); n != 0 {
+		t.Fatalf("expected no inline styles in lyrics, got %d\n", n)
+	}
 }
