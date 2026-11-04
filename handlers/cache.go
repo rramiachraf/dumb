@@ -13,7 +13,18 @@ type cachable interface {
 	data.Album | data.Song | data.Annotation | data.Artist | data.Article | []byte
 }
 
-var c, _ = bigcache.New(context.Background(), bigcache.DefaultConfig(time.Hour*24))
+const cacheMaxSizeMB = 256
+
+func cacheConfig(maxSizeMB int) bigcache.Config {
+	config := bigcache.DefaultConfig(time.Hour * 24)
+	config.HardMaxCacheSize = maxSizeMB
+	// The default preallocates more than each shard's share of the cap.
+	config.MaxEntriesInWindow = config.Shards * 10
+
+	return config
+}
+
+var c, _ = bigcache.New(context.Background(), cacheConfig(cacheMaxSizeMB))
 
 func setCache(key string, entry interface{}) error {
 	data, err := json.Marshal(&entry)
