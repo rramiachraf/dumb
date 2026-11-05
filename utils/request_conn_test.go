@@ -33,7 +33,9 @@ func TestSendRequestReusesProxyConnections(t *testing.T) {
 		}
 
 		_, _ = io.Copy(io.Discard, res.Body)
-		res.Body.Close()
+		if err := res.Body.Close(); err != nil {
+			t.Fatal(err)
+		}
 	}
 
 	if n := conns.Load(); n != 1 {
