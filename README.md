@@ -33,6 +33,7 @@ make build
 | <https://genius.fsky.io> | [Yes](http://geniusw3sdwpbz7ajx34qmqkozewdryhpwtcqk3ann332qtragcb3ead.onion/) | No | PL | No | https://fsky.io/ |
 | <https://dumb.artemislena.eu> | [Yes](http://dumb.lpoaj7z2zkajuhgnlltpeqh3zyq7wk2iyeggqaduhgxhyajtdt2j7wad.onion) | No | DE | No | https://artemislena.eu |
 | <https://dumb.ducks.party> | No | No | NL | No | https://ducks.party |
+| <https://dumb.notbig.business> | No | No | PL | No | https://notbig.business |
 
 #### Notes:
 - Instances list in JSON format can be found in [instances.json](instances.json) file.
